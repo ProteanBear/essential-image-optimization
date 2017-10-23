@@ -81,13 +81,13 @@
 </p>
 </details>
 
-### <a id="introduction" href="#introduction">Introduction</a>
+### <a id="introduction" href="#introduction">介绍</a>
 
-**Images are still the number one cause of bloat on the web.**
+**图片依然是加载缓慢的首要原因
 
-Images take up massive amounts of internet bandwidth because they often have large file sizes. According to the [HTTP Archive](http://httparchive.org/), 60% of the data transferred to fetch a web page is images composed of JPEGs, PNGs and GIFs. As of July 2017, images accounted for [1.7MB](http://httparchive.org/interesting.php#bytesperpage) of the content loaded for the 3.0MB average site.
+图片经常占用大量的互联网带宽，因为它们通常都非常大。根据[HTTP Archive](http://httparchive.org/)的统计结果显示，网页数据中平均60%的内容都是有JPEG、PNG和GIF组成的图像。截止至2017年7月，平均一个网站的内容数据有3.0MB，而其中1.7MB是图片。
 
-Per Tammy Everts, adding images to a page or making existing images larger have been [proven](https://calendar.perfplanet.com/2014/images-are-king-an-image-optimization-checklist-for-everyone-in-your-organization/) to increase conversion rates. It's unlikely that images will go away and so investing in an efficient compression strategy to minimize bloat becomes important.
+根据[Tammy Everts](https://calendar.perfplanet.com/2014/images-are-king-an-image-optimization-checklist-for-everyone-in-your-organization/)的研究表明，将图片添加到网页中或者将现有的图片扩大，已经被证明可以提高网站的用户转化率。图片是不可能消失的，所以花费成本在有效的压缩策略上以最小化这种带宽占用将变得非常重要。
 
 <figure>
 <picture>
@@ -109,10 +109,10 @@ Per Tammy Everts, adding images to a page or making existing images larger have 
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1502426282/essential-image-optimization/Modern-Image00.jpg"/>
 </noscript>
 </picture>
-<figcaption>Per [Soasta/Google research](https://www.thinkwithgoogle.com/marketing-resources/experience-design/mobile-page-speed-load-time/) from 2016, images were the 2nd highest predictor of conversions with the best pages having 38% fewer images.</figcaption>
+<figcaption>根据[Soasta/Google research](https://www.thinkwithgoogle.com/marketing-resources/experience-design/mobile-page-speed-load-time/)2016年的统计，图像是第二高的用户转换因子，其中转换率最好的页面中图片占比38%一下。</figcaption>
 </figure>
 
-Image optimization consists of different measures that can reduce the file size of your images. It ultimately depends on what visual fidelity your images require.
+图片优化包括了可以减少图片文件大小的多种不同方法。它最终取决于您的图片需要什么视觉保真度。
 
 <figure>
 <picture>
@@ -134,10 +134,10 @@ Image optimization consists of different measures that can reduce the file size 
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/image-optimisation"/>
 </noscript>
 </picture>
-<figcaption><strong>Image optimization:</strong> Choose the right format, compress carefully and prioritize critical images over those that can be lazy-loaded.</figcaption>
+<figcaption><strong>图像优化:</strong> 选择正确的存储格式、有效的压缩，并将关键图片优先于可以延迟加载的其他图片进行加载。</figcaption>
 </figure>
 
-Common image optimizations include compression, responsively serving them down based on screen size using [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture)/[`<img srcset>`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images), and resizing them to reduce image decode costs.
+通常的图片优化包括了压缩，并且支持通过[`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture)/[`<img srcset>`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)标签响应式的压缩它们，并且调整图片的尺寸以降低解码消耗。
 
 <figure>
 <picture>
@@ -159,10 +159,10 @@ Common image optimizations include compression, responsively serving them down b
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502834117/chart_naedwl.jpg"/>
 </noscript>
 </picture>
-<figcaption>Per the [HTTP Archive](http://jsfiddle.net/rviscomi/rzneberp/embedded/result/), per-image savings at the 95th percentile (looking at the Cumulative Distribution Function) are 30KB!</strong></figcaption>
+<figcaption>根据[HTTP Archive](http://jsfiddle.net/rviscomi/rzneberp/embedded/result/)统计, CDF (累积分布函数)为95%的每个图像可以节省体积达到30KB！</strong></figcaption>
 </figure>
 
-There's plenty of room for us to collectively optimize images better.
+说明我们有足够的空间来统一优化我们的图片。
 
 <figure>
 <picture>
@@ -185,15 +185,15 @@ There's plenty of room for us to collectively optimize images better.
 </noscript>
 </picture>
 
-<figcaption>ImageOptim is free, reduces image size through modern compression techniques and by stripping unnecessary EXIF meta-data.
+<figcaption>ImageOptim是一个免费的工具，可以通过现代压缩技术和去除不必要的EXIF元数据的方法减少图像文件体积。
 </figcaption>
 </figure>
 
-If you're a designer, there's also an [ImageOptim plugin for Sketch](https://github.com/ImageOptim/Sketch-plugin) that will optimize your assets on export. I've found it a huge time saver.
+如果你是个设计师，那么还有一个用于Sketch的[ImageOptim插件](https://github.com/ImageOptim/Sketch-plugin)，它在导出资源时会自动优化。你会发现它能最大化的节省你的时间。
 
-### <a id="do-my-images-need-optimization" href="#do-my-images-need-optimization">How can I tell if my images need to be optimized?</a>
+### <a id="do-my-images-need-optimization" href="#do-my-images-need-optimization">如何判断我的图像是否需要优化？</a>
 
-Perform a site audit through [WebPageTest.org](https://www.webpagetest.org/) and it will highlight opportunities to better optimize your images (see "Compress Images").
+可以通过[WebPageTest.org](https://www.webpagetest.org/)网站进行图片检查，它将指导你如何更好的优化图片（注意“Compress Images”的内容，即压缩图片）。
 
 <figure>
 <picture>
@@ -216,7 +216,7 @@ Perform a site audit through [WebPageTest.org](https://www.webpagetest.org/) and
 </noscript>
 </picture>
 
-<figcaption>The "Compress Images" section of a WebPageTest report lists images that can be compressed more efficiently and the estimated file-size savings of doing so.
+<figcaption>WebPageTest报告中的 "Compress Images" 部分列出了如何更有效地压缩的图像，以及能节省的文件大小。 
 </figcaption>
 </figure>
 
@@ -244,9 +244,9 @@ Perform a site audit through [WebPageTest.org](https://www.webpagetest.org/) and
 </figure>
 
 
-[Lighthouse](https://developers.google.com/web/tools/lighthouse/) audits for performance best practices. It includes audits for image optimisation and can make suggestions for images that could be compressed further or point out images that are off-screen and could be lazy-loaded.
+[在Chrome中，[Lighthouse](https://github.com/GoogleChrome/lighthouse)工具可以有效的帮助你的网站达到最佳体验。它包括了图像优化的审核，并且对是否可以进一步压缩图片提出建议，或者指出哪些是屏幕外的图片可以被延迟加载。
 
-As of Chrome 60, Lighthouse now powers the [Audits panel](https://developers.google.com/web/updates/2017/05/devtools-release-notes#lighthouse) in the Chrome DevTools:
+而对于Chrome60以上的版本，Lighthouse已经默认被嵌入到Chrome DevTools中的Audits面板中。
 
 <figure>
 <picture>
@@ -268,15 +268,15 @@ As of Chrome 60, Lighthouse now powers the [Audits panel](https://developers.goo
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/hbo.jpg"/>
 </noscript>
 </picture>
-<figcaption>Lighthouse can audit for Web Performance, Best Practices and Progressive Web App features.</figcaption>
+<figcaption>Lighthouse可以审核Web性能、找到最佳实践，并测试渐进式Web应用程序的功能。</figcaption>
 </figure>
 
 
-You may also be familiar of other performance auditing tools like [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) or [Website Speed Test](https://webspeedtest.cloudinary.com/) by Cloudinary which includes a detailed image analysis audit.
+你也可以去了解一下其他的性能审核工具，比如[PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)或者Cloudinary的[Website Speed Test](https://webspeedtest.cloudinary.com/)，这些工具都有丰富的图片优化审核功能。
 
-## <a id="choosing-an-image-format" href="#choosing-an-image-format">How do I choose an image format?</a>
+## <a id="choosing-an-image-format" href="#choosing-an-image-format">如何选择正确的图像格式？</a>
 
-As Ilya Grigorik notes in his excellent [image optimization guide](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization), the "right format" for an image is a combination of desired visual results and functional requirements. Are you working with Raster or Vector images?
+正如Ilya Grigorik在他出色的《[图像优化指南](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization)》中指出的，所谓的“正确格式”一定是视觉效果和功能需求的统一。你是使用Raster（位图）还是Vector（矢量图）？
 
 <figure>
 <picture>
@@ -302,13 +302,13 @@ As Ilya Grigorik notes in his excellent [image optimization guide](https://devel
 </figure>
 
 
-[Raster graphics](https://en.wikipedia.org/wiki/Raster_graphics) represent images by encoding the values of each pixel within a rectangular grid of pixels. They are not resolution or zoom independent. WebP or widely supported formats like JPEG or PNG handle these graphics well where photorealism is a necessity. Guetzli, MozJPEG and other ideas we've discussed apply well to raster graphics.
+[[Raster Graphics（位图）](https://en.wikipedia.org/wiki/Raster_graphics):通过对图像的矩形网格内的每个像素的值进行编码来表示图像。它们在缩放时会失真。WebP格式或者应用更广泛的格式比如JPEG或PNG都可以处理为位图，这种格式被应用于要求真实感的地方。Guetzli，MozJPEG和我们讨论的其他组件都适用于优化位图。
 
-[Vector graphics](https://en.wikipedia.org/wiki/Vector_graphics) use points, lines and polygons to represent images and formats using simple geometric shapes (e.g. logos) offering a high-resolution and zoom like SVG handle this use case better.
+[Vector graphics（矢量图）](https://en.wikipedia.org/wiki/Vector_graphics)：使用点、线和多边形来表示图像，并被应用于使用简单几何形状表示的图像（例如徽标）。这种格式可以在高分辨率下显示，并且缩放时不会失真。像SVG就是处理矢量图的好选择。
 
-The wrong format can cost you. The logical flow for choosing the right format can be fraught with peril so experiment with the savings other formats can afford with care. 
+选择了错误的格式可能会浪费你很多的宝贵时间。但选择正确格式的过程可能一波三折，所以消耗一些时间去尝试其他保存格式对于最终选择正确的格式来说也是值得的。
 
-Jeremy Wagner has covered [trade-offs](http://jlwagner.net/talks/these-images/#/2/2) worth considering when evaluating formats in his image optimization talks.
+杰里米·瓦格纳（Jeremy Wagner）在描述他的图像优化理论时，已经对图像格式的[权衡评估](http://jlwagner.net/talks/these-images/#/2/2)做出了讨论。
 
 ## <a id="the-humble-jpeg" href="#the-humble-jpeg">The humble JPEG.</a>
 
