@@ -310,15 +310,15 @@
 
 杰里米·瓦格纳（Jeremy Wagner）在描述他的图像优化理论时，已经对图像格式的[权衡评估](http://jlwagner.net/talks/these-images/#/2/2)做出了讨论。
 
-## <a id="the-humble-jpeg" href="#the-humble-jpeg">The humble JPEG.</a>
+## <a id="the-humble-jpeg" href="#the-humble-jpeg">“素人”JPEG</a>
 
-The [JPEG](https://en.wikipedia.org/wiki/JPEG) may well be the world's most widely used image format. As noted earlier, [45% of the images](http://httparchive.org/interesting.php) seen on sites crawled by HTTP Archive are JPEGs. Your phone, your digital SLR, that old webcam - everything pretty much supports this codec. It's also very old, dating all the way back to 1992 when it was first released. In that time, there's been an immense body of research done attempting to improve what it offers.
+[JPEG](https://en.wikipedia.org/wiki/JPEG)可能是世界上使用最广泛的图像格式。如前所述，HTTP Archive抓取的站点上看到的图像中有[45％](http://httparchive.org/interesting.php)是JPEG格式。您的手机、数码相机、旧的网络摄像机——一切的设备都支持这种编解码器。它也很确实很古老，第一次发布可以一直追溯到1992年。在这期间，已经有很多人进行了大量研究，试图改进它，让它变得更好。
 
-JPEG is a lossy compression algorithm that discards information in order to save space and many of the efforts that came after it attempted to preserve visual fidelity while keeping file sizes as small as possible.
+JPEG是一种有损压缩算法，它丢弃信息以节省存储空间，并在尝试保持文件尽可能小的同时保留图像质量的方面做出了许多努力。
 
-**What image quality is acceptable for your use-case?**
+##### 你的用例可以接受什么样的图像质量？
 
-Formats like JPEG are best suited for photographs or images with a number of color regions. Most optimisation tools will allow you to set what level of compression you're happy with; higher compression reduces file size but can introduce artifacts, halos or blocky degrading.
+像JPEG这样的格式最适用于那些具有多个颜色区域的照片或图像。而且大多数优化工具都允许您设置您喜欢的压缩级别；较高级别的压缩可以减小文件的大小，但可能会引起重影、光晕或马赛克等失真效果。
 
 <figure>
 <picture>
@@ -340,28 +340,27 @@ Formats like JPEG are best suited for photographs or images with a number of col
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image5.jpg"/>
 </noscript>
 </picture>
-<figcaption>JPEG: Perceivable JPEG compression artifacts can increase as we shift from best quality to lowest. Note that image quality scores in one tool can be very different to quality scores in another.</figcaption>
+<figcaption>JPEG: 从最佳质量转变到最低质量时，可以感觉到的压缩影响可能会增加。请注意，不同工具中的质量得分可能会有较大的差异。</figcaption>
 </figure>
 
-When choosing what quality setting to opt for, consider what quality bucket your images fall into:
+选择什么样的质量设置，请根据你的业务需求：
 
-*   **Best quality** - when quality matters more than bandwidth. This may be because the image has high prominence in your design or is displayed at full resolution.
-*   **Good quality** - when you care about shipping smaller file-sizes, but don't want to negatively impact image quality too much. Users still care about some level of image quality.
-*   **Low quality** - when you care enough about bandwidth that image degradation is okay. These images are suitable for spotty/poor network conditions.
-*   **Lowest quality** - bandwidth savings are paramount. Users want a decent experience but will accept a pretty degraded experience for the benefit of pages loading more quickly.
+- **最高质量**：在质量要求远比带宽重要时使用。可能是因为这个图片在你的设计中很重要或者它需要全分辨率显示。
+- **一般质量**：当你追求较小的图片，但又不想对图片质量产生较大影响时使用。你的用户可能仍然希望看到的图片比较清晰。
+- **较低质量**：当网络带宽更重要时使用。这些图片更适用于不稳定或带宽较低的网络。
+- **最低质量**：节省带宽是至关重要时使用。用户可以接受一个较差的视觉体验，以便更快速的加载页面。
 
-Next, let's talk about JPEG's compression modes as these can have a large impact on perceived performance.
+下面，我们来谈谈JPEG的压缩模式，因为它们对图片的视觉体验有很大的影响。
 
-<aside class="note"><b>Note:</b> It's possible that we sometimes overestimate the image quality that our users need. Image quality could be considered a deviation from an ideal, uncompressed source. It can also be subjective.</aside>
+<aside class="note"><b>注意：</b> 我们有时有可能会高估用户需要的图像质量。图像质量可能被认为是高保真资源的一个偏差值。但它同样也可以是很主观的。</aside>
 
-## <a id="jpeg-compression-modes" href="#jpeg-compression-modes">JPEG compression modes</a>
+## <a id="jpeg-compression-modes" href="#jpeg-compression-modes">JPEG的压缩模式</a>
 
-The JPEG image format has a number of different [compression modes](http://cs.haifa.ac.il/~nimrod/Compression/JPEG/J5mods2007.pdf). Three popular modes are baseline (sequential), Progressive JPEG (PJPEG) and lossless.
+JPEG图像格式具有多种不同的[压缩模式](http://cs.haifa.ac.il/~nimrod/Compression/JPEG/J5mods2007.pdf)。其中，三种流行的模式分别是基线（顺序），渐进式JPEG（PJPEG）和无损。
 
+##### 基线（或顺序）JPEG和渐进式JPEG有什么不同？
 
-**How do baseline (or sequential) JPEGs and Progressive JPEGs differ?**
-
-Baseline JPEGs (the default for most image editing and optimisation tools) are encoded and decoded in a relatively simple manner: top to bottom. When baseline JPEGs load on slow or spotty connections, users see the top of the image with more of it revealed as the image loads. Lossless JPEGs are similar but have a smaller compression ratio.
+基线JPEG（大多数图像编辑和优化工具的默认项）以相对简单的方式进行编码和解码：从上到下。当基线JPEG加载缓慢时，用户会先看到图像的顶部，然后更多的图像将在图像逐步加载时显示。无损JPEG与基线JPEG类似，但具有更小的压缩比。
 
 
 <figure>
@@ -384,10 +383,10 @@ Baseline JPEGs (the default for most image editing and optimisation tools) are e
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image6.jpg"/>
 </noscript>
 </picture>
-<figcaption>Baseline JPEGs load top to bottom while Progressive JPEGs load from blurry to sharp.</figcaption>
+<figcaption>基线JPEG是从顶部到底部加载，而渐进式JPEG是从模糊到清晰。</figcaption>
 </figure>
 
-Progressive JPEGs divide the image into a number of scans. The first scan shows the image in a blurry or low-quality setting and following scans improve image quality. Think of this as "progressively" refining it. Each "scan" of an image adds an increasing level of detail. When combined this creates a full-quality image.
+而渐进式JPEG则是将图片进行多次扫描。第一次扫描会以模糊或低质量显示图片，后面多次扫描可逐步提高图像质量，这便是“渐进式”的意义。图像的每个“扫描”增加了更多的图片细节。最终组合时，就会创建一个最终质量的图像。
 
 <figure>
 <picture>
@@ -409,17 +408,17 @@ Progressive JPEGs divide the image into a number of scans. The first scan shows 
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image7.jpg"/>
 </noscript>
 </picture>
-<figcaption>Baseline JPEGs load images from top to bottom. PJPEGs load from low-resolution (blurry) to high-resolution. Pat Meenan wrote an [interactive tool](http://www.patrickmeenan.com/progressive/view.php?img=https%3A%2F%2Fwww.nps.gov%2Fplanyourvisit%2Fimages%2FGrandCanyonSunset_960w.jpg) to test out and learn about Progressive JPEG scans too.</figcaption>
+<figcaption>基线JPEG从上到下加载图像，而PJPEG从低分辨率（模糊）加载到高分辨率。Pat Meenan曾经写过写了一个[交互式工具](http://www.patrickmeenan.com/progressive/view.php?img=https%3A%2F%2Fwww.nps.gov%2Fplanyourvisit%2Fimages%2FGrandCanyonSunset_960w.jpg)来测试和分析渐进式JPEG扫描。</figcaption>
 </figure>
 
-Lossless JPEG optimization can be achieved by [removing EXIF data](http://www.verexif.com/en/) added by digital cameras or editors, optimizing an image's [Huffman tables](https://en.wikipedia.org/wiki/Huffman_coding), or rescanning the image. Tools like [jpegtran](http://jpegclub.org/jpegtran/) achieve lossless compression by rearranging the compressed data without image degradation. [jpegrescan](https://github.com/kud/jpegrescan), [jpegoptim](https://github.com/tjko/jpegoptim) and [mozjpeg](https://github.com/mozilla/mozjpeg) (which we'll cover shortly) also support lossless JPEG compression.
+无损JPEG是通过删除由数码相机或编辑器添加的[EXIF数据](http://www.verexif.com/en/)、优化一个图片的[霍夫曼编码](https://en.wikipedia.org/wiki/Huffman_coding)或者重新扫描图像等手段实现的。诸如[jpegtran](http://jpegclub.org/jpegtran/)等工具都可以通过重新排列压缩数据而无需图像降级来实现无损压缩。[jpegrescan](https://github.com/kud/jpegrescan)，[jpegoptim](https://github.com/tjko/jpegoptim)和[mozjpeg](https://github.com/mozilla/mozjpeg)（我们将在稍后介绍）同样也支持无损JPEG压缩。
 
 
-### <a id="the-advantages-of-progressive-jpegs" href="#the-advantages-of-progressive-jpegs">The advantages of Progressive JPEGs</a>
+### <a id="the-advantages-of-progressive-jpegs" href="#the-advantages-of-progressive-jpegs">渐进式JPEG的优点</a>
 
-The ability for PJPEGs to offer low-resolution "previews" of an image as it loads improves perceived performance - users can feel like the image is loading faster compared to adaptive images.
+PJPEGs能提供图像低分辨率“预览”功能，可以提高用户的使用体验：用户会感觉图像的加载速度更快。
 
-On slower 3G connections, this allows users to see (roughly) what's in an image when only part of the file has been received and make a call on whether to wait for it to fully load. This can be more pleasant than the top-to-bottom display of images offered by baseline JPEGs.
+在较慢的3G网络连接中，这允许用户在只收到一部分文件时就可以（大概）看到图像中的内容，并确定是否等待它完全加载完成。这会比基线JPEG所提供的图像从上到下显示方式让人更加乐于接受。
 
 <figure>
 <picture>
@@ -441,20 +440,20 @@ On slower 3G connections, this allows users to see (roughly) what's in an image 
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1504993129/essential-image-optimization/pjpeg-graph.png"/>
 </noscript>
 </picture>
-<figcaption>In 2015, [Facebook switched to PJPEG (for their iOS app)](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/) and saw a 10% reduction in data usage. They were able to show a good quality image 15% faster than previously, optimising perceived loading time, as shown in the figure above.</figcaption>
+<figcaption>在2015年，[Facebook更新图像到PJPEG（用于iOS应用程序）](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/)后，数据使用量下降了10％。通过优化感知加载时间，Facebook能够比快15％的速度加载优质图像，如上图所示。</figcaption>
 </figure>
 
-PJPEGs can improve compression, consuming [2-10%](http://www.bookofspeed.com/chapter5.html) less bandwidth compared to baseline/simple JPEGs for images over 10KB. Their higher compression ratio is thanks to each scan in the JPEG being able to have its own dedicated optional [Huffman table](https://en.wikipedia.org/wiki/Huffman_coding). Modern JPEG encoders (e.g. [libjpeg-turbo](http://libjpeg-turbo.virtualgl.org/), MozJPEG, etc.) take advantage of PJPEG’s flexibility to pack data better.
+PJPEG还可以提高图像压缩率；同样10KB以上的图像，渐进式JPEG比基线JPEG可以节省[2-10％](http://www.bookofspeed.com/chapter5.html)的带宽。渐进式JPEG有较高压缩比，是由于JPEG中的每个扫描都能够拥有自己专用的可选[霍夫曼编码](https://en.wikipedia.org/wiki/Huffman_coding)。现代化的JPEG编码器（例如[libjpeg-turbo](http://libjpeg-turbo.virtualgl.org/)，MozJPEG等）都是利用了PJPEG的灵活性，更好地打包图像数据。
 
-<aside class="note"><b>Note:</b> Why do PJPEGs compress better? Baseline JPEG blocks are encoded one at a time. With PJPEGs, similar [Discrete Cosine Transform](https://en.wikipedia.org/wiki/Discrete_cosine_transform) coefficients across more than one block can be encoded together leading to better compression.</aside>
+<aside class="note"><b>注意:</b> 为什么PJPEG的压缩更好？因为基线JPEG的所有块是一次性压缩编码的。而在PJPEG中，利用一种类似[离散余弦变换](https://en.wikipedia.org/wiki/Discrete_cosine_transform)系数的方法可以将多个不连续的块编码在一起，从而带来更好的压缩比率。</aside>
 
-### <a id="whos-using-progressive-jpegs-in-production" href="#whos-using-progressive-jpegs-in-production">Who's using Progressive JPEGs in production?</a>
+### <a id="whos-using-progressive-jpegs-in-production" href="#whos-using-progressive-jpegs-in-production">谁在生产环境中使用了渐进式JPEG？</a>
 
-*   [Twitter.com ships Progressive JPEGs](https://www.webpagetest.org/performance_optimization.php?test=170717_NQ_1K9P&run=2#compress_images) with a baseline of quality of 85%. They measured user perceived latency (time to first scan and overall load time) and found overall, PJPEGs were competitive at addressing their requirements for low file-sizes, acceptable transcode and decode times.
-*   [Facebook ships Progressive JPEGs for their iOS app](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/). They found it reduced data usage by 10% and enabled them to show a good quality image 15% faster.
-*   [Yelp switched to Progressive JPEGs](https://engineeringblog.yelp.com/2017/06/making-photos-smaller.html) and found it was in part responsible for ~4.5% of their image size reduction savings. They also saved an extra 13.8% using MozJPEG.
+*   [Twitter.com](https://www.webpagetest.org/performance_optimization.php?test=170717_NQ_1K9P&run=2#compress_images)：推特使用了质量基准为85%的渐进式JPEG。通过他们对用户延迟感知（首次扫描的时间和总体加载时间）的测试显示，总体而言，PJPEG在解决他们对较低的文件大小和可接受范围内的转码及解码时间的需求方面具有很强的竞争力。
+*   [Facebook](https://code.facebook.com/posts/857662304298232/faster-photos-in-facebook-for-ios/)：脸书为他们的iOS应用使用了渐进式JPEG。他们发现数据的使用量减少了10％，并且他们载入高质量图像的速度提高了15％。
+*   [Yelp](https://engineeringblog.yelp.com/2017/06/making-photos-smaller.html)：在切换到渐进式JPEG后，发现他们的图像尺寸减少了4.5％。另外，他们还使用MozJPEG节省了13.8％的额外费用。
 
-Many other image-heavy sites, like [Pinterest](https://pinterest.com) also use Progressive JPEGs in production. 
+包括许多以图片为核心业务的网站，比如[Pinterest](https://pinterest.com/)同样都是在生产环境中使用渐进式JPEG。
 
 <figure>
 <picture>
@@ -477,24 +476,24 @@ Many other image-heavy sites, like [Pinterest](https://pinterest.com) also use P
 "/>
 </noscript>
 </picture>
-<figcaption>Pinterest's JPEGs are all progressively encoded. This optimizes the user experience by loading them each scan-by-scan.</figcaption>
+<figcaption>Pinterest的JPEG图像都使用了渐进式模式的编码。这可以通过多次扫描来加载来，优化用户体验。</figcaption>
 </figure>
 
-### <a id="the-disadvantages-of-progressive-jpegs" href="#the-disadvantages-of-progressive-jpegs">The disadvantages of Progressive JPEGs</a>
+### <a id="the-disadvantages-of-progressive-jpegs" href="#the-disadvantages-of-progressive-jpegs">渐进式JPEG的缺点</a>
 
-PJPEGs can be slower to decode than baseline JPEGs - sometimes taking 3x as long. On desktop machines with powerful CPUs this can be less of a concern, but is on underpowered mobile devices with limited resources. Displaying incomplete layers takes work as you're basically decoding the image multiple times. These multiple passes can eat CPU cycles.
+**PJPEG解码速度更慢**：有时候甚至多出3倍的时间。在具有强大CPU的台式机上，这种差异可能无法感觉到，但在性能有限的移动设备上就会很明显。为了不完整的图层可以正常工作，这需要对图像进行多次解码，而每次解码都需要消耗一定的CPU运算周期。
 
-Progressive JPEGs are also not *always* smaller. For very small images (like thumbnails), progressive JPEGs can be larger than their baseline counterparts. However for such small thumbnails, progressive rendering might not really offer as much value.
+**渐进式JPEG也并不总是更小**：对于一些非常小的图像（如缩略图），渐进式JPEG的文件可能反而会大于基线JPEG。而且，对于这样小的缩略图，渐进渲染并没有什么意义。
 
-This means that when deciding whether or not to ship PJPEGs, you'll need to experiment and find the right balance of file-size, network latency and use of CPU cycles.
+这意味着，你在决定是否使用PJPEG时，需要进行一些测试，并找到文件大小、网络延迟和CPU周期使用的平衡点。
 
-Note: PJPEGs (and all JPEGs) can sometimes be hardware decodable on mobile devices. It doesn't improve on RAM impact, but it can negate some of the CPU concerns. Not all Android devices have hardware-acceleration support, but high end devices do, and so do all iOS devices.
+注意: PJPEG（和所有JPEG）有时可以在移动设备上进行硬件解码。它不会改善图片在内存中的大小，但它可以解决一些CPU负载的问题。但是并不是所有的Android设备都具有硬件加速支持；但是高端设备都会支持，所有的iOS设备也都支持。
 
-Some users may consider progressive loading to be a disadvantage as it can become hard to tell when an image has completed loading. As this can vary heavily per audience, evaluate what makes sense for your own users.
+有些用户可能会认为渐进式加载是一个缺点，因为当图像完成加载时可能会变得很难分辨。由于每个受众的感官差异很大，在使用PJPEG时请评估它对自己用户的体验是否有意义。
 
-### <a id="how-to-create-progressive-jpegs" href="#how-to-create-progressive-jpegs">How do you create Progressive JPEGs?</a>
+### <a id="how-to-create-progressive-jpegs" href="#how-to-create-progressive-jpegs">如何生成一个渐进式JPEG？</a>
 
-Tools and libraries like [ImageMagick](https://www.imagemagick.org/), [libjpeg](http://libjpeg.sourceforge.net/), [jpegtran](http://jpegclub.org/jpegtran/), [jpeg-recompress](https://github.com/danielgtaylor/jpeg-archive) and [imagemin](https://github.com/imagemin/imagemin) support exporting Progressive JPEGs. If you have an existing image optimization pipeline, there's a good likelihood that adding progressive loading support could be straight-forward:
+很多工具和库都支持导出渐进式JPEG，比如[ImageMagick](https://www.imagemagick.org/), [libjpeg](http://libjpeg.sourceforge.net/), [jpegtran](http://jpegclub.org/jpegtran/), [jpeg-recompress](https://github.com/danielgtaylor/jpeg-archive)以及[imagemin](https://github.com/imagemin/imagemin)。如果你已经有了一个现有的图片优化方案，那么增加渐进式图片加载支持可能是非常容易的：
 
 ```js
 const gulp = require('gulp');
@@ -509,7 +508,7 @@ gulp.task('images', function () {
 });
 ```
 
-Most image editing tools save images as Baseline JPEG files by default.
+大多数的图像编辑工具默认情况下都是将图像保存为基线式。
 
 <figure>
 <picture>
@@ -531,12 +530,12 @@ Most image editing tools save images as Baseline JPEG files by default.
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_crop,h_477,w_2128,y_0/v1502426282/essential-image-optimization/photoshop.jpg"/>
 </noscript>
 </picture>
-<figcaption>Most image editing tools save images as Baseline JPEG files by default. You can save any image you create in Photoshop as a Progressive JPEG by going to File -> Export -> Save for Web (legacy) and then clicking on the Progressive option. Sketch also supports exporting Progressive JPEGs - export as JPG and check the ‘Progressive’ checkbox while saving your images.</figcaption>
+<figcaption>默认情况下，大多数图像编辑工具将图像保存为基线JPEG文件。在**Photoshop**中您可以通过选择文件 - >导出 - >保存为Web（旧版），然后选中**Progressive**选项，将您在Photoshop中创建的任何图像保存为渐进式JPEG。**Sketch**也支持导出渐进式JPEG。通过选择导出为JPG，并在保存图像的同时选中“Progressive”复选框。</figcaption>
 </figure>
 
-### <a id="chroma-subsampling" href="#chroma-subsampling">Chroma (or Color) Subsampling</a>
+### <a id="chroma-subsampling" href="#chroma-subsampling">色度（或颜色）抽样</a>
 
-Our eyes are more forgiving to loss of color detail in an image (chroma) than they are luminance (or luma for short - a measure of brightness). [Chroma subsampling](https://en.wikipedia.org/wiki/Chroma_subsampling) is a form of compression that reduces the precision of color in a signal in favor of luma. This reduces file size, in some cases by up to [15-17%](https://calendar.perfplanet.com/2015/why-arent-your-images-using-chroma-subsampling/), without adversely affecting image quality and is an option available for JPEG images. Subsampling can also reduce image memory usage.
+我们的眼睛相对于图像中的光亮度（或者luma—一种光亮度量单位）损失来说，更易忽略图像（色度）中的颜色细节的损失。[色度抽样](https://en.wikipedia.org/wiki/Chroma_subsampling)是一种压缩方式，通过在色差通道上进行较低（相对亮度通道）清晰度的抽样从而可以减少文件大小，在某些情况下可减少[15-17％](https://calendar.perfplanet.com/2015/why-arent-your-images-using-chroma-subsampling/)，而不会对图像质量产生影响，这是JPEG图像的一个压缩选项。抽样同时也可以减少显示图像时对内存的占用。
 
 <figure>
 <picture>
@@ -560,7 +559,7 @@ Our eyes are more forgiving to loss of color detail in an image (chroma) than th
 </picture>
 </figure>
 
-As contrast is responsible for forming shapes that we see in an image, luma, which defines it, is pretty important. Older or filtered black and white photos may not contain color, but thanks to luma, they can be just as detailed as their color counterparts. Chroma (color) has less of an impact on visual perception.
+同我们看到的图片中的形状相比，定义它的亮度（luma）反而是非常重要的。比较旧的或经过过滤的黑白照片可能并不包含颜色，但是由于亮度的作用，这些照片与有颜色的照片一样能表现各种细节。色度（色彩）其实对视觉感受影响是较小的。
 
 <figure>
 <picture>
@@ -582,20 +581,18 @@ As contrast is responsible for forming shapes that we see in an image, luma, whi
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503683936/essential-image-optimization/no-subsampling.jpg"/>
 </noscript>
 </picture>
-<figcaption>JPEG supports a number of different subsampling types: none, horizontal and horizontal and vertical. This diagram is from [JPEGs for the horseshoe crabs](http://frdx.free.fr/JPEG_for_the_horseshoe_crabs.pdf) by Frédéric Kayser.</figcaption>
+<figcaption>JPEG支持多种不同的子采样类型，包括：无、水平和水平并垂直。这个图是来自FrédéricKayser的“[JPEGs for the horseshoe crabs](http://frdx.free.fr/JPEG_for_the_horseshoe_crabs.pdf)”。</figcaption>
 </figure>
 
-There are a number of common samples discussed when talking about subsampling. Generally, `4:4:4`, `4:2:2` and `4:2:0`. But what do these represent? Let’s say a subsample takes the format A:B:C. A is the number of pixels in a row and for JPEGs this is usually 4. B represents the amount of color in the first row and C the color in the second.
+在谈论色度抽样时，经常会提到一些常见的样本。一般来说有`4:4:4`，`4:2:2`和`4:2:0`。那么这些代表什么呢？假设样本采用格式A：B：C。A是一行中的像素数，对于JPEG来说这个值一般为4；B表示第一行中的颜色数量；C表示第二行中的颜色数量。
 
-* `4:4:4` has no compression, so color and luma are transported completely.
-* `4:2:2` has half sampling horizontally and full sampling vertically.
-* `4:2:0` samples colors out of half the first row’s pixels and ignores the second row.
+- 4:4:4 —— 没有压缩，颜色和亮度被完全传输。
+- 4:2:2 —— 水平半抽样，垂直全部抽样。
+- 4:2:0 —— 第一行像素中的一半取样，并第二行忽略。
 
-<aside class="note"><b>Note:</b> jpegtran and cjpeg support separate quality configuration of luminance and chroma. This can be done adding the `-sample` flag (e.g. `-sample 2x1`).
+> **注意**：jpegtran和cjpeg支持单独的亮度和色度的质量配置。通过添加`-sample`标志（例如`-sample 2x1`）。并且有一些常用的规则：subsampling（`-sample 2x2`）可以生成美妙的照片；no-subsampling（`-sample 1x1`）最适合于截图、横幅和按钮；最终的compromise（`2x1`）用于你不确定将图片使用在哪里。
 
-Some good general rules:  subsampling (`-sample 2x2`) is great for photos. no-subsampling (`-sample 1x1`) is best for screenshots, banners and buttons. There's finally compromise (`2x1`) is you're unsure what to use.</aside>
-
-By reducing pixels in our chroma components, it’s possible to reduce the size of color components significantly, ultimately reducing byte size.
+通过减少色度分量中的像素，可以显著减小颜色分量的大小，从而最终减少图像文件的字节大小。
 
 <figure>
 <picture>
@@ -617,12 +614,12 @@ By reducing pixels in our chroma components, it’s possible to reduce the size 
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503684781/essential-image-optimization/subsampling.jpg"/>
 </noscript>
 </picture>
-<figcaption>Chrome subsampling configurations for a JPEG at quality 80.</figcaption>
+<figcaption>质量为80的JPEG在Chrome中不同样本配置下的显示对比</figcaption>
 </figure>
 
-Chroma subsampling is worth considering for most types of image. It does have some notable exceptions: as subsampling relies on limitations in our eyes, it is not great for compressing images where color detail may be as important as luminance (e.g. medical images).
+色度抽样值得被用于大多数类型的图像。但是它确实有一些例外：由于抽样依赖于我们眼中的视觉限制，当对于压缩图像而言，色彩细节可能与亮度（例如医学图像）一样重要时，使用色度抽样就不是很好。
 
-Images containing typefaces can also suffer as poor subsampling of text can decrease its legibility. Sharper edges are harder to compress with JPEG as it was designed to better handle photographic scenes with softer transitions.
+另外，包含字体的图像也可能会受到明显的影响，因为文本的抽样可能会降低其可读性。而一些更为锐利的边缘也是难以被压缩的，因为色度取样是被设计为更好地处理具有更多软过渡的摄影场景。
 
 <figure>
 <picture>
@@ -644,22 +641,22 @@ Images containing typefaces can also suffer as poor subsampling of text can decr
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503684410/essential-image-optimization/Screen_Shot_2017-08-25_at_11.06.27_AM.jpg"/>
 </noscript>
 </picture>
-<figcaption>[Understanding JPEG](http://compress-or-die.com/Understanding-JPG/) recommends sticking with a subsampling of 4:4:4 (1x1) when working with images containing text.</figcaption>
+<figcaption>“[了解JPEG](http://compress-or-die.com/Understanding-JPG/)”中建议在处理包含文本的图像时，使用4:4:4（1x1）的子样本配置。</figcaption>
 </figure>
 
-Trivia: The exact method of Chroma subsampling wasn’t specified in the JPEG specification, so different decoders handle it differently. MozJPEG and libjpeg-turbo use the same scaling method. Older versions of libjpeg use a different method that adds ringing artifacts in colors.
+提示：在JPEG规范中其实并没有规定Chroma子采样的确切方法，因此不同的解码器的处理方式可能不同。MozJPEG和libjpeg-turbo都是使用了缩放方法。而较旧版本的libjpeg使用了不同方法：在颜色中增加边缘震荡效应。
 
-<aside class="note"><b>Note:</b> Photoshop sets Chroma subsampling automatically when using the ‘Save for web’ feature. When image quality is set between 51-100, no subsampling is used at all (`4:4:4`). When quality is below this, a `4:2:0` subsampling is used instead. This is one reason a far greater file-size reduction can be observed when switching quality from 51 to 50.</aside>
+<aside class="note"><b>注意:</b> Photoshop在使用“Save for web”功能时是自动设置色度抽样样本的。当图像质量设置在51-100之间时，根本不使用抽样（即样本`4:4:4`）。当质量低于此值时，将使用`4:2:0`进行抽样。这也就是将质量从51切换到50时，可以明显观察到的文件大小减少的一个原因。</aside>
 
-<aside class="note"><b>Note:</b> In subsampling discussions the term [YCbCr](https://en.wikipedia.org/wiki/YCbCr) is often mentioned. This is a model that can represent gamma-corrected [RGB](https://en.wikipedia.org/wiki/RGB_color_model) color spaces. Y is gamma-corrected luminance, Cb is the blue color’s chroma component and Cr is the red color’s chroma component. If you look at ExifData, you’ll see YCbCr next to sampling levels.</aside>
+<aside class="note"><b>注意:</b> 在抽样讨论中，常常提到[YCbCr](https://en.wikipedia.org/wiki/YCbCr)这个术语。这是一个可以表示伽玛校正的[RGB](https://en.wikipedia.org/wiki/RGB_color_model)颜色空间的模型。Y是伽马校正亮度，Cb是蓝色的色度分量，Cr是红色的色度分量。如果您查看ExifData，您将在采样级别旁边看到YCbCr。</aside>
 
-For a further read on Chroma Subsampling, see [Why aren’t your images using Chroma subsampling?](https://calendar.perfplanet.com/2015/why-arent-your-images-using-chroma-subsampling/).
+如果想进一步了解色度抽样，请参阅《[为什么你的图像不使用色度抽样？](https://calendar.perfplanet.com/2015/why-arent-your-images-using-chroma-subsampling/)》
 
-### <a id="how-far-have-we-come-from-the-jpeg" href="#how-far-have-we-come-from-the-jpeg">How far have we come from the JPEG?</a>
+### <a id="how-far-have-we-come-from-the-jpeg" href="#how-far-have-we-come-from-the-jpeg">JPEG引发的格式拓展</a>
 
-**Here's the current state of image formats on the web:**
+**以下是网络上当前图像格式的情况：**
 
-*tl;dr - there's a lot of fragmentation. We often need to conditionally serve different formats to different browsers to take advantage of anything modern.*
+*总的来说——碎片化严重。我们经常需要有条件地为不同的浏览器提供不同的图像格式，以充分利用浏览器任何先进的功能。*
 
 <figure>
 <picture>
@@ -681,45 +678,45 @@ For a further read on Chroma Subsampling, see [Why aren’t your images using Ch
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_95/v1502426282/essential-image-optimization/format-comparison.jpg"/>
 </noscript>
 </picture>
-<figcaption>Different modern image formats (and optimizers) used to demonstrate what is possible at a target file-size of 26KB. We can compare quality using [SSIM](https://en.wikipedia.org/wiki/Structural_similarity) (structural similarity) or [Butteraugli](https://github.com/google/butteraugli), which we'll cover in more detail later.</figcaption>
+<figcaption>不同的现代图像格式（和优化编码器）文件大小为26KB的对比演示。我们可以使用[SSIM](https://en.wikipedia.org/wiki/Structural_similarity)（结构相似性）或[Butteraugli](https://github.com/google/butteraugli)来比较质量，稍后我们将会详细介绍。</figcaption>
 </figure>
 
-*   **[JPEG 2000](https://en.wikipedia.org/wiki/JPEG_2000) (2000)** - an improvement to JPEG switching from a discrete cosine based transform to a wavelet-based method. **Browser support: Safari desktop + iOS**
-*   **[JPEG XR](https://en.wikipedia.org/wiki/JPEG_XR) (2009)** - alternative to JPEG and JPEG 2000 supporting [HDR](http://wikivisually.com/wiki/High_dynamic_range_imaging) and wide [gamut](http://wikivisually.com/wiki/Gamut) color spaces. Produces smaller files than JPEG at slightly slower encode/decode speeds. **Browser support: Edge, IE.**
-*   **[WebP](https://en.wikipedia.org/wiki/WebP) (2010)** - block-prediction based format by Google with support for lossy and lossless compression. Offers byte savings associated with JPEG and transparency support byte-heavy PNGs are often used for. Lacks chroma subsampling configuration and progressive loading. Decode times are also slower than JPEG decoding. **Browser support: Chrome, Opera. Experimented with by Safari and Firefox.**
-*   **[FLIF](https://en.wikipedia.org/wiki/Free_Lossless_Image_Format) (2015)** - lossless image format claiming to outperform PNG, lossless WebP, lossless BPG and lossless JPEG 2000 based on compression ratio. **Browser support: none. *Note that there is a [JS in-browser decoder](https://github.com/UprootLabs/poly-flif).***
-*   **HEIF and BPG.** From a compression perspective, they're the same but have a different wrapper:
-*   **[BPG](https://en.wikipedia.org/wiki/Better_Portable_Graphics) (2015)** - intended to be more compression-efficient replacement for JPEG, based on HEVC ([High Efficiency Video Coding](http://wikivisually.com/wiki/High_Efficiency_Video_Coding)). Appears to offer better file size compared to MozJPEG and WebP. Unlikely to get broad traction due to licensing issues. **Browser support: none. *Note that there is a [JS in-browser decoder](https://bellard.org/bpg/).***
-*   **[HEIF](https://en.wikipedia.org/wiki/High_Efficiency_Image_File_Format) (2015)** - format for images and image sequences for storing HEVC-encoded images with constrained inter-prediction applied. Apple announced at [WWDC](https://www.cnet.com/news/apple-ios-boosts-heif-photos-over-jpeg-wwdc/) they would explore switching to HEIF over JPEG for iOS, citing up to 2x savings on file-size. **Browser support: None at the time of writing. Eventually, Safari desktop and iOS 11**
+*   **[JPEG 2000](https://en.wikipedia.org/wiki/JPEG_2000) (2000)** - 从基于离散余弦变换到基于小波的切换方式改进。**浏览器支持：Safari桌面+ iOS**。**
+*   **[JPEG XR](https://en.wikipedia.org/wiki/JPEG_XR) (2009)** - 替代JPEG和JPEG 2000，支持[ HDR](http://wikivisually.com/wiki/High_dynamic_range_imaging)和宽[色域](http://wikivisually.com/wiki/Gamut)色彩空间。编码/解码速度比较慢，但是产生比JPEG更小的文件。**浏览器支持：Edge，IE。**
+*   **[WebP](https://en.wikipedia.org/wiki/WebP) (2010)** - Google支持的基于块预测的图像格式，包括有损和无损压缩。WebP同时提供JPEG的字节压缩特性和一般文件较大PNG才能提供的透明度特性。但是不支持色度抽样和渐进式加载。另外解码也比JPEG解码速度慢。**浏览器支持：Chrome，Opera。通过Safari和Firefox进行实验。**
+*   **[FLIF](https://en.wikipedia.org/wiki/Free_Lossless_Image_Format) (2015)** - 基于压缩比的一种无损图像格式，并声称胜过PNG、无损WebP、无损BPG和无损JPEG 2000。**浏览器支持：无。注意，有一个[JS浏览器解码器](https://github.com/UprootLabs/poly-flif)。**
+*   **HEIF和BPG。**从压缩的角度来看，它们是一样的，但是有不同的包装:
+*   **[BPG](https://en.wikipedia.org/wiki/Better_Portable_Graphics) (2015)** - 旨在基于HEVC（[高效率视频编码](http://wikivisually.com/wiki/High_Efficiency_Video_Coding)）进行高效压缩的JPEG替代者。与MozJPEG和WebP相比，可以压缩出更小的文件。由于许可证问题，不太可能获得广泛的支持。**浏览器支持：无。注意，有一个*[JS浏览器解码器](https://bellard.org/bpg/)。***
+*   **[HEIF](https://en.wikipedia.org/wiki/High_Efficiency_Image_File_Format) (2015)** - 用于存储HEVC编码的图像和图像序列的一种格式。苹果公司在[ WWDC](https://www.cnet.com/news/apple-ios-boosts-heif-photos-over-jpeg-wwdc/)宣布，他们将在iOS上将JPEG转换为HEIF，从而节省了2倍的文件存储空间。**浏览器支持：无，在文章创建时。现在Safari（Mac和iOS 11）可以支持。**
 
-If you're more visual, you might appreciate [one](https://people.xiph.org/~xiphmont/demo/daala/update1-tool2b.shtml) of [these](http://xooyoozoo.github.io/yolo-octo-bugfixes/#cologne-cathedral&jpg=s&webp=s) visual comparison tools for some of the above.
+如果你想更直观的了解，你可以欣赏一些上述格式的视觉比较工具，比如[这里](https://people.xiph.org/~xiphmont/demo/daala/update1-tool2b.shtml)或[这里](http://xooyoozoo.github.io/yolo-octo-bugfixes/#cologne-cathedral&jpg=s&webp=s)。
 
-So, **browser support is fragmented** and if you wish to take advantage of any of the above you'll likely need to conditionally serve fallbacks for each of your target browsers. At Google, we've seen some promise with WebP so we'll dive into it in more depth shortly.
+综上所述可以看到，**浏览器对图像格式的支持是很分散的**。如果你希望利用上述任何一种格式，那么你就可能需要有条件地为每个目标浏览器提供不同的返回内容。在Google，我们已经看到了对WebP的一些支持，所以我们后面会做更深入的介绍。
 
-You can also serve image formats (e.g. WebP, JPEG 2000) with a .jpg extension (or any other) as the browser can render an image it can decide the media type. This allows for server-side [content-type negotiation](https://www.igvita.com/2012/12/18/deploying-new-image-formats-on-the-web/) to decide which image to send without needing to change the HTML at all. Services like Instart Logic use this approach when delivering images to their customers.
+您还可以使用.jpg扩展名（或任何其他扩展名）来表示一个图像格式（例如WebP，JPEG 2000），因为浏览器可以决定它渲染图像的媒体类型。这就允许服务器端使用请求中的[Content-Type设置](https://www.igvita.com/2012/12/18/deploying-new-image-formats-on-the-web/)来决定要发送哪种格式的图像，而无需更改HTML中的内容。像Instart Logic这样的服务商在向他们的客户传送图像时，都是使用的这种方法。
 
-Next, let's talk about an option for when you can't conditionally serve different image formats: **optimising JPEG encoders**.
-
-
-### <a id="optimizing-jpeg-encoders" href="#optimizing-jpeg-encoders">Optimizing JPEG Encoders</a>
-
-Modern JPEG encoders attempt to produce smaller, higher fidelity JPEG files while maintaining compatibility with existing browsers and image processing apps. They avoid the need to introduce new image formats or changes in the ecosystem in order for compression gains to be possible. Two such encoders are MozJPEG and Guetzli.
-
-***tl;dr Which optimising JPEG Encoder should you use?***
-
-* General web assets: MozJPEG
-* Quality is your key concern and you don't mind long encode times: use Guetzli
-* If you need configurability:
- * [JPEGRecompress](https://github.com/danielgtaylor/jpeg-archive) (which uses MozJPEG under the hood)
- * [JPEGMini](http://www.jpegmini.com/). It's similar to Guetzli - chooses best quality automatically. It's not as technically sophisticated as Guetzli, but it's faster, and aims at quality range more suitable for the web.
- * [ImageOptim API](https://imageoptim.com/api) (with free online interface [here](https://imageoptim.com/online)) - it's unique in its handling of color. You can choose color quality separately from overall quality. It automatically chooses chroma subsampling level to preserve high-res colors in screenshots, but avoid waste bytes on smooth colors in natural photos.
+接下来，让我们讨论另一种情况，当你无法有条件地提供不同的图像格式时使用的方法：使用**JPEG优化编码器**工具。
 
 
-### <a id="what-is-mozjpeg" href="#what-is-mozjpeg">What is MozJPEG?</a>
+### <a id="optimizing-jpeg-encoders" href="#optimizing-jpeg-encoders">使用JPEG优化编码器</a>
 
-Mozilla offers a modernized JPEG encoder in the form of [MozJPEG](https://github.com/mozilla/mozjpeg). It [claims](https://research.mozilla.org/2014/03/05/introducing-the-mozjpeg-project/) to shave up to 10% off JPEG files. Files compressed with MozJPEG work cross-browser and some of its features include progressive scan optimization, [trellis quantization](https://en.wikipedia.org/wiki/Trellis_quantization) (discarding details that compress the least) and a few decent [quantization table presets](https://calendar.perfplanet.com/2014/mozjpeg-3-0/) that help create smoother High-DPI images (although this is possible with ImageMagick if you're willing to wade through XML configurations).
+现代化的JPEG编码器会尝试生产出更小更高保真的JPEG文件，同时保持与现有浏览器以及图像处理应用程序的兼容性。它们避免了在运行的系统中引入新的图像格式而带来一系列变化，并给图像优化压缩带来质的变化。这里就有两个这样的编码器，它们是MozJPEG和Guetzli。
 
-MozJPEG is supported in both [ImageOptim](https://github.com/ImageOptim/ImageOptim/issues/45) and there's a relatively reliable configurable [imagemin plugin](https://github.com/imagemin/imagemin-mozjpeg) for it. Here's a sample implementation with Gulp:
+***简单聊一下：你该使用哪个编码器？***
+
+* 一般使用MozJPEG
+* 如果你的核心关注点是图像质量，而且不在乎相对较长的编码时间，则使用Guetzli
+* 如果你需要更好的可配置性:
+ * [JPEGRecompress](https://github.com/danielgtaylor/jpeg-archive) （底层使用了MozJPEG）
+ * [JPEGMini](http://www.jpegmini.com/)：它类似于Guetzli会自动选择最佳质量。但它不如Guetzli技术复杂，而且更快，其目标是在于更适用于网络的最佳质量图像。
+ * [ImageOptim API](https://imageoptim.com/api)（[这里](https://imageoptim.com/online)还有个免费的在线界面）：它的颜色处理机制是独一无二的，您可以分开选择颜色质量与整体质量。另外，它可以自动选择色度抽样级别，以便在屏幕截图中保留高分辨率颜色，并避免了在自然照片中平滑色彩的字节浪费。
+
+
+### <a id="what-is-mozjpeg" href="#what-is-mozjpeg">什么是MozJPEG？</a>
+
+[MozJPEG](https://github.com/mozilla/mozjpeg)是Mozilla开源提供的现代化的JPEG编码器。它[声称](https://research.mozilla.org/2014/03/05/introducing-the-mozjpeg-project/)要去除JPEG文件的10％左右的体积。使用MozJPEG压缩的JPEG文件可以跨浏览器显示，并且还包括渐进式扫描优化、[网格量化](https://en.wikipedia.org/wiki/Trellis_quantization)（丢弃最少压缩的细节）以及一些优秀的[量化预设](https://calendar.perfplanet.com/2014/mozjpeg-3-0/)等功能，可以帮助创建更平滑的高分辨率图像（当然也可以使用ImageMagick，如果你愿意去浏览XML配置）。
+
+[MozJPEG](https://github.com/ImageOptim/ImageOptim/issues/45)不仅被[ImageOptim](https://github.com/ImageOptim/ImageOptim/issues/45)所支持，并且还有一个可靠的可配置[imagemin](https://github.com/imagemin/imagemin-mozjpeg)插件。以下是Gulp的简单实现示例：
 
 ```js
 const gulp = require('gulp');
@@ -778,30 +775,34 @@ gulp.task('mozjpeg', () =>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image11.jpg"/>
 </noscript>
 </picture>
-<figcaption>MozJPEG: A comparison of file-sizes and visual similarity scores at different qualities.</figcaption>
+<figcaption>MozJPEG：不同质量的文件体积与视觉相似度得分的比较。</figcaption>
 </figure>
 
+我用来自[jpeg-archive](https://github.com/danielgtaylor/jpeg-archive)项目的[jpeg-recompress](https://github.com/imagemin/imagemin-jpeg-recompress)来计算一个源图像的SSIM（结构相似性）分数。SSIM是一种用于测量两个图像之间的相似性的方法，其中的分数就是一个图像对比另一个图像的“完美”相似测量值。
 
-I used [jpeg-compress](https://github.com/imagemin/imagemin-jpeg-recompress) from the [jpeg-archive](https://github.com/danielgtaylor/jpeg-archive) project to calculate the SSIM (The Structural Similarity) scores for a source image. SSIM is a method for measuring the similarity between two images, where the SSIM score is a quality measure of one image given the other is considered "perfect".
+根据我的测量结果，MozJPEG的确是一个很好的选择，它可以保持高视觉质量来压缩网页的图像，同时减少文件的大小。对于中小型图像，我发现MozJPEG（质量= 80-85）可以将文件大小减少30-40％，同时保持可接受的SSIM，在jpeg-turbo库上可以提高了5-6％读取速度。MozJPEG确实要比基线JPEG[编码更慢](http://www.libjpeg-turbo.org/About/Mozjpeg)，但这不足以成为你放弃它的理由。
 
-In my experience, MozJPEG is a good option for compressing images for the web at a high visual quality while delivering reductions on file size. For small to medium sized images, I found MozJPEG (at quality=80-85) led to 30-40% savings on file size while maintaining acceptable SSIM, offering a 5-6% improvement on jpeg-turbo. It does come with a [slower encoding cost](http://www.libjpeg-turbo.org/About/Mozjpeg) than baseline JPEG, but you may not find this a show stopper.
+<aside class="note"><b>注意:</b> 如果您需要一个支持MozjPEG的工具，并包含配置支持，以及一些免费的图像比较实用程序，请查看[jpeg-recompress](https://github.com/danielgtaylor/jpeg-archive)。《Web Performance in Action》的作者Jeremy Wagner提供了一种参考[配置](https://twitter.com/malchata/status/884836650563579904)，如下：
 
-<aside class="note"><b>Note:</b> if you need a tool supporting MozJPEG with additional configuration support and some complimentary utilities for image comparison, check out [jpeg-recompress](https://github.com/danielgtaylor/jpeg-archive). Jeremy Wagner, author of Web Performance in Action has had some success using it with [this](https://twitter.com/malchata/status/884836650563579904) configuration.</aside>
+```
+jpeg-recompress --min 35 --max 70 --strip --method smallfry --loops 16 in.jpg out.jpg
+```
 
-### <a id="what-is-guetzli" href="#what-is-guetzli">What is Guetzli?</a>
+</aside>
 
-[Guetzli](https://github.com/google/guetzli) is a promising, if slow, perceptual JPEG encoder from Google that tries to find the smallest JPEG that is perceptually indistinguishable from the original to the human eye. It performs a sequence of experiments that produces a proposal for the final JPEG, accounting for the psychovisual error of each proposal. Out of these, it selects the highest-scoring proposal as the final output.
+### <a id="what-is-guetzli" href="#what-is-guetzli">什么是Guetzli？</a>
 
-To measure the differences between images, Guetzli uses [Butteraugli](https://github.com/google/butteraugli), a model for measuring image difference based on human perception (discussed below). Guetzli can take into account a few properties of vision that other JPEG encoders do not. For example, there is a relationship between the amount of green light seen and sensitivity to blue, so changes in blue in the vicinity of green can be encoded a little less precisely.
+[[Guetzli](https://github.com/google/guetzli)是一个来自谷歌的、有前景的、有些缓慢的感知型的JPEG编码器，它会试图找到一个人眼在视觉上无法区分差异但却体积最小的JPEG文件。Guetzli会执行一系列感知测试，为最终的JPEG提出方案，并对每个方案进行评估。最终在其中选择最高评分的提案作为最终输出。
 
-<aside class="note"><b>Note:</b> Image file-size is **much** more dependent on the choice of **quality** than the choice of **codec**. There are far far larger file-size differences between the lowest and highest quality JPEGs compared to the file-size savings made possible by  switching codecs. Using the lowest acceptable quality is very important. Avoid setting your quality too high without paying attention to it.</aside>
+而为了测量图像之间的差异，Guetzli使用[Butteraugli](https://github.com/google/butteraugli)，一种基于人类感知来测量图像差异的模型（下面会介绍）。Guetzli可以考虑到其他JPEG编码器没有的几个视觉属性。例如，人眼所看到的绿光量与蓝色的敏感度之间是存在关系的，因此绿色旁边的蓝色信息的编码就会动态修改的更精准一些。
 
-Guetzli [claims](https://research.googleblog.com/2017/03/announcing-guetzli-new-open-source-jpeg.html ) to achieve a 20-30% reduction in data-size for images for a given Butteraugli score compared to other compressors. A large caveat to using Guetzli is that it is extremely, extremely slow and is currently only suitable for static content. From the README, we can note Guetzli requires a large amount of memory - it can take 1 minute + 200MB RAM per megapixel. There's a good thread on real-world experience with Guetzli in [this GitHub thread](https://github.com/google/guetzli/issues/50). It can be ideal for when you’re optimizing images as part of a build process for a static site but less so when performed on demand.
+<aside class="note"><b>注意:</b> 图片文件的大小更多取决于你图片的质量，而非使用的编解码器。与通过切换编解码器实现的文件大小节省相比，最低质量和最高质量JPEG之间的文件大小差异要更大的多。因此，设置最低可接受的质量非常重要。避免将您的质量设置得太高，并且不去关注它。</aside>
 
-<aside class="note"><b>Note:</b> Guetzli may be more suitable when you're optimizing images
-as part of a build process for a static site, or situations where image optimization is not performed on demand.</aside>
+Guetzli [声称](https://research.googleblog.com/2017/03/announcing-guetzli-new-open-source-jpeg.html)当在Butteraugli得到同样的质量评分的情况下，和其他编码器相比可以将数据体积再减小20-30％。使用Guetzli的一个大问题就是，它非常非常慢，目前只适用于静态内容的优化。从它的说明中可以看出，Guetzli需要大量的内存（每百万像素可能需要1分钟+ 200MB的内存）。这里有一个很好的Guetzli[实践测试报告](https://github.com/google/guetzli/issues/50)。可以看到，Guetzli可以作为你的静态网站构建过程中图片优化的理想拼图，但是在按需执行时就并不合适了。
 
-Tools like ImageOptim support Guetzli optimization (in [the latest versions](https://imageoptim.com/)).
+<aside class="note"><b>注意:</b> 当您将图像优化作为静态网站的构建过程的一部分时，Guetzli可能更加适用，或者在不需要按照要求执行图像优化的情况时。</aside>
+
+像ImageOptim这样的工具，同样支持Guetzli优化（在[最新版本中](https://imageoptim.com/)）。
 
 ```js
 const gulp = require('gulp');
@@ -842,7 +843,7 @@ gulp.task('guetzli', () =>
 </picture>
 </figure>
 
-It took almost seven minutes (and high CPU usage) to encode 3 x 3MP images using Guetzli with varied savings. For archiving higher-resolution photos, I could see this offering some value.
+可以看到，为了节省些空间，使用Guetzli编码一张3 x 3MP的图像要花费近七分钟的时间（并且伴随着高CPU使用率）。但是为了存档更高分辨率的照片，我认为付出些代价也是值得的。
 
 <figure>
 <picture>
@@ -864,31 +865,31 @@ It took almost seven minutes (and high CPU usage) to encode 3 x 3MP images using
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image13.jpg"/>
 </noscript>
 </picture>
-<figcaption>Guetzli: A comparison of file sizes and visual similarity scores at different qualities. </figcaption>
+<figcaption>Guetzli：不同质量的文件体积和视觉相似度得分的比较。</figcaption>
 </figure>
 
 
-<aside class="note"><b>Note:</b> It's recommended to run Guetzli on high quality images (e.g. uncompressed input images, PNG sources or JPEGs of 100% quality or close). While it will work on other images (e.g. JPEGs of quality 84 or lower), results can be poorer.</aside>
+<aside class="note"><b>注意:</b>建议在高质量图像（例如未压缩的图像，PNG原图或者100％质量（或无损）的JPEG）上使用Guetzli。虽然它可以在其他质量的图像（例如质量为84或更低的JPEG）上工作，但结果可能较差。</aside>
 
-While compressing an image with Guetzli is very (very) time-consuming and will make your fans spin, for larger images, it is worth it. I have seen a number of examples where it saved anywhere up to 40% on file size while maintaining visual fidelity. This made it perfect for archiving photos. On small to medium sized images, I have still seen some savings (in the 10-15KB range) but they were not quite as well pronounced. Guetzli can introduce more liquify-esque distortion on smaller images while compressing.
+使用Guetzli压缩图像是非常（非常）耗时的，可能会使你的用户转身而去，但是对于较大的图像，这是值得的。我已经可以看到一些使用案例里，Guetzli可以仅仅保留文件大小的40％，同时保持了视觉的保真度。这使它非常适合存档照片。在小到中等大小的图像上，我仍然看到一些地方在应用（在10-15KB的范围内），但是效果并不显著。Guetzli可以在压缩更小的图像上引入更多的液化曲线失真。
 
-You may also be interested in Eric Portis research [comparing](https://cloudinary.com/blog/a_closer_look_at_guetzli) Guetzli to Cloudinary's auto-compression for a different data point on effectiveness.
+您可能还对Eric Portis的这项[研究](https://cloudinary.com/blog/a_closer_look_at_guetzli)感兴趣，他将Guetzli与Cloudinary的自动压缩功能进行了比较，并从中获得了一些有效的不同数据点。
 
-### <a id="mozjpeg-vs-guetzli" href="#mozjpeg-vs-guetzli">How does MozJPEG compare to Guetzli?</a>
+### <a id="mozjpeg-vs-guetzli" href="#mozjpeg-vs-guetzli">MozJPEG与Guetzli孰优孰劣？</a>
 
-Comparing different JPEG encoders is complex - one needs to compare both the quality and fidelity of the compressed image as well as the final size. As image compression expert Kornel Lesi&#x144;ski notes, benchmarking one but not both of these aspects could lead to [invalid](https://kornel.ski/faircomparison) conclusions.
+比较不同的JPEG编码器是很复杂的 —— 它需要比较压缩图像的质量、保真度以及最终文件大小等多项内容。正如图像压缩专家KornelLesiński[指出](https://kornel.ski/faircomparison)的那样，仅就单方面而非多个角度进行测试比较，很可能会导致一个无效的结论。
 
-How does Guetzli compare to MozJPEG? - Kornel's take:
+那Guetzli和MozJPEG比究竟如何呢？—— Kornel指出：
 
-* Guetzli is tuned for higher-quality images (butteraugli is said to be best for `q=90`+, MozJPEG's sweet spot is around `q=75`)
-* Guetzli is much slower to compress (both produce standard JPEGs, so decoding is fast as usual)
-* MozJPEG doesn't automagically pick quality setting, but you can find optimal quality using an external tool, e.g. [jpeg-archive](https://github.com/danielgtaylor/jpeg-archive)
+- Guetzli更适用于更高品质的图像（butteraugli建议最好是`q=90`以上，而MozJPEG更适宜处理`q=75`左右的图像）
+- Guetzli压缩速度要慢得多（都是生成了标准的JPEG，所以解码速度是一样很快的）
+- MozJPEG不会自动选择质量设置，但您可以使用外部工具找到最佳质量，例如[jpeg-archive](https://github.com/danielgtaylor/jpeg-archive)
 
-A number of methods exist for determining if compressed images are visually similar or perceivably similar to their sources. Image quality studies often use methods like [SSIM](https://en.wikipedia.org/wiki/Structural_similarity) (structural similarity). Guetzli however optimizes for Butteraugli.
+存在多种方法，都可以用于测定压缩图像与原图像的相似度或视觉感知差异度。一些图像质量研究经常会使用像[SSIM](https://en.wikipedia.org/wiki/Structural_similarity)（结构相似性）这样的方法。然而，Guetzli则是通过优化Butteraugli的方法来实现的。
 
 ### <a id="butteraugli" href="#butteraugli">Butteraugli</a>
 
-[Butteraugli](https://github.com/google/butteraugli) is a project by Google that estimates the point when a person may notice visual image degradation (the psychovisual similarity) of two images. It gives a score for the images that is reliable in the domain of barely noticeable differences. Butteraugli not only gives a scalar score, but also computes a spatial map of the level of differences. While SSIM looks at the aggregate of errors from an image, Butteraugli looks at the worst part.
+[[Butteraugli](https://github.com/google/butteraugli)是一个来自Google的项目，它可以估算一个人可能会注意到两个图像的视觉降级（即心理视觉相似性）的点，并给出几乎没有区别的两个图像的比对分数。Butteraugli不仅给出一个标量的分数，而且还会计算出图像差异水平的空间图。所以当SSIM专注于计算图像中差异的总和时，Butteraugli则更专注于差异最明显的部分。
 
 <figure>
 <picture>
@@ -910,11 +911,11 @@ A number of methods exist for determining if compressed images are visually simi
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_95/v1502426282/essential-image-optimization/Modern-Image14.jpg"/>
 </noscript>
 </picture>
-<figcaption>Above is an example that used Butteraugli to find the minimal JPEG quality threshold before visual degradation was bad enough for a user to notice something wasn’t clear. It resulted in a 65% reduction in total file size.</figcaption>
+<figcaption>上图是一个例子：使用Butteraugli找到用户无法注意到视觉差异的最小质量阈值。并且缩小了65%的文件体积。</figcaption>
 </figure>
 
 
-In practice, you would define a target goal for visual quality and then run through a number of different image optimisation strategies, looking at your Butteraugli scores, before choosing something that fits the best balance of file- size and level.
+在真正的实施中，您将会制定一个图像质量的目标，然后运行一些不同的图像优化策略，查看您的Butteraugli分数，然后再找到合适的文件大小与质量级别的最佳平衡点。
 
 <figure>
 <picture>
@@ -936,24 +937,24 @@ In practice, you would define a target goal for visual quality and then run thro
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image15.jpg"/>
 </noscript>
 </picture>
-<figcaption>All in all, it took me about 30m to setup Butteraugli locally after installing Bazel and getting a build of the C++ sources to correctly compile on my Mac. Using it is then relatively straight-forward: specify the two images to compare (a source and compressed version) and it will give you a score to work from.</figcaption>
+<figcaption>总而言之，我花费了30分钟来安装Butteraugli到我的Mac上，包括安装Bazel和编译C++的源码。使用它就非常简单了：选择两个图片（一个原图和一个压缩版本）进行比较，它就会给你一个比较分数。 </figcaption>
 </figure>
 
-**How does Butteraugli differ to other ways of comparing visual similarity?**
+**Butteraugli与其他视觉相似度比较算法有什么不同？**
 
-[This comment](https://github.com/google/guetzli/issues/10#issuecomment-276295265) from a Guetzli project member suggests Guetzli scores best on Butteraugli, worst on SSIM and MozJPEG scores about as well on both. This is in line with the research I've put into my own image optimisation strategy. I run Butteraugli and a Node module like [img-ssim](https://www.npmjs.com/package/img-ssim) over images comparing the source to their SSIM scores before/after Guetzli and MozJPEG.
+[根据一位Guetzli项目成员的这条[评论](https://github.com/google/guetzli/issues/10#issuecomment-276295265)表明，Guetzli在Butteraugli得分最高，但在SSIM和MozJPEG得分也最差。其实，这是符合我自己对图像优化策略的研究的。我会运行Butteraugli和一个Node模块（如[img-ssim](https://www.npmjs.com/package/img-ssim)）比较在使用了Guetzli、MozJPEG的之前和之后，源图像和压缩图像的SSIM分数。
 
-**Combining encoders?**
+**组合编码器？**
 
-For larger images, I found combining Guetzli with **lossless compression **in MozJPEG (jpegtran, not cjpeg to avoid throwing away the work done by Guetzli) can lead to a further 10-15% decrease in filesize (55% overall) with only very minor decreases in SSIM. This is something I would caution requires experimentation and analysis but has also been tried by others in the field like [Ariya Hidayat](https://ariya.io/2017/03/squeezing-jpeg-images-with-guetzli) with promising results.
+对于一些较大的图像，我发现将Guetzli与MozJPEG中的**无损压缩**（jpegtran，而不是cjpeg，避免丢掉了Guetzli完成的工作）结合起来使用，可以将文件大小再减少10~15%（总体55%），并且只有非常小的SSIM评分损失。我只是提醒一下可以在组合使用编码器方面进行一些试验和分析，但是也受到了[Ariya Hidayat](https://ariya.io/2017/03/squeezing-jpeg-images-with-guetzli)等业内其他人的[好评](https://ariya.io/2017/03/squeezing-jpeg-images-with-guetzli)。
 
-MozJPEG is a beginner-friendly encoder for web assets that is relatively fast and produces good-quality images. As Guetzli is resource-intensive and works best on larger, higher-quality images, it's an option I would reserve for intermediate to advanced users.
+总结来说，MozJPEG是一个初学者友好的网页资源编码器，速度相对较快，可以生成高质量的图像。而Guetzli则是一个资源密集型的编码器，它在较大、更高质量的图像上效果最好，是我建议给中高级用户的一个好选择。
 
-## <a id="what-is-webp" href="#what-is-webp">What is WebP?</a>
+## <a id="what-is-webp" href="#what-is-webp">什么是WebP？</a>
 
-[WebP](https://developers.google.com/speed/webp/) is a recent image format from Google aiming to offer lower file-sizes for lossless and lossy compression at an acceptable visual quality. It includes support for alpha-channel transparency and animation.
+[WebP](https://developers.google.com/speed/webp/)是一个来自Google的新型图像格式，它旨在以可接受的视觉质量提供较低文件大小的无损和有损压缩。另外，WebP还包括了对alpha通道透明度和动画的支持。
 
-In the last year, WebP gained a few percent over compression-wise in lossy and lossless  modes and speed-wise the algorithm got twice as fast with a 10% improvement in decompression.  WebP is not a tool for all purposes, but it has some standing and a growing user base in the image compression community. Let's examine why.
+在过去一年中，WebP在有损和无损模式下减少了10%的压缩体积，并且提高了10%的压缩速度。WebP并不是一个能够用于所有目的的工具，但它在图像压缩社区中已经具有了一定的地位和不断增长的用户群。那么，我们来看看为什么。
 
 <figure>
 <picture>
@@ -975,7 +976,7 @@ In the last year, WebP gained a few percent over compression-wise in lossy and l
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image16.jpg"/>
 </noscript>
 </picture>
-<figcaption>WebP: A comparison of file sizes and visual similarity scores at different qualities.</figcaption>
+<figcaption>WebP：A comparison of file sizes and visual similarity scores at different qualities.</figcaption>
 </figure>
 
 ### <a id="how-does-webp-perform" href="#how-does-webp-perform">How does WebP perform?</a>
@@ -1260,7 +1261,7 @@ Jeremy Wagner has a more comprehensive post on [image optimization using Bash](h
 **Other WebP image processing and editing apps include:**
 
    * Leptonica — An entire website of open source image processing and analysis
-  Apps.
+       Apps.
 
 * Sketch supports outputting directly to WebP
     * GIMP — Free, open source Photoshop alternative. Image editor.
