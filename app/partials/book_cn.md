@@ -1687,13 +1687,13 @@ SVG在制作图标时非常[强大](https://css-tricks.com/icon-fonts-vs-svg/)�
 
 Sara Soueidan的[网页交付中的优化SVG技巧](https://calendar.perfplanet.com/2014/tips-for-optimising-svg-delivery-for-the-web/)和Chris Coyier的[实用SVG](https://abookapart.com/products/practical-svg)电子书都非常好。我还发现Andreas Larsen的优化SVG帖子很有启发（[第1 ](https://medium.com/larsenwork-andreas-larsen/optimising-svgs-for-web-use-part-1-67e8f2d4035)[部分](https://medium.com/larsenwork-andreas-larsen/optimising-svgs-for-web-use-part-2-6711cc15df46)，[第2部分](https://medium.com/larsenwork-andreas-larsen/optimising-svgs-for-web-use-part-2-6711cc15df46)）。另外，[在Sketch中准备和导出SVG图标](https://medium.com/sketch-app-sources/preparing-and-exporting-svg-icons-in-sketch-1a3d65b239bb)也是一个很好的借鉴。
 
-## <a id="avoid-recompressing-images-lossy-codecs" href="#avoid-recompressing-images-lossy-codecs">Avoid recompressing images with lossy codecs</a>
+## <a id="avoid-recompressing-images-lossy-codecs" href="#avoid-recompressing-images-lossy-codecs">[避免使用有损编解码器重复压缩图像](https://images.guide/#avoid-recompressing-images-lossy-codecs)</a>
 
-It is recommended to always compress from the original image. Recompressing images has consequences. Let's say you take a JPEG that's already been compressed with a quality of 60. If you recompress this image with lossy encoding, it will look worse. Each additional round of compression is going to introduce generational loss - information will be lost and compression artifacts will start to build up. Even if you're re-compressing at a high quality setting.
+建议始终从原始图像开始压缩。重复压缩图像会带来恶果。假设您拍摄的JPEG已经被压缩，质量为60。如果再用有损编码重新压缩此图像，那它看起来会更糟。每一轮的压缩都会带来代数损失 - 信息将会丢失，并且开始产生虚影。即使您在高质量的环境下，重复压缩依然会是不好的结果。
 
-To avoid this trap, **set the lowest good quality you're willing to accept in the first place** and you'll get maximum file savings from the start. You then avoid this trap because any file-size reductions from quality reduction alone will look bad.
+为了避免这个陷阱，首先你要**设置愿意接受的最低质量值**，这样你从一开始就可以节省最多的文件存储空间。同时，您还可以避免这种陷阱，因为任何文件体积的降低必然带来可视质量的降低。
 
-Re-encoding a lossy file will almost always give you a smaller file, but this doesn’t mean you’re getting as much quality out of it as you may think.
+重新编码有损文件几乎总是给你一个更小的文件，但这并不意味着你可以像你所想的那样获得尽可能好的质量。
 
 <figure>
 <picture>
@@ -1716,13 +1716,13 @@ Re-encoding a lossy file will almost always give you a smaller file, but this do
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/generational-loss.jpg"/>
 </noscript>
 </picture>
-<figcaption>Above, from this [excellent video](https://www.youtube.com/watch?v=w7vXJbLhTyI) and [accompanying article](http://cloudinary.com/blog/why_jpeg_is_like_a_photocopier) by Jon Sneyers, we can see the generational loss impact of recompression using several formats. This is a problem you may have run into if saving (already compressed) images from social networks and re-uploading them (causing recompression). Quality loss will build up.</figcaption>
+<figcaption>以上，从Jon Sneyers的[优秀视频](https://www.youtube.com/watch?v=w7vXJbLhTyI)和[随附文章](http://cloudinary.com/blog/why_jpeg_is_like_a_photocopier)中，我们可以看到多种图像格式被重新压缩后的影响。如果你从社交网络中保存（已压缩）图像，并重新上传（导致重新压缩），就会遇到这个问题：质量损失将会急剧增加。</figcaption>
 </figure>
 
 
-MozJPEG (perhaps accidentally) has a better resistance to recompression degradation thanks to trellis quantization. Instead of compressing all DCT values as they are exactly, it can check close values within a +1/-1 range to see if similar values compress to fewer bits. Lossy FLIF has a hack similar to lossy PNG in that prior to (re)compression, it can look at the data and decide what to throw away. Recompressed PNGs have "holes" it can detect to avoid changing data further.
+因为网格量化的原理，MozJPEG（或许不小心）具有了更好的抗再压缩性能。不同于精确的压缩所有的DCT值，MozJPEG会检查像素中+1/-1范围内的近似值，以查看相似的值是否压缩到较少的字节。有损的FLIF在（重新）压缩之前会有一个类似于有损PNG的黑科技，它可以查看文件的数据并决定丢弃什么。重新压缩的PNG它具有可以检测的“空洞”，以避免进一步的丢弃数据。
 
-**When editing your source files, store them in a lossless format like PNG or TIFF, so you preserve as much quality as you can.** Your build tools or image compression service than then handle outputting the compressed version you serve to users with minimal loss in quality.
+**因此，编辑源文件时，请将其存储为无损格式（如PNG或TIFF），以便尽可能保留质量。**这样，您的构建工具或图像压缩服务导出的压缩图像，才能在提供给你的用户时保持最小的质量损失。
 
 ## <a id="reduce-unnecessary-image-decode-costs" href="#reduce-unnecessary-image-decode-costs">Reduce unnecessary image decode and resize costs</a>
 
