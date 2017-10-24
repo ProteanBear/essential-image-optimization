@@ -976,42 +976,42 @@ gulp.task('guetzli', () =>
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/Modern-Image16.jpg"/>
 </noscript>
 </picture>
-<figcaption>WebP：A comparison of file sizes and visual similarity scores at different qualities.</figcaption>
+<figcaption>WebP：不同质量级别下文件体积和相似度对比。</figcaption>
 </figure>
 
-### <a id="how-does-webp-perform" href="#how-does-webp-perform">How does WebP perform?</a>
+### <a id="how-does-webp-perform" href="#how-does-webp-perform">WebP的表现如何？</a>
 
-**Lossy Compression**
+**有损压缩**
 
-WebP lossy files, using a VP8 or VP9 video key frame encoding variant, are on average cited by the WebP team as being [25-34%](https://developers.google.com/speed/webp/docs/webp_study) smaller than JPEG files.
+根据WebP团队的[描述](https://developers.google.com/speed/webp/docs/webp_study)，使用VP8或VP9视频关键帧编码进行处理的WebP压缩文件平均比JPEG文件小了25-34％。
 
-In the low-quality range (0-50), WebP has a large advantage over JPEG because it can blur away ugly blockiness artifacts. A medium quality setting (-m 4 -q 75) is the default balancing speed/file-size. In the higher-range (80-99), the advantages of WebP shrink. WebP is recommended where speed matters more than quality.
+在较低质量设置（0~50）下，WebP具有比JPEG更大的优势，因为它可以消除丑陋的块状伪影；在中等质量设置（-m 4 -q 75）下，WebP则是速度与体积平衡的默认选择；而在较高质量设置（80-99）时，WebP的优势则在缩小。WebP被推荐应用在速度比质量更重要的场景中。
 
-**Lossless Compression**
+**无损压缩**
 
-[WebP lossless files are 26% smaller than PNG files](https://developers.google.com/speed/webp/docs/webp_lossless_alpha_study). The lossless load-time decrease compared to PNG is 3%. That said, you generally don't want to deliver your users lossless on the web. There's a difference between lossless and sharp edges (e.g. non-JPEG). Lossless WebP may be more suitable for archival content.
+[WebP无损文件的体积比PNG文件小了26％](https://developers.google.com/speed/webp/docs/webp_lossless_alpha_study)；同时，WebP无损压缩图片的加载时间与PNG相比减少了3％。也就是说，您通常不会想在网络上为您的用户提供无损压缩的图像。另外，无损和锐利边缘（如non-JPEG）是不同的。无损模式的WebP可能更适合于档案内容。
 
-**Transparency**
+**透明度**
 
-WebP has a lossless 8-bit transparency channel with only 22% more bytes than PNG. It also supports lossy RGB transparency, which is a feature unique to WebP.
+WebP具有一个无损8位透明度通道，而只比PNG多出22％的字节。它还支持有损的RGB透明度，这是WebP独有的功能。
 
-**Metadata**
+**元数据**
 
-The WebP file format supports EXIF photo metadata and XMP digital document metadata. It also contains an ICC Color Profile.
+WebP文件格式支持EXIF照片元数据和XMP数字文档元数据，它还包含了一个ICC颜色配置文件。
 
-WebP offers better compression at the cost of being more CPU intensive. Back in 2013, the compression speed of WebP was ~10x slower than JPEG but is now negligible (some images may be 2x slower). For static images that are processed as part of your build, this shouldn't be a large issue. Dynamically generated images will likely cause a perceivable CPU overhead and will be something you will need to evaluate.
+WebP提供了更好的压缩，但代价是更多的CPU开销。在2013年，WebP的压缩速度会比JPEG慢10倍，但是现在已经可以忽略不计了（有些图像可能会减慢2倍）。当WebP用于生产作为你应用构建一部分的静态图像时，这不应该是一个大问题。然而，作为动态的图像生产工具，就可能会导致可察觉的CPU开销，这将是您需要考量的问题。
 
-<aside class="note"><b>Note:</b> WebP lossy quality settings are not directly comparable to JPEG. A JPEG at "70% quality" will be quite different to a WebP image at "70% quality" because WebP achieves smaller file sizes by discarding more data.</aside>
+<aside class="note"><b>注意:</b> WebP有损质量设置百分比，与JPEG的质量百分比并不能直接比较。因为WebP通过丢弃更多数据来实现更小的文件体积，因此“70％质量”的JPEG将与“70％质量”的WebP图像完全不同。</aside>
 
-### <a id="whos-using-webp-in-production" href="#whos-using-webp-in-production">Who's using WebP in production?</a>
+### <a id="whos-using-webp-in-production" href="#whos-using-webp-in-production">谁在生产环境中使用WebP？</a>
 
-Many large companies are using WebP in production to reduce costs and decrease web page load times.
+许多大型公司正在生产环境中使用WebP，来降低成本并减少网页的加载时间。
 
-Google reported 30-35% savings using WebP over other lossy compression schemes, serving 43 billion image requests a day, 26% of that being lossless compression. That's a lot of requests and significant savings. Savings would undoubtedly be larger if [browser support](http://caniuse.com/#search=webp) were better and more widespread. Google also uses it in production sites like Google Play and YouTube.
+Google的报告表明，以一天提供430亿图像请求来计算，使用WebP有损压缩将比其他有损压缩解决方案节省30%~35%的存储空间，而使用无损压缩则是节省26%。这种空间的节省无疑是非常重要的。而如果[浏览器对WebP支持](http://caniuse.com/#search=webp)更好、更广泛，节省将会更大。Google已经将WebP应用于Google Play和YouTube等网站的生产环境。
 
-Netflix, Amazon, Quora, Yahoo, Walmart, Ebay, The Guardian, Fortune, and USA Today, all compress and serve images with WebP for browsers which support it. VoxMedia [shaved 1-3s off load times](https://product.voxmedia.com/2015/8/13/9143805/performance-update-2-electric-boogaloo) for The Verge by switching over to WebP for their Chrome users. [500px](https://iso.500px.com/500px-color-profiles-file-formats-and-you/) saw an average 25% reduction in image file size with similar or better image quality when switching to serving it to their Chrome users.
+Netflix、亚马逊、Quora、雅虎、沃尔玛、Ebay、“卫报”、“财富”和“今日美国”均是为已经支持格式的浏览器提供了WebP。VoxMedia 通过给他们使用Chrome的用户提供WebP，将The Verge网站（一个美国科技媒体网站） [减少了1~3倍的加载时间](https://product.voxmedia.com/2015/8/13/9143805/performance-update-2-electric-boogaloo)。[500px](https://iso.500px.com/500px-color-profiles-file-formats-and-you/)则表示，通过切换为WebP提供给自己的Chrome用户，在保持类似或更好的图像质量的同时将文件的体积平均降低的25%。
 
-There are quite a few more companies on board than this sample list indicates.
+这个样本列表显示，有很多的公司都使用WebP。
 
 <figure>
 <picture>
@@ -1033,14 +1033,14 @@ There are quite a few more companies on board than this sample list indicates.
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/webp-conversion.jpg"/>
 </noscript>
 </picture>
-<figcaption>WebP usage at Google: 43 billion WebP image requests a day are served across YouTube, Google Play, Chrome Data Saver and G+.</figcaption>
+<figcaption>WebP在Google的应用：在YouTube、Google Play、Chrome的Data Saver以及G+（Google+，Google的社交网络服务）上，每日响应430亿的WebP请求。</figcaption>
 </figure>
 
-### <a id="how-does-webp-encoding-work" href="#how-does-webp-encoding-work">How does WebP encoding work?</a>
+### <a id="how-does-webp-encoding-work" href="#how-does-webp-encoding-work">WebP编码如何执行？</a>
 
-WebP's lossy encoding is designed to compete with JPEG for still images. There are three key phases to WebP's lossy encoding:
+WebP的有损编码被设计用于与JPEG静态图像进行竞争。它有三个关键流程：
 
-**Macro-blocking** - splitting an image into 16x16 (macro) blocks of luma pixels and two 8x8 blocks of chroma pixels. This may sound familiar to the idea of JPEGs doing color space conversion, chroma channel downsampling and image subdivision.
+**宏块分解**：将图像分解成一个16×16亮度像素（宏）块集合和两个8×8色度像素块集合。这可能听起来很像JPEG的方法，通过色彩空间转换、色度通道下采样和图像细分来处理。
 
 <figure>
 <picture>
@@ -1065,7 +1065,7 @@ WebP's lossy encoding is designed to compete with JPEG for still images. There a
 
 </figure>
 
-**Prediction** - every 4x4 subblock of a macroblock has a prediction model applied that effectively does filtering. This defines two sets of pixels around a block - A (the row directly above it) and L (the column to the left of it). Using these two the encoder fills a test block with 4x4 pixels and determines which creates values closest to the original block. Colt McAnlis talks about this in more depth in [How WebP lossy mode works](https://medium.com/@duhroach/how-webp-works-lossly-mode-33bd2b1d0670).
+**预测**：宏块的每个4×4子块都具有一个预测模型，可以有效地进行滤波。它定义了一个块周围的两组像素，分别为A（上面的行）和L（左侧的列）。编码器会使用这两个像素块A和L，尝试填充4x4像素的测试块，并确定哪个像素块创建的测试块最接近原始块的值。Colt McAnlis在他的文章“[WebP有损耗模式的工作原理](https://medium.com/@duhroach/how-webp-works-lossly-mode-33bd2b1d0670)”中更深入地讨论了这一点。
 
 
 <figure>
@@ -1091,37 +1091,37 @@ WebP's lossy encoding is designed to compete with JPEG for still images. There a
 
 </figure>
 
-A Discrete Cosine Transform (DCT) is applied with a few steps similar to JPEG encoding. A key difference is use of an [Arithmetic Compressor](https://www.youtube.com/watch?v=FdMoL3PzmSA&index=7&list=PLOU2XLYxmsIJGErt5rrCqaSGTMyyqNt2H) vs JPEG's Huffman.
+最后会使用离散余弦变换（DCT）执行几步类似于JPEG编码的过程。之间的一个关键区别是，这里会使用一个[算术压缩器](https://www.youtube.com/watch?v=FdMoL3PzmSA&index=7&list=PLOU2XLYxmsIJGErt5rrCqaSGTMyyqNt2H)，不同于JPEG的霍夫曼编码。
 
-If you want to dive deeper, Google Developer’s article [WebP Compression Techniques](https://developers.google.com/speed/webp/docs/compression) goes into this topic in depth.
+如果您想深入了解WebP的压缩技术，Google开发人员的文章“ [WebP压缩技术”](https://developers.google.com/speed/webp/docs/compression)将帮助你。
 
-### <a id="webp-browser-support" href="#webp-browser-support">WebP browser support</a>
+### <a id="webp-browser-support" href="#webp-browser-support">WebP的浏览器支持</a>
 
-Not all browsers support WebP, however [according to CanIUse.com](http://caniuse.com/webp), global user support is at about 74%. Chrome and Opera natively support it. Safari, Edge, and Firefox have experimented with it but not landed it yet in official releases. This often leaves the task of getting the WebP image to the user up to the web developer. More on this later.
+不是所有的浏览器都支持WebP，然而根据[CanIUse.com的统计](http://caniuse.com/webp)，WebP的浏览器用户支持在全球约为74％。Chrome和Opera本地支持它。Safari，Edge和Firefox已经尝试了它，但没有在官方发行版中发布。这就将为用户获取WebP图片的任务移交给了前端开发人员，这个稍后再说。
 
-Here are the major browsers and support information for each:
+以下是主要的浏览器和WebP的支持情况：
 
-* Chrome: Chrome began full support at version 23.
-* Chrome for Android: Since Chrome 50
-* Android: Since Android 4.2
-* Opera: Since 12.1
-* Opera Mini: All versions
-* Firefox: Some beta support
-* Edge: Some beta support
-* Internet Explorer: No support
-* Safari: Some beta support
+- Chrome：Chrome在第23版开始全面支持。
+- Chrome for Android：自Chrome 50起。
+- Android：自Android 4.2起。
+- Opera: 从12.1版本起。
+- Opera Mini：所有版本。
+- Firefox：一些beta支持。
+- Edge：一些beta支持。
+- Internet Explorer：不支持。
+- Safari：一些beta支持。
 
-WebP is not without its downsides. It lacks full-resolution color space options and does not support progressive decoding. That said, tooling for WebP is decent and browser-support, while limited to Chrome and Opera at the time of writing, may well cover enough of your users for it to be worth considering with a fallback.
+WebP不是没有缺点的。它缺乏全分辨率的颜色空间选项，并且不支持逐行解码（渐进式）。总的来说，WebP工具是一个适合的、浏览器支持的（写作时仅限于Chrome和Opera浏览器）、可能会覆盖足够的用户的值得你去考虑的压缩选项。
 
-### <a id="how-do-i-convert-to-webp" href="#how-do-i-convert-to-webp">How do I convert my images to WebP?</a>
+### <a id="how-do-i-convert-to-webp" href="#how-do-i-convert-to-webp">怎样将图片转换为WebP格式?</a>
 
-Several commercial and open source image editing and processing packages support WebP. One particularly useful application is XnConvert: a free, cross-platform, batch image processing converter.
+一些商业和开源的图像编辑处理软件都支持WebP格式。其中有个特别有用的应用叫做XnConvert，一个免费的、跨平台的批量图片转换器。
 
-<aside class="note"><b>Note:</b> It's important to avoid converting low or average quality JPEGs to WebP. This is a common mistake and can generate WebP images with JPEG compression artifacts. This can lead to WebP being less efficient as it has to save the image _and_ the distortions added by JPEG, leading to you losing on quality twice. Feed conversion apps the best quality source file available, preferably the original.</aside>
+<aside class="note"><b>注意:</b> 一定要避免将低质量或一般质量的JPEG转换为WebP。这是一个很常见的错误，它会导致生成的WebP图片带有JPEG压缩产生的虚影效果。还会使保存的WebP图片效果变差和失真，甚至损失的质量会翻倍。作为转换初始的图像文件，一定要是高质量的，或者原图。</aside>
 
 **[XnConvert](http://www.xnview.com/en/xnconvert/)**
 
-XnConvert enables batch image processing, compatible with over 500 image formats. You can combine over 80 separate actions to transform or edit your images in multiple ways.
+XnConvert能够批量的进行图像处理，并兼容500多种图像格式。你可以组合超过80种的独立操作，以多种方式转换或编辑的图像。
 
 
 <figure>
@@ -1145,30 +1145,30 @@ XnConvert enables batch image processing, compatible with over 500 image formats
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image20.png"/>
 </noscript>
 </picture>
-<figcaption>XnConvert supports batch image optimisation, allowing straight-forward conversion from source files to WebP and other formats. In addition to compression, XnConvert can also help with metadata stripping, cropping, color depth customisation and other transforms.</figcaption>
+<figcaption>XnConvert支持批量的图像优化，允许原图到WebP或其他格式的直接转换。除了压缩，XnConvert还可以执行图像元数据剥离、裁剪、颜色深度定制以及其他转换等操作。</figcaption>
 </figure>
 
-Some of the options listed on the xnview website include:
+下面是*XnView*网站上列出的XnConvert的一些选项，包括：
 
-*   Metadata: Editing
-*   Transforms: Rotate, Crop, Resize
-*   Adjustments: Brightness, Contrast, Saturation
-*   Filters: Blur, Emboss, Sharpen
-*   Effects: Masking, Watermark, Vignetting
+*   元数据：编辑
+*   转换：旋转、裁剪、调整尺寸
+*   调整：亮度、对比度、饱和度
+*   过滤器：模糊、浮雕、锐化
+*   效果：屏蔽、水印、渐晕
 
-The results of your operations can be exported to about 70 different file formats, including WebP. XnConvert is free for Linux, Mac, and Windows. XnConvert is highly recommended, especially for small businesses.
+使用XnConvert，你可以导出为大约70种不同的文件格式，包括WebP。它支持Linux、Mac以及Windows操作系统。因此，我们强烈推荐XnConvert，它特别适合小企业。
 
-**Node modules**
+**Node模块**
 
-[Imagemin](https://github.com/imagemin/imagemin) is a popular image minification module that also has an add-on for converting images to WebP ([imagemin-webp](https://github.com/imagemin/imagemin-webp)). This supports both lossy and lossless modes.
+[Imagemin](https://github.com/imagemin/imagemin)是一个非常流行的Node.js的图像缩小模块，它还包含了一个WebP转换插件（[imagemin-webp](https://github.com/imagemin/imagemin-webp)）。支持有损和无损两种模式。
 
-To install imagemin and imagemin-webp run:
+要安装imagemin和imagemin-webp，需要运行：
 
 ```
 > npm install --save imagemin imagemin-webp
 ```
 
-We can then require() in both modules and run them over any images (e.g. JPEGs) in a project directory. Below we're using lossy encoding with a WebP encoder quality of 60:
+然后，我们可以使用require()调用这两个模块，并且运行它们处理在项目目录中的任意图片（如JPEG）。下面是使用Imagemin，有损压缩并批量生成质量为60的WebP图片：
 
 
 ```js
@@ -1185,7 +1185,7 @@ imagemin(['images/*.{jpg}'], 'images', {
 ```
 
 
-Similar to JPEGs, it's possible to notice compression artefacts in our output. Evaluate what quality setting makes sense for your own images. Imagemin-webp can also be used to encode lossless quality WebP images (supporting 24-bit color and full transparency) by passing `lossless: true` to options:
+与JPEG类似，要注意到输出后的压缩效果。评估什么样质量设置，对你的图像才是有意义的。Imagemin-webp还可通过传递`lossless: true`选项，来生成无损压缩的WebP图像（支持24位颜色和全透明度）：
 
 
 ```js
@@ -1202,7 +1202,7 @@ imagemin(['images/*.{jpg,png}'], 'build/images', {
 ```
 
 
-A [WebP plugin for Gulp](https://github.com/sindresorhus/gulp-webp) by Sindre Sorhus built on imagemin-webp and a [WebP loader for WebPack](https://www.npmjs.com/package/webp-loader) are also available. The Gulp plugin accepts any options the imagemin add-on does:
+[这里](https://github.com/sindresorhus/gulp-webp)还有一个由Sindre Sorhus基于imagemin-webp构建的Gulp的WebP插件；当然，也包括WebPack的[插件](https://www.npmjs.com/package/webp-loader)。Gulp插件可以接收imagemin的任何选项设置，如有损压缩：
 
 ```js
 const gulp = require('gulp');
@@ -1219,7 +1219,7 @@ gulp.task('webp', () =>
 );
 ```
 
-Or lossless:
+或无损压缩:
 
 ```js
 const gulp = require('gulp');
@@ -1234,58 +1234,56 @@ gulp.task('webp-lossless', () =>
 );
 ```
 
-**Batch image optimization using Bash**
+**使用Bash批量优化图像**
 
-XNConvert supports batch image compression, but if you would prefer to avoid using an app or a build system, bash and image optimization binaries keep things fairly simple.
+XNConvert支持批量的图像压缩，但是如果你希望避免使用一个应用程序或者一套构建系统，那么可以使用bash命令和图像优化二进制文件，它们同样使压缩变得简单。
 
-You can bulk convert your images to WebP using [cwebp](https://developers.google.com/speed/webp/docs/cwebp):
+你可以使用[cwebp](https://developers.google.com/speed/webp/docs/cwebp)命令，将图像批量转换为WebP：
 
 ```
 find ./ -type f -name '*.jpg' -exec cwebp -q 70 {} -o {}.webp \;
 ```
 
-Or bulk optimize your image sources with MozJPEG using [jpeg-recompress](https://github.com/danielgtaylor/jpeg-archive):
+或者，使用[jpeg-recompress](https://github.com/danielgtaylor/jpeg-archive)采用MozJPEG编码，批量优化您的原图：
 
 ```
 find ./ -type f -name '*.jpg' -exec jpeg-recompress {} {} \;
 ```
 
-and trim those SVGs down using [svgo](https://github.com/svg/svgo) (which we'll cover later on):
+并且，使用[svgo](https://github.com/svg/svgo)优化SVG（我们稍后将介绍）：
 
 ```
 find ./ -type f -name '*.svg' -exec svgo {} \;
 ```
 
-Jeremy Wagner has a more comprehensive post on [image optimization using Bash](https://jeremywagner.me/blog/bulk-image-optimization-in-bash) and another on doing this work in [parallel](https://jeremywagner.me/blog/faster-bulk-image-optimization-in-bash) worth reading.
+Jeremy Wagner有一篇文章《[使用Bash优化图像](https://jeremywagner.me/blog/bulk-image-optimization-in-bash)》比较全面的讨论这个问题，同时还有个姊妹篇《[使用Bash快速优化图像](https://jeremywagner.me/blog/faster-bulk-image-optimization-in-bash)》也值得读一下。
 
-**Other WebP image processing and editing apps include:**
+**其他的WebP图像处理和编辑应用程序包括：**
 
-   * Leptonica — An entire website of open source image processing and analysis
-       Apps.
+   * Leptonica — 一个开源图像处理和图像分析的应用网站。
+* Sketch支持直接导出WebP格式
+    * GIMP — 免费、开源的Photoshop替代品。一个图像编辑器。
+    * ImageMagick — 用于创建、设计、转换或编辑位图图像，一个免费的命令行应用。
+    * Pixelmator — 适用于Mac的商用图像编辑器。
+    * Photoshop的WebP插件  — 免费的，支持图像导入和导出，来自于Google。
 
-* Sketch supports outputting directly to WebP
-    * GIMP — Free, open source Photoshop alternative. Image editor.
-    * ImageMagick — Create, compose, convert, or edit bitmap images. Free. Command-Line app.
-    * Pixelmator — Commercial image editor for Mac.
-    * Photoshop WebP Plugin — Free. Image import and export. From Google.
+**Android:** 您可以使用Android Studio将现有的BMP、JPG、PNG或静态GIF图像转换为WebP格式。有关更多信息，请参阅[使用Android Studio创建WebP图像](https://developer.android.com/studio/write/convert-webp.html)。
 
-**Android:** You can convert existing BMP, JPG, PNG or static GIF images to WebP format using Android Studio. For more information, see [Create WebP Images Using Android Studio](https://developer.android.com/studio/write/convert-webp.html).
+### <a id="how-do-i-view-webp-on-my-os" href="#how-do-i-view-webp-on-my-os">[如何在我的操作系统上浏览WebP图像？](https://images.guide/#how-do-i-view-webp-on-my-os)</a>
 
-### <a id="how-do-i-view-webp-on-my-os" href="#how-do-i-view-webp-on-my-os">How do I view WebP images on my OS?</a>
+当你将WebP图像拖放到基于Blink的浏览器（Chrome、Opera、Brave）中进行预览时，你还可以使用Mac或Windows的附加组件直接从操作系统预览它们。
 
-While you can drag and drop WebP images to Blink-based browsers (Chrome, Opera, Brave) to preview them, you can also preview them directly from your OS using an add-on for either Mac or Windows.
-
-[Facebook experimented with WebP](https://www.cnet.com/news/facebook-tries-googles-webp-image-format-users-squawk/) a few years ago and found that users who tried to right-click on photos and save them to disk noticed they wouldn't be displayed outside their browser due to them being in WebP. There were three key problems here:
+几年前，当[Facebook试验WebP](https://www.cnet.com/news/facebook-tries-googles-webp-image-format-users-squawk/)格式时发现，用户将WebP图片通过右键另存到本地磁盘后，无法通过浏览器以外的程序打开浏览。这其中主要有三个主要问题：
 
 <ul>
-<li>"Save as" but unable to view WebP files locally. This was fixed by Chrome registering itself as a ".webp" handler.</li>
-<li> "Save as" then attaching the image to an email and sharing with someone without Chrome. Facebook solved this by introducing a prominent "download" button in their UI and returning a JPEG when users requested the download.</li>
-<li>Right click > copy URL -> share URL on the web. This was solved by [content-type negotation](https://www.igvita.com/2012/12/18/deploying-new-image-formats-on-the-web/).</li>
+<li>“另存为”但无法在本地浏览WebP图片。这个可以通过将Chrome注册为“.webp”的打开应用来解决。</li>
+<li> “另存为”并将图片加入邮件中分享给不适用Chrome的其他人。Facebook通过引入一个醒目的“下载”按钮来解决这个问题，这个按钮点击时会返回JPEG给用户。</li>
+<li>右键 > 复制链接 -> 分享链接到网络上。这个最后通过HTTP通讯协议中的[content-type](https://www.igvita.com/2012/12/18/deploying-new-image-formats-on-the-web/)来解决。</li>
 </ul>
 
-These issues might matter less to your users, but is an interesting note on social shareability in passing. Thankfully today, utilities exist for viewing and working with WebP on different operating systems.
+这些问题可能对你的用户来说不太重要，但是对于WebP图片的通用性，Facebook的试验过程可谓是一个有趣的注解。值得庆幸的是，现在不同的操作系统上，都有用于查看和使用WebP的实用程序了。
 
-On Mac, try the [Quick Look plugin for WebP](https://github.com/Nyx0uf/qlImageSize) (qlImageSize). It works pretty well:
+在Mac上，可以使用Quick Look的[WebP插件(qlImageSize)](https://github.com/Nyx0uf/qlImageSize)。它工作的很好：
 
 <figure>
 <picture>
@@ -1311,11 +1309,11 @@ On Mac, try the [Quick Look plugin for WebP](https://github.com/Nyx0uf/qlImageSi
 </figure>
 
 
-On Windows, you can also download the [WebP codec package](https://storage.googleapis.com/downloads.webmproject.org/releases/webp/WebpCodecSetup.exe) allowing WebP images to be previewed in the File Explorer and Windows Photo Viewer.  
+在Windows上，您还可以下载[WebP编解码器包](https://storage.googleapis.com/downloads.webmproject.org/releases/webp/WebpCodecSetup.exe)，以便在File Explorer和Windows Photo Viewer中预览WebP图像。
 
-### <a id="how-do-i-serve-webp" href="#how-do-i-serve-webp">How do I serve WebP?</a>
+### <a id="how-do-i-serve-webp" href="#how-do-i-serve-webp">[如何提供WebP？](https://images.guide/#how-do-i-serve-webp)</a>
 
-Browsers without WebP support can end up not displaying an image at all, which isn't ideal. To avoid this there are a few strategies we can use for conditionally serving WebP based on browser support.
+在不支持WebP的浏览器中，WebP图像最终不会显示，这明显不是我们想要的。为了避免这种情况，我们可以使用几种策略根据浏览器支持情况有条件地提供WebP图像服务。
 
 <figure>
 <picture>
@@ -1338,7 +1336,7 @@ Browsers without WebP support can end up not displaying an image at all, which i
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/play-format-webp.jpg"/>
 </noscript>
 </picture>
-<figcaption>The Chrome DevTools Network panel highlighting WebP files being conditionally served to Blink-based browsers under the "Type" column.</figcaption>
+<figcaption>Chrome的开发者工具中的网络面板中“类型”一栏显示，网站对Blink内核的浏览器返回了WebP格式。</figcaption>
 </figure>
 
 <figure>
@@ -1362,21 +1360,21 @@ Browsers without WebP support can end up not displaying an image at all, which i
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/play-format-type.jpg"/>
 </noscript>
 </picture>
-<figcaption>While the Play store delivers WebP to Blink, it falls back to JPEGs for browsers like Firefox.</figcaption>
+<figcaption>可以看到Google Play对Blink内核浏览器返回WebP的同时，对于像Firefox这样不支持WebP的浏览器返回JPEG。</figcaption>
 </figure>
 
 
-Here are some of the options for getting WebP images from your server to your user:
+以下是从服务端返回WebP给你的用户的几个方案：
 
-**Using .htaccess to Serve WebP Copies**
+**使用 .htaccess配置来提供WebP的副本**
 
-Here's how to use a .htaccess file to serve WebP files to supported browsers when a matching .webp version of a JPEG/PNG file exists on the server.
+下面将说明当在服务器上存在与JPEG或PNG图像相匹配的.webp版本时，如何使用.htaccess文件将WebP文件提供给支持的浏览器。
 
-Vincent Orback recommended this approach:
+Vincent Orback推荐使用如下方法：
 
-Browsers can [signal WebP support explicitly](http://vincentorback.se/blog/using-webp-images-with-htaccess/) via an [Accept header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept). If you control your backend, you can return a WebP version of an image if it exists on disk rather than formats like JPEG or PNG. This isn’t always possible however (e.g. for static hosts like GitHub pages or S3) so be sure to check before considering this option.
+浏览器可以通过Header中指定[Accept](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept)来显式的[指定WebP支持](http://vincentorback.se/blog/using-webp-images-with-htaccess/)。通过这个标识，你就可以控制你的服务端，返回图像的WebP版本（如果这个WebP图像已经储存在磁盘上，而不是JPEG或PNG格式）。这个方法并不总是有效（例如，对于静态化的网站，如Github或S3）,所以在选择这种方案时请先检查下它对于你的网站是否有效。
 
-Here is a sample .htaccess file for the Apache web server:
+以下是Apache Web服务器的.htaccess文件示例：
 
 ```
 <IfModule mod_rewrite.c>
@@ -1403,31 +1401,30 @@ Here is a sample .htaccess file for the Apache web server:
 AddType  image/webp .webp
 ```
 
-If there are issues with the .webp images appearing on the page, make sure that the image/webp MIME type is enabled on your server.
+如果页面上显示的.webp图像有问题，那么请确保在服务器上启用了image/webp类型支持。开启方法如下：
 
-Apache: add the following code to your .htaccess file:
+Apache：将以下代码添加到.htaccess文件中：
 
 ```
 AddType image/webp .webp
 ```
 
-Nginx: add the following code to your mime.types file:
+Nginx：将以下代码添加到您的mime.types文件中：
 
 ```
 image/webp webp;
 ```
 
-<aside class="note"><b>Note:</b> Vincent Orback has a sample [htaccess config](https://github.com/vincentorback/WebP-images-with-htaccess) for serving WebP for reference and Ilya Grigorik maintains a collection of [configuration
-scripts for serving WebP](https://github.com/igrigorik/webp-detect) that can be useful.</aside>
+<aside class="note"><b>注意:</b> Vincent Orback提供了一个[htaccess配置](https://github.com/vincentorback/WebP-images-with-htaccess)示例，可以作为参考；Ilya Grigorik维护一组用于为WebP提供服务[配置脚本](https://github.com/igrigorik/webp-detect)。</aside>
 
 
-**Using the `<picture>` Tag**
+**使用 `<picture>` 标签**
 
-The browser itself is capable of choosing which image format to display through the use of the `<picture>` tag. The `<picture>` tag utilizes multiple `<source>` elements, with one `<img>` tag, which is the actual DOM element which contains the image. The browser cycles through the sources and retrieves the first match. If the `<picture>` tag isn't supported in the user's browser, a `<div>` is rendered and the `<img>` tag is used.
+浏览器本身能够通过使用`<picture>`标签，来选择要显示的图像格式。`<picture>`标签利用多个`<source>`和一个`<img>`来设置显示的图像，其中`<img>`是包含了图像的、真实的DOM元素。浏览器会循环遍历`<source>`提供的链接，并检索到第一个匹配的结果。如果用户的浏览器中不支持`<picture>`，浏览器将会将它渲染为一个`<div>`，并使用其中的`<img>`。
 
-<aside class="note"><b>Note:</b> Be careful with the position of `<source>` as order matters. Don't place image/webp sources after legacy formats, but instead put them before. Browsers that understand it will use them and those that don't will move onto more widely supported frameworks. You can also place your images in order of file size if they're all the same physical size (when not using the `media` attribute). Generally this is the same order as putting legacy last. </aside>
+<aside class="note"><b>注意:</b> 注意`<source>`的排列顺序。不要将image/webp的格式放在旧格式的后面，而是将它们放在前面。浏览器将会先解析到它们并得到匹配，而不会解析到其他支持更广泛的格式。如果物理尺寸相同（不使用`media`属性），也可以按照文件大小的顺序放置图像。一般来说，解析的顺序就是摆放的顺序。 </aside>
 
-Here is some sample HTML:
+以下是一些HTML示例：
 
 ```html
 <picture>
@@ -1450,21 +1447,21 @@ Here is some sample HTML:
 </picture>
 ```
 
-**Automatic CDN conversion to WebP**
+**使用自动化的CDN转换WebP**
 
-Some CDNs support automated conversion to WebP and can use client hints to serve up WebP images [whenever possible](http://cloudinary.com/documentation/responsive_images#automating_responsive_images_with_client_hints). Check with your CDN to see if WebP support is included in their service. You may have an easy solution just waiting for you.
+一些CDN支持将图像自动转换为WebP，可以使用[Client Hints](http://cloudinary.com/documentation/responsive_images#automating_responsive_images_with_client_hints)来让后端尽可能地提供WebP图像。请检查您的CDN，查看服务中是否包含了WebP支持。你可能有一个简单的解决方案，只是等待着你去寻找。
 
-**WordPress WebP support**
+**WordPress的WebP支持**
 
-**Jetpack** — Jetpack, a popular WordPress plugin, includes a CDN image service called [Photon](https://jetpack.com/support/photon/). With Photon you get seamless WebP image support. The Photon CDN is included in Jetpack's free level, so this is a good value and a hands-off implementation. The drawback is that Photon resizes your image, puts a query string in your URL and there is an extra DNS lookup required for each image.
+**Jetpack** — Jetpack是一款流行的WordPress插件，它包括一个名为[Photon](https://jetpack.com/support/photon/)的CDN映像服务。使用Photon，你就可以获得无缝的WebP图像支持。这个叫Photon的CDN服务是包含在Jetpack的免费清单中的，因此这是一个很棒很有效的实现。不过，缺点是Photon会调整您的图像大小，将一个查询字符串放在您的URL中，并且每个图像都需要额外的DNS查找。
 
-**Cache Enabler and Optimizer** — If you are using WordPress, there is at least one halfway-open source option. The open source plugin [Cache Enabler](https://wordpress.org/plugins/cache-enabler/) has a menu checkbox option for caching WebP images to be served if available and the current user’s browser supports them. This makes serving WebP images easy. There is a drawback: Cache Enabler requires the use of a sister program called Optimizer, which has an annual fee. This seems out of character for a genuinely open source solution.  
+**Cache Enabler and Optimizer** — 如果您使用的是WordPress，那么你至少有一个半开源的选项。WordPress的开源插件[Cache Enabler](https://wordpress.org/plugins/cache-enabler/)有一个菜单复选框可以勾选，用于缓存WebP图像，如果当前用户的浏览器支持它就会提供给用户。这使得WebP图像服务变得容易。但是，这个插件有一个缺点：Cache Enabler需要使用一个名为Optimizer的姐妹程序，而它则是需要支付年费的。这对于一个需要真正的开源解决方案的情况来说，显然是不合适的。
 
-**Short Pixel** — Another option for use with Cache Enabler, also at a cost, is Short Pixel. Short Pixel functions much like Optimizer, described above. You can optimize up to 100 images a month for free.
+**Short Pixel** — Cache Enabler的另一个搭配选择是使用Short Pixel，它的功能和Optimizer很像，也是付费的。但是，Short Pixel可以每个月免费优化100张图片。
 
-**Compressing Animated GIFs and why `<video>` is better**
+**最好使用`<video>`压缩GIF动画**
 
-Animated GIFs continue to enjoy widespread use, despite being a very limited format. Although everything from social networks to popular media sites embed animated GIFs heavily, the format was *never* designed for video storage or animation. In fact, the [GIF89a spec](https://www.w3.org/Graphics/GIF/spec-gif89a.txt) notes "the GIF is not intended as a platform for animation". The [number of colors, number of frames and dimensions](http://gifbrewery.tumblr.com/post/39564982268/can-you-recommend-a-good-length-of-clip-to-keep-gifs) all impact animated GIF size. Switching to video offers the largest savings.  
+动画GIF使用依然广泛，尽管这是一个功能非常有限的格式。虽然从社交网络到流行的媒体网站都大量嵌入了动画GIF，但是其实这个格式*从未*被设计用于视频或动画存储。事实上，[GIF89a规范](https://www.w3.org/Graphics/GIF/spec-gif89a.txt)一个在提示“GIF不是作为动画的平台”。格式中[颜色、图层和纬度的数量](http://gifbrewery.tumblr.com/post/39564982268/can-you-recommend-a-good-length-of-clip-to-keep-gifs)都影响GIF动画文件的体积，切换到视频格式可以提供最大的空间节省。
 
 
 <figure>
@@ -1488,25 +1485,31 @@ Animated GIFs continue to enjoy widespread use, despite being a very limited for
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/q_100/v1502426282/essential-image-optimization/animated-gif.jpg"/>
 </noscript>
 </picture>
-<figcaption>Animated GIF vs. Video: a comparison of file sizes at ~equivalent quality for different formats.</figcaption>
+<figcaption>动画GIF对比视频：同等质量下不同文件格式的文件大小对比</figcaption>
 </figure>
 
-**Delivering the same file as an MP4 video can often shave 80% or more off your file-size.** Not only do GIFs often waste significant bandwidth, but they take longer to load, include fewer colors and generally offer sub-part user experiences. You may have noticed animated GIFs uploaded to Twitter perform better on Twitter than on other websites. [Animated GIFs on Twitter aren't actually GIFs](http://mashable.com/2014/06/20/twitter-gifs-mp4/#fiiFE85eQZqW). To improve user experience and reduce bandwidth consumption, animated GIFs uploaded to Twitter are actually converted to video. Similarly, [Imgur converts GIFs to videos](https://thenextweb.com/insider/2014/10/09/imgur-begins-converting-gif-uploads-mp4-videos-new-gifv-format/) on upload, silently converting it to an MP4 for you.
+**提供相同内容和质量的MP4文件可能会在文件体积上节省达到80％或更多。**GIF通常不仅会浪费大量的带宽，而且加载时间较长、只支持较少的颜色，因此只能使网站提供的用户体验大打折扣。您可能已经注意到，上传到Twitter的动画GIF在Twitter上的表现是要优于其他网站的。这是因为，[Twitter上的动画GIF实际上并不是GIF](http://mashable.com/2014/06/20/twitter-gifs-mp4/#fiiFE85eQZqW)。为了提高用户体验和减少带宽占用，上传到Twitter的动画GIF实际上是被转换成为了视频。同样，[Imgur](https://thenextweb.com/insider/2014/10/09/imgur-begins-converting-gif-uploads-mp4-videos-new-gifv-format/)也将上传的GIF转换为了静音的MP4视频。
 
-Why are GIFs many times larger? Animated GIFs store each frame as a lossless GIF image - yes, lossless. The degraded quality we often experience is due to GIFs being limited to a 256-color palette. The format is often large as it doesn't consider neighbor frames for compression, unlike video codecs like H.264. An MP4 video stores each key frame as a lossy JPEG, which discards some of the original data to achieve better compression.
+为什么GIF多数情况下要大很多？因为，动画GIF将每个帧存储为了无损GIF图像 - 是的，无损。我们经常遇到的GIF的质量下降，其实是因为GIF受限于它的256色调色板。GIF格式下文件通常很大，因为它不像H.264这样的视频编解码器会考虑压缩相邻帧。MP4视频将每个关键帧存储为有损的JPEG，并其丢弃一些原始数据以实现更好的压缩。
 
-**If you can switch to videos**
+**如果您可以切换到视频**
 
-*   Use [ffmpeg](https://www.ffmpeg.org/) to convert your animated GIFs (or sources) to H.264 MP4s. I use this one-liner from[ Rigor](http://rigor.com/blog/2015/12/optimizing-animated-gifs-with-html5-video):
+*   使用[ffmpeg](https://www.ffmpeg.org/)转换你的动画GIF（或原动画）为H.264 MP4视频。我一般是使用[Rigor](http://rigor.com/blog/2015/12/optimizing-animated-gifs-with-html5-video)提供的一行命令:
+
+  ```
   ffmpeg -i animated.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" video.mp4
-*   ImageOptim API also supports [converting animated gifs to WebM/H.264 video](https://imageoptim.com/api/ungif), [removing dithering from GIFs](https://github.com/pornel/undither#examples) which can help video codecs compress even more.
+  ```
 
-**If you must use animated GIFs**
+  ​
 
-*   Tools like Gifsicle can strip metadata, unused palette entries and minimize what changes between frames
-*   Consider a lossy GIF encoder. The [Giflossy](https://github.com/pornel/giflossy) fork of Gifsicle supports this with the `—lossy` flag and can shave ~60-65% off size. There's also a nice tool based on it called [Gifify](https://github.com/vvo/gifify). For non-animated GIFs, convert them to PNG or WebP.
+*   ImageOptim的API还支持[转换动画GIF为WebM/H.264视频](https://imageoptim.com/api/ungif)，另外还可以[从GIF中消除抖动](https://github.com/pornel/undither#examples)，从而帮助视频编解码器压缩视频到更小。
 
-For more information, checkout the[ Book of GIF](https://rigor.com/wp-content/uploads/2017/03/TheBookofGIFPDF.pdf) by Rigor.
+**如果您必须使用动画GIF**
+
+*   可以使用像Gifsicle这样的工具，清除元数据和未使用的调色板条目，并最小化帧之间的变化。
+*   考虑使用一个有损的GIF编码器。Gifsicle派生的[Giflossy](https://github.com/pornel/giflossy)支持一个`—lossy`命令标识，可以删除掉60%~65％文件体积。还有一个很好的基于它的工具，称为[Gifify](https://github.com/vvo/gifify)。对于非动画GIF，将其转换为PNG或WebP。
+
+有关更多信息，请查阅Rigor编写的[关于GIF的电子书](https://rigor.com/wp-content/uploads/2017/03/TheBookofGIFPDF.pdf).
 
 ## <a id="svg-optimization" href="#svg-optimization">SVG Optimization</a>
 
