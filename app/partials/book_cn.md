@@ -1511,9 +1511,9 @@ image/webp webp;
 
 有关更多信息，请查阅Rigor编写的[关于GIF的电子书](https://rigor.com/wp-content/uploads/2017/03/TheBookofGIFPDF.pdf).
 
-## <a id="svg-optimization" href="#svg-optimization">SVG Optimization</a>
+## <a id="svg-optimization" href="#svg-optimization">SVG的优化</a>
 
-Keeping SVGs lean means stripping out anything unnecessary. SVG files created with editors usually contain a large quantity of redundant information (metadata, comments, hidden layers and so forth). This content can often be safely removed or converted to a more minimal form without impacting the final SVG that's being rendered.
+保持SVG的优良，意味着要清除任何不必要的东西。使用编辑器创建的SVG文件通常包含大量冗余信息（元数据、注释、隐藏层等）。通常可以安全地删除此内容，或将其转换为更小的形式，而不影响当前要显示的最终SVG。
 
 <figure>
 <picture>
@@ -1536,19 +1536,19 @@ Keeping SVGs lean means stripping out anything unnecessary. SVG files created wi
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image26.jpg"/>
 </noscript>
 </picture>
-<figcaption>[SVGOMG](https://jakearchibald.github.io/svgomg/), by Jake Archibald, is a GUI interface enabling you to optimize your SVGs to your preference  by selecting optimizations, with a live preview of the outputted markup </figcaption>
+<figcaption>由Jake Archibald提供的[SVGOMG](https://jakearchibald.github.io/svgomg/)，提供了一个GUI界面方便你通过选择选项优化你的SVG，并支持实时预览。 </figcaption>
 </figure>
 
-**Some general rules for SVG optimization (SVGO):**
+**SVG优化的一些通用规则（SVGO）：**
 
-*   Minify and gzip your SVG files. SVGs are really just text assets expressed in XML, like CSS, HTML and JavaScript, and should be minified and gzipped to improve performance.
-*   Instead of paths, use predefined SVG shapes like `<rect>`, `<circle>`, `<ellipse>`, `<line>` and `<polygon>`. Preferring predefined shapes decreases how much markup is needed to produce a final image, meaning less code to parse and rasterize by the browser. Reducing SVG complexity means a browser can display it more quickly.
-*   If you must use paths, try to reduce your curves and paths. Simplify and combine them where you can. Illustrator's [simplify tool](http://jlwagner.net/talks/these-images/#/2/10) is adept at removing superfluous points in even complex artwork while smoothing out irregularities.
-*   Avoid using groups. If you can't, try to simplify them.
-*   Delete layers that are invisible.
-*   Avoid any Photoshop or Illustrator effects. They can get converted to large raster images.
-*   Double check for any embedded raster images that aren't SVG-friendly
-*   Use a tool to optimize your SVGs. [SVGOMG](https://jakearchibald.github.io/svgomg/) is a super handy web-based GUI for [SVGO](https://github.com/svg/svgo) by Jake Archibald that I’ve found invaluable. If you use Sketch, the [SVGO Compressor plugin]([Sketch plugin for running SVGO](https://www.sketchapp.com/extensions/plugins/svgo-compressor/)) can be used when exporting to shrink the file size.
+*   使用Minify和gzip压缩您的SVG文件。SVG实际上只是以XML格式表示的文本资源，和CSS、HTML以及JavaScript是一样的，我们应该使用Minify和gzip压缩它以提高性能。
+*   使用预定义的SVG图形如`<rect>`，`<circle>`，`<ellipse>`，`<line>`和`<polygon>`取代路径。优选预定义的形状有助于减少生成最终图像所需的标签量，也意味着较少的浏览器解析和点阵描述代码。减少SVG复杂度也意味着浏览器可以更快地显示它。
+*   如果您必须使用路径（Path），请尝试减少曲线路径，尽量简化和合并它们。Illustrator的[简化工具](http://jlwagner.net/talks/these-images/#/2/10)可以帮助您在复杂的艺术品中消除多余的点，同时平滑不规则的曲线。
+*   避免使用组（Group）。如果不能，请尝试简化它们。
+*   删除不可见的图层。
+*   避免使用任何Photoshop或Illustrator效果。它们会使生成较大的位图图像。
+*   仔细检查SVG中任何非友好的嵌入的位图图像。
+*   使用工具优化SVG。 [SVGOMG](https://jakearchibald.github.io/svgomg/)是一个Jake Archibald为[SVGO](https://github.com/svg/svgo)编写的一个方便的Web端操作界面。如果你使用Sketch，可以在导出时使用[SVGO压缩插件]([Sketch plugin for running SVGO](https://www.sketchapp.com/extensions/plugins/svgo-compressor/))以减小导出文件的体积。
 
 <figure>
 <picture>
@@ -1571,11 +1571,11 @@ Keeping SVGs lean means stripping out anything unnecessary. SVG files created wi
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/svgo-precision.jpg"/>
 </noscript>
 </picture>
-<figcaption>An example of running an SVG source through SVGO in high-precision mode (leading to a 29% improvement in size) vs. low-precision mode (a 38% size improvement).</figcaption>
+<figcaption>使用SVGO高精度模式（体积减少29%）和低精度模式（体积减少38%）处理SVG原图后的对比示例。</figcaption>
 </figure>
 
 
-[SVGO](https://github.com/svg/svgo) is a Node-based tool for optimizing SVG. SVGO can reduce file-size by lowering the *precision* of numbers in your <path> definitions. Each digit after a point adds a byte and this is why changing the precision (number of digits) can heavily influence file size. Be very very careful with changing precision however as it can visually impact how your shapes look.
+[SVGO](https://github.com/svg/svgo)是一种Node.js环境下优化SVG的工具。SVGO可以通过减少你的路径（Path）中的精度点数，来减少最终文件的体积。每增加一个点位数后就会增加一个字节，这就是为什么更改精度（位数）会严重影响文件的体积。但是，改变精度需要非常小心，因为它会影响你的图形的视觉效果。
 
 <figure>
 <picture>
@@ -1598,32 +1598,32 @@ Keeping SVGs lean means stripping out anything unnecessary. SVG files created wi
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image28.jpg"/>
 </noscript>
 </picture>
-<figcaption>It's important to note that while SVGO does well in the previous example without over-simplifying paths and shapes, there are plenty of cases where this may not be the case. Observe how the light strip on the above rocket is distorted at a lower precision.</figcaption>
+<figcaption>需要注意的是，虽然SVGO在前面的例子中都表现良好，并不会过分简化曲线和形状，但是有很多情况下可能不是这样。如上图，观察火箭上的线条可以看到在较低的经度下，线条是如何产生了变形。</figcaption>
 </figure>
 
-**Using SVGO at the command-line:**
+**在命令行中使用SVGO：**
 
-SVGO can be installed as a [global npm CLI](https://www.npmjs.com/package/svgo) should you prefer that to a GUI:
+如果您更喜欢GUI，SVGO可以作为[全局的npm CLI](https://www.npmjs.com/package/svgo)安装：
 
 ```
 npm i -g svgo
 ```
 
-This can then be run against a local SVG file as follows:
+然后可以对本地的SVG文件执行，如下所示：
 
 ```
 svgo input.svg -o output.svg
 ```
 
-It supports all the options you might expect, including adjusting floating point precision:
+它支持您可能期望的所有选项，包括调整浮点精度：
 
 ```
 svgo input.svg --precision=1 -o output.svg
 ```
 
-See the SVGO [readme](https://github.com/svg/svgo) for the full list of supported options.
+有关支持选项的完整列表，请参阅SVGO [说明文件](https://github.com/svg/svgo)。
 
-**Don't forget to compress SVGs!**
+**不要忘了压缩SVG！**
 
 <figure>
 <picture>
@@ -1648,9 +1648,9 @@ See the SVGO [readme](https://github.com/svg/svgo) for the full list of supporte
 </picture>
 </figure>
 
-Also, don't forget to [Gzip your SVG assets](https://calendar.perfplanet.com/2014/tips-for-optimising-svg-delivery-for-the-web/) or serve them using Brotli. As they're text based, they'll compress really well (~50% of the original sources).
+此外，不要忘记[使用Gzip压缩你的SVG资源](https://calendar.perfplanet.com/2014/tips-for-optimising-svg-delivery-for-the-web/)或者使用Brotli来提供服务。因为SVG是文本的，所以压缩率会非常高（可以减少50%）。
 
-When Google shipped a new logo, we announced that the [smallest](https://twitter.com/addyosmani/status/638753485555671040) version of it was only 305 bytes in size.
+当Google发布了一个新徽标时，我们宣布其[最小](https://twitter.com/addyosmani/status/638753485555671040)版本的大小只有305个字节。
 
 <figure>
 <picture>
@@ -1675,17 +1675,17 @@ When Google shipped a new logo, we announced that the [smallest](https://twitter
 </picture>
 </figure>
 
-There are [lots of advanced SVG tricks](https://www.clicktorelease.com/blog/svg-google-logo-in-305-bytes/) you can use to trim this down even further (all the way to 146 bytes)! Suffice to say, whether it's through tools or manual clean-up, there's probably a *little* more you can shave off your SVGs.
+有[很多高级的SVG技巧](https://www.clicktorelease.com/blog/svg-google-logo-in-305-bytes/)可以用来将其进一步删减体积（一直到146个字节）！可以说，无论是通过工具还是手动清理，可能你都有可能将SVG的体积再刮掉一些。
 
-**SVG Sprites**
+**SVG Sprite**
 
-SVG can be [powerful](https://css-tricks.com/icon-fonts-vs-svg/) for icons, offering a way to represent visualizations as a sprite without the [quirky](https://www.filamentgroup.com/lab/bulletproof_icon_fonts.html) workarounds needed for icon fonts. It has more granular CSS styling control than icon fonts (SVG stroke properties),  better positioning control (no need to hack around pseudo-elements and CSS `display`) and SVGs are much more [accessible](http://www.sitepoint.com/tips-accessible-svg/).
+SVG在制作图标时非常[强大](https://css-tricks.com/icon-fonts-vs-svg/)，它就像一个精灵一样，提供了一种表示可视化图形的方式，在这种方式里没有[奇怪](https://www.filamentgroup.com/lab/bulletproof_icon_fonts.html)的必须使用的字体。它有着比图标字体（SVG笔触属性）更精准的CSS样式控制，更好的定位控制（不需要各种伪元素和CSS `display`），并且SVG 更容易[理解](http://www.sitepoint.com/tips-accessible-svg/)。
 
-Tools like [svg-sprite](https://github.com/jkphl/svg-sprite) and [IcoMoon](https://icomoon.io/) can automate combining SVGs into sprites which can be used via a [CSS Sprite](https://css-tricks.com/css-sprites/), [Symbol Sprite](https://css-tricks.com/svg-use-with-external-reference-take-2) or [Stacked Sprite](http://simurai.com/blog/2012/04/02/svg-stacks). Una Kravetz has a practical [write-up](https://una.im/svg-icons/#💁) on how to use gulp-svg-sprite for an SVG sprite workflow worth checking out. Sara Soudein also covers [making the transition from icon fonts to SVG](https://www.sarasoueidan.com/blog/icon-fonts-to-svg/) on her blog.
+像[svg-sprite](https://github.com/jkphl/svg-sprite)和[IcoMoon](https://icomoon.io/)这样的工具，可以自动将[SVG](https://github.com/jkphl/svg-sprite)组合成sprite，并可以通过[CSS Sprite](https://css-tricks.com/css-sprites/)，[Symbol Sprite](https://css-tricks.com/svg-use-with-external-reference-take-2)或[Stacked Sprite](http://simurai.com/blog/2012/04/02/svg-stacks)来使用。Una Kravetz有一篇实用的[文章](https://una.im/svg-icons/#💁)值得看一下，其中说明了如何使用gulp-svg-sprite进行SVG Sprite工作流程。Sara Soudein也曾在她的博客中表述[转变图标字体到SVG](https://www.sarasoueidan.com/blog/icon-fonts-to-svg/)。
 
-**Further reading**
+**进一步阅读**
 
-Sara Soueidan's [tips for optimising SVG delivery for the web](https://calendar.perfplanet.com/2014/tips-for-optimising-svg-delivery-for-the-web/) and Chris Coyier's [Practical SVG book](https://abookapart.com/products/practical-svg) are excellent. I've also found Andreas Larsen's optimizing SVG posts enlightening ([part 1](https://medium.com/larsenwork-andreas-larsen/optimising-svgs-for-web-use-part-1-67e8f2d4035),[part 2](https://medium.com/larsenwork-andreas-larsen/optimising-svgs-for-web-use-part-2-6711cc15df46)).[Preparing and exporting SVG icons in Sketch](https://medium.com/sketch-app-sources/preparing-and-exporting-svg-icons-in-sketch-1a3d65b239bb) was also a great read.
+Sara Soueidan的[网页交付中的优化SVG技巧](https://calendar.perfplanet.com/2014/tips-for-optimising-svg-delivery-for-the-web/)和Chris Coyier的[实用SVG](https://abookapart.com/products/practical-svg)电子书都非常好。我还发现Andreas Larsen的优化SVG帖子很有启发（[第1 ](https://medium.com/larsenwork-andreas-larsen/optimising-svgs-for-web-use-part-1-67e8f2d4035)[部分](https://medium.com/larsenwork-andreas-larsen/optimising-svgs-for-web-use-part-2-6711cc15df46)，[第2部分](https://medium.com/larsenwork-andreas-larsen/optimising-svgs-for-web-use-part-2-6711cc15df46)）。另外，[在Sketch中准备和导出SVG图标](https://medium.com/sketch-app-sources/preparing-and-exporting-svg-icons-in-sketch-1a3d65b239bb)也是一个很好的借鉴。
 
 ## <a id="avoid-recompressing-images-lossy-codecs" href="#avoid-recompressing-images-lossy-codecs">Avoid recompressing images with lossy codecs</a>
 
