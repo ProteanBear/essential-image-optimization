@@ -1832,12 +1832,11 @@ Twitter（推特）在构建它们新的[移动网络体验](https://medium.com/
 <figcaption>Chrome开发者工具中的时间轴/性能面板上，对比Twitter优化其图像管道之前和之后显示的图像解码时间（绿色）。/figcaption>
 </figure>
 
-### <a id="delivering-hidpi-with-srcset" href="#delivering-hidpi-with-srcset">Delivering HiDPI images using `srcset`</a>
+### <a id="delivering-hidpi-with-srcset" href="#delivering-hidpi-with-srcset">使用`srcset`提供HiDPI图像</a>
 
-Users may access your site through a range of mobile and desktop devices with high-resolution screens. The [Device Pixel Ratio](https://stackoverflow.com/a/21413366) (DPR) (also called the "CSS pixel ratio") determines how a device’s screen resolution is interpreted by CSS. DPR was created by phone manufacturers to enable increasing the resolution and sharpness of mobile screens without making elements appear too small.
+用户可以通过各种具有高分辨率屏幕的移动设备和桌面设备来访问您的站点。在Web页面中，[设备像素比](https://stackoverflow.com/a/21413366)（DPR）（也称为“CSS像素比”）被用来确定一个设备的屏幕分辨率如何被CSS来解释。DPR是由电话制造商创建的，被用于在提高移动屏幕的分辨率和清晰度的情况下，不会使显示的元素感觉太小。
 
-To match the image quality users might expect, deliver the most appropriate resolution images to their devices. Sharp, high-DPR images (e.g. 2x, 3x) can be served to devices that support them. Low and standard-DPR images should be served to users without high-res screens as such 2x+ images will
-often weigh significantly more bytes.
+而为了适配到用户可能期望的图像质量，需要将最合适的分辨率的图像提供到用户的设备上。高DPR图像（例如2x，3x）被聪明地提供给支持它们的设备，而较低或标准的DPR图像则被提供给那些没有高分辨率屏幕的用户，因为这些所谓的2x+的图像通常会显著地占用更多的字节空间。
 
 <figure>
 <picture>
@@ -1861,11 +1860,11 @@ often weigh significantly more bytes.
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502570356/essential-image-optimization/device-pixel-ratio.jpg"/>
 </noscript>
 </picture>
-<figcaption>Device Pixel Ratio: Many sites track the DPR for popular devices including [material.io](https://material.io/devices/) and [mydevice.io](https://mydevice.io/devices/).</figcaption>
+<figcaption>设备像素比：许多网站可以检测流行设备的DPR，例如[material.io](https://material.io/devices/)和[mydevice.io](https://mydevice.io/devices/)。</figcaption>
 </figure>
 
 
-[srcset](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) allows a browser to select the best available image per device, e.g. selecting a 2x image for a 2x mobile display. Browsers without `srcset` support can fallback to the default `src` specified in the `<img>` tag.
+[srcset](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)属性允许浏览器为每个设备选择最佳可用的图像，例如为2x移动设备显示2x图像。没有`srcset`支持的浏览器则会使用`<img>`标签中`src`指定的默认值。
 
 ```
 <img srcset="paul-irish-320w.jpg,
@@ -1874,12 +1873,11 @@ often weigh significantly more bytes.
      src="paul-irish-960w.jpg" alt="Paul Irish cameo">
 ```
 
-Image CDNs like [Cloudinary](http://cloudinary.com/blog/how_to_automatically_adapt_website_images_to_retina_and_hidpi_devices) and [Imgix](https://docs.imgix.com/apis/url/dpr) both support controlling image density to serve the best
-density to users from a single canonical source.
+像[Cloud](http://cloudinary.com/blog/how_to_automatically_adapt_website_images_to_retina_and_hidpi_devices)和[Imgix](https://docs.imgix.com/apis/url/dpr)这样的图像CDN服务都支持控制图像密度，并支持从单一的规范来源为用户提供最佳密度的图像。
 
-<aside class="note"><b>Note:</b> You can learn more about Device Pixel Ratio and responsive images in this free [Udacity](https://www.udacity.com/course/responsive-images--ud882) course and the [Images](https://developers.google.com/web/fundamentals/design-and-ui/responsive/images) guide on Web Fundamentals.</aside>
+<aside class="note"><b>注意:</b> 您可以通过这个免费的[Udacity（优达学城）](https://www.udacity.com/course/responsive-images--ud882)课程和Web基础知识中的[图像指南](https://developers.google.com/web/fundamentals/design-and-ui/responsive/images)，了解有关设备像素比和响应图像的更多信息。</aside>
 
-A friendly reminder that [Client Hints](https://www.smashingmagazine.com/2016/01/leaner-responsive-images-client-hints/) can also provide an alternative to specifying each possible pixel density and format in your responsive image markup. Instead, they append this information to the HTTP request so web servers can pick the best fit for the current device's screen density.
+友好的提醒你，[Client Hints](https://www.smashingmagazine.com/2016/01/leaner-responsive-images-client-hints/)也提供了一个替代的标记方案来指定每个可能的像素密度和图像格式，借此来实现响应图像。不同的是，此信息是被附加到HTTP请求中，而Web服务器就可以通过它来选择最适合当前设备屏幕密度的图像来返回回去。
 
 ### <a id="art-direction" href="#art-direction">Art direction</a>
 
