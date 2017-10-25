@@ -1724,9 +1724,9 @@ Sara Soueidan的[网页交付中的优化SVG技巧](https://calendar.perfplanet.
 
 **因此，编辑源文件时，请将其存储为无损格式（如PNG或TIFF），以便尽可能保留质量。**这样，您的构建工具或图像压缩服务导出的压缩图像，才能在提供给你的用户时保持最小的质量损失。
 
-## <a id="reduce-unnecessary-image-decode-costs" href="#reduce-unnecessary-image-decode-costs">Reduce unnecessary image decode and resize costs</a>
+## <a id="reduce-unnecessary-image-decode-costs" href="#reduce-unnecessary-image-decode-costs">[减少不必要的图像解码和尺寸调整带来的损耗](https://images.guide/#reduce-unnecessary-image-decode-costs)</a>
 
-We've all shipped large, higher resolution images than needed to our users before. This has a cost to it. Decoding and resizing images are expensive operations for a browser on average mobile hardware. If sending down large images and rescaling using CSS or width/height attributes, you're likely to see this happen and it can impact performance.
+我们以前都尽量提供体积大的、高清晰的图像给用户，甚至根本就超过了用户的需求。这样做是有代价的。解码和调整图像尺寸，对于大多数的移动设备上的浏览器来说，是个昂贵的操作。如果发送大图像，再使用CSS或width/height属性重新调整尺寸，您可能会经历下面的等待，这是非常影响设备性能的。
 
 <figure>
 <picture>
@@ -1749,13 +1749,12 @@ We've all shipped large, higher resolution images than needed to our users befor
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503503389/essential-image-optimization/image-pipeline.jpg"/>
 </noscript>
 </picture>
-<figcaption>
-When a browser fetches an image, it has to decode the image from the original source format (e.g. JPEG) to a bitmap in memory. Often the image needs to be resized (e.g. width has been set to a percentage of its container). Decoding and resizing images are expensive and can delay how long it takes for an image to be displayed. </figcaption>
+<figcaption>当浏览器获取图像的时候，它必须将图像从原始源格式（例如JPEG）解码为内存中的位图。而通常，图像又需要调整尺寸（例如，宽度已设置为其容器的百分比）。图像的解码和调整尺寸的操作是昂贵的，将会很大程度上延迟图片显示的时间。 </figcaption>
 </figure>
 
-Sending down images that a browser can render without needing to resize at all is ideal. So, serve the smallest images for your target screen sizes and resolutions, taking advantage of [`srcset` and `sizes`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) - we'll cover `srcset` shortly.
+发送给浏览器可以渲染的图像，并且不需要调整尺寸，才是最理想的情况。所以，要为你的用户提供适合屏幕尺寸和分辨率的最小图像，利用`<img>`的[`srcset`和`sizes`属性](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) - 我们将很快的覆盖`srcset`，快速显示出图像。
 
-Omitting the `width` or `height` attributes on an image can also negatively impact performance. Without them, a browser assigns a smaller placeholder region for the image until sufficient bytes have arrived for it to know the correct dimensions. At that point, the document layout must be updated in what can be a costly step called reflow.
+忽略图像（`<img>`）上的属性`width`或`height`属性也可能会对性能产生负面影响。因为没有它们的话，浏览器会先为图像分配一个较小的占位符区域，然后直到足够的字节到达才能知道正确的尺寸。这种处理方式下，页面的文档布局就必须要更新，而更新可能会是一个昂贵的步骤，它被称做回流。
 
 <figure>
 <picture>
@@ -1778,13 +1777,10 @@ Omitting the `width` or `height` attributes on an image can also negatively impa
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/devtools-decode.jpg"/>
 </noscript>
 </picture>
-<figcaption>Browsers have to go through a number of steps to paint images on the screen. In addition to fetching them, images need to be decoded and often resized. These events can be
-audited in the Chrome DevTools [Timeline](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/performance-reference). </figcaption>
+<figcaption>浏览器必须经过多个步骤才能在屏幕上绘制图像。除了要获取图像，还需要对图像进行解码而且经常需要调整尺寸。这些事件可以通过Chrome开发者工具中的Performance面板中的[时间线](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/performance-reference)进行查看审核。 </figcaption>
 </figure>
 
-Larger images also come with an increase in memory size costs. Decoded images are ~4 bytes per pixel. If
-you're not careful, you can literally crash the browser; on low-end devices it doesn't take that much to
-start memory swapping. So, keep an eye on your image decode, resize and memory costs.
+当然，更大的图像也会带来更大的内存占用。解码图像每个像素需要占用4个字节。如果你不小心，你可以真正地让浏览器崩溃; 在一些低端设备上，并没有多大的空间来进行内存交换。所以，请一定要注意您的图像解码、尺寸调整和内存占用带来的影响。
 
 <figure>
 <picture>
@@ -1807,10 +1803,10 @@ start memory swapping. So, keep an eye on your image decode, resize and memory c
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503695136/essential-image-optimization/image-decoding-mobile.jpg"/>
 </noscript>
 </picture>
-<figcaption>Decoding images can be incredibly costly on average and lower-end mobile phones. In some cases it can be 5x slower to decode (if not longer).</figcaption>
+<figcaption>解码图像的成本在中低端的手机上，可能是非常昂贵的。在某些情况下，它的速度可能要慢上5倍还多。</figcaption>
 </figure>
 
-When building their new [mobile web experience](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3), Twitter improved image decode performance by ensuring they served appropriately sized images to their users. This took decode time for many images in the Twitter timeline from ~400ms all the way down to ~19!
+Twitter（推特）在构建它们新的[移动网络体验](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3)时，通过确保向用户提供最佳适配尺寸的图像来提高图像解码的性能。这使得Twitter的许多图像在时间轴上测试的解码时间从400ms一直下降到19ms！
 
 <figure>
 <picture>
@@ -1833,7 +1829,7 @@ When building their new [mobile web experience](https://medium.com/@paularmstron
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/image-decoding.jpg"/>
 </noscript>
 </picture>
-<figcaption>Chrome DevTools Timeline/Performance panel highlighting image decode times (in green) before and after Twitter Lite optimized their image pipeline.</figcaption>
+<figcaption>Chrome开发者工具中的时间轴/性能面板上，对比Twitter优化其图像管道之前和之后显示的图像解码时间（绿色）。/figcaption>
 </figure>
 
 ### <a id="delivering-hidpi-with-srcset" href="#delivering-hidpi-with-srcset">Delivering HiDPI images using `srcset`</a>
