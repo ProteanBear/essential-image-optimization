@@ -1879,9 +1879,9 @@ Twitter（推特）在构建它们新的[移动网络体验](https://medium.com/
 
 友好的提醒你，[Client Hints](https://www.smashingmagazine.com/2016/01/leaner-responsive-images-client-hints/)也提供了一个替代的标记方案来指定每个可能的像素密度和图像格式，借此来实现响应图像。不同的是，此信息是被附加到HTTP请求中，而Web服务器就可以通过它来选择最适合当前设备屏幕密度的图像来返回回去。
 
-### <a id="art-direction" href="#art-direction">Art direction</a>
+### <a id="art-direction" href="#art-direction">艺术化的响应</a>
 
-Although shipping the right resolution to users is important, some sites also need to think about this in terms of **[art direction](http://usecases.responsiveimages.org/#art-direction)**. If a user is on a smaller screen, you may want to crop or zoom in and display the subject to make best use of available space. Although art direction is outside the scope of this write-up, services like[ Cloudinary](http://cloudinary.com/blog/automatically_art_directed_responsive_images%20) provide APIs to try automating this as much as possible.
+尽管向用户提供适配分辨率的内容很重要，但是有些网站可能会需要考虑艺术化的响应图像像是。如果用户位于一个较小的屏幕上，则可能需要裁剪或放大图像，以充分利用可用的空间突出图像的主题内容。虽然美术设计方面的内容超出了这个写作的范围，但像[Cloudinary](http://cloudinary.com/blog/automatically_art_directed_responsive_images%20)的服务是提供了这样的API，来尽可能地尝试自动化的处理类似的需求。
 
 <figure>
 <picture>
@@ -1904,7 +1904,7 @@ Although shipping the right resolution to users is important, some sites also ne
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/responsive-art-direction.jpg"/>
 </noscript>
 </picture>
-<figcaption>Art direction: Eric Portis put together an excellent [sample](https://ericportis.com/etc/cloudinary/) of how responsive images can be used for art-direction. This example adapts the main hero image's visual characteristics at different breakpoints to make best use of the available space.</figcaption>
+<figcaption>艺术化响应：Eric Portis放置了一个精彩的[样品](https://ericportis.com/etc/cloudinary/)来展示如何从美术设计方面响应图片。这个例子中通过焦点变换突出展示了英雄主题，并充分利用了有限空间。.</figcaption>
 </figure>
 
 ## <a id="color-management" href="#color-management">Color management</a>
