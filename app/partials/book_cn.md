@@ -2316,36 +2316,36 @@ Jake Archibald的[请求任务解析](https://jakearchibald.github.io/request-qu
 
 再次提醒你，在可能的情况下，还是建议使用`<picture>`和`<img srcset>`来处理，而不是依赖于`display:none`。
 
-## <a id="image-processing-cdns" href="#image-processing-cdns">Does an image processing CDN make sense for you?</a>
+## <a id="image-processing-cdns" href="#image-processing-cdns">[图像CDN服务对你有意义吗？](https://images.guide/#image-processing-cdns)</a>
 
-*The time you'll spend reading the blog posts to setup your own image processing pipeline and tweaking your config is often >> the fee for a service. With [Cloudinary](http://cloudinary.com/) offering a free service, [Imgix](https://www.imgix.com/) a free trial and [Thumbor](https://github.com/thumbor/thumbor) existing as an OSS alternative, there are plenty of options available to you for automation.*
+*你浪费在阅读博客帖子学习如何来设置自己的图像处理流水线，并调整那些配置的时间，对于你的服务来说其实也是一种费用成本。尤其随着Cloudinary开始提供了免费服务，Imgix和作为OSS替代产品Thumbor的都提供的免费试用，你其实有大量可以使用的自动化服务可以选择。*
 
-To achieve optimal page load times, you need to optimize your image loading. This optimization calls for a responsive image strategy and can benefit from on-server image compression, auto-picking the best format and responsive resizing. What matters is that you deliver the correctly sized image to the proper device in the proper resolution as fast as possible. Doing this is not as easy as one might think.
+为了实现最佳的页面加载时间，你需要优化你的图像加载。此优化可能需要响应式图像策略，并且需要受益于服务器上的图像压缩、自动选择最佳格式和响应式调整尺寸。重要的是，您还需要尽可能快地以正确的分辨率将正确尺寸的图像提供给正确的设备。这样做可并不像人们想象的那么容易。
 
-**Using Your Server vs. a CDN**
+**使用你自己的服务器还是使用CDN服务**
 
-Because of the complexity and ever-evolving nature of image manipulation, we're going to offer a quote from someone with experience in the field, then proceed with a suggestion.
+由于图像处理的复杂性和可变性，我们将提供一些在该领域经验丰富的开放服务的报价，然后继续提出一些建议。
 
-"If your product is not image manipulation, then don't do this yourself. Services like Cloudinary [or imgix, Ed.] do this much more efficiently and much better than you will, so use them. And if you're worried about the cost, think about how much it'll cost you in development and upkeep, as well as hosting, storage, and delivery costs." — [Chris Gmyr](https://medium.com/@cmgmyr/moving-from-self-hosted-image-service-to-cloudinary-bd7370317a0d)
+“如果你的产品不是一个专业的图像处理应用，那么你就不要自己这样做，因为像Cloudinary（或imgix，Ed。）这样的服务会比你更有效率，请更好地使用它们。如果你担心成本问题，请考虑开发和维护的花费，对比托管、存储和交付的花费。“ - [克里斯·吉米尔](https://medium.com/@cmgmyr/moving-from-self-hosted-image-service-to-cloudinary-bd7370317a0d)。
 
 
-For the moment, we are going to agree and suggest that you consider using a CDN for your image processing needs. Two CDNs will be examined to see how they compare relative to the list of tasks we raised earlier.
+目前情况下，我们表示同意并建议您考虑使用CDN来满足您的图像处理需求。我们将审查两个CDN，将它们的功能与之前提出的图像处理任务进行比较。
 
-**Cloudinary and imgix**
+**Cloudinary和imgix**
 
-[Cloudinary](http://cloudinary.com/) and [imgix](https://www.imgix.com/) are two established image processing CDNs. They are the choice of hundreds of thousands of developers and companies worldwide, including Netflix and Red Bull. Let's look at them in more detail.
+[Cloudinary](http://cloudinary.com/)和[imgix](https://www.imgix.com/)是两个已建立的图像处理CDN服务。他们是全球成千上万的开发商和公司的选择，包括了Netflix和Red Bull。让我们更详细地了解一下它们。∂
 
-**What are the Basics?**
+**开始之前，应该先了解那些？**
 
-Unless you are the owner of a network of servers like they are, their first huge advantage over rolling your own solution is that they use a distributed global network system to bring a copy of your images closer to your users. It's also far easier for a CDN to "future proof" your image loading strategy as trends change - doing this on your own requires maintenance, tracking browser support for emerging formats & following the image compression community.
+首先，除非你是像它们一样的大型服务集群的所有者，否则与反复开发你自己的解决方案相比，它们一个巨大的优势就是使用了分布式的全球网络系统，可以让你的图像副本更接近你的用户。而随着技术的进步，CDN还可以更轻松地“未来化”你的图像加载策略 - 你自己做的话可能需要很大的维护量，同时CDN还可以跟踪浏览器对新兴格式的支持并且跟进图像压缩社区的最新技术进展。
 
-Second, each service has a tiered pricing plan, with Cloudinary offering a [free level](http://cloudinary.com/pricing) and imgix pricing their standard level inexpensively, relative to their high-volume premium plan. Imgix offers a free [trial](https://www.imgix.com/pricing) with a credit towards services, so it almost amounts to the same thing as a free level.
+第二，每个服务都是有定价分级的，像Cloudinary提供了一个[免费的级别](http://cloudinary.com/pricing)；而imgix相对于他们的一些高价服务计划，也推出了很多成本低廉地定价。而且Imgix提供免费[试用](https://www.imgix.com/pricing)服务，这几乎与免费是相同的。
 
-Third, API access is provided by both services. Developers can access the CDN programmatically and automate their processing. Client libraries, framework plugins, and API documentation are also available, with some features restricted to higher paid levels.
+第三，API访问是提供两种服务的。开发人员可以通过编程直接调用访问CDN，并自动进行图像处理。而客户端库、框架插件和API文档也可以使用，当然其中一些功能是限于较高的费用级别的。
 
-**Let's Get to the Image Processing**
+**现在，让我们开始吧**
 
-For now, let's limit our discussion to static images. Both Cloudinary and Imgix offer a range of image manipulation methods, and both support primary functions such as compression, resizing, cropping and thumbnail creation in their standard and free plans.
+这里，我们将我们的讨论限制在静态图像上。Cloud和Imgix都提供了一系列图像处理方案，并且在标准版和免费版中都支持压缩、调整尺寸、裁剪以及缩略图生成等主要功能。
 
 <figure>
 <picture>
@@ -2368,53 +2368,54 @@ For now, let's limit our discussion to static images. Both Cloudinary and Imgix 
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image36.jpg"/>
 </noscript>
 </picture>
-<figcaption>Cloudinary Media Library: By default Cloudinary encodes [non-Progressive JPEGs](http://cloudinary.com/blog/progressive_jpegs_and_green_martians). To opt-in to generating them, check the 'Progressive' option in 'More options' or pass the 'fl_progressive' flag.</figcaption>
+<figcaption>Cloudinary多媒体库：默认情况下，Cloudinary的编码是生成[非渐进式JPEG](http://cloudinary.com/blog/progressive_jpegs_and_green_martians)。要选择生成它们，请选中'更多选项'中的'进阶'选项，或者传递'fl_progressive'参数标识。</figcaption>
 </figure>
 
-Cloudinary lists [seven broad image transformation](http://cloudinary.com/documentation/image_transformations) categories, with a total of 48 subcategories within them. Imgix advertises over [100 image processing operations](https://docs.imgix.com/apis/url?_ga=2.52377449.1538976134.1501179780-2118608066.1501179780).
+Cloudinary列出了[七个应用较广的图像转换](http://cloudinary.com/documentation/image_transformations)类别，其中共有48个子类别。Imgix则声称它包含超过[100种的图像处理操作](https://docs.imgix.com/apis/url?_ga=2.52377449.1538976134.1501179780-2118608066.1501179780)。
 
-**What Happens by Default?**
+**那默认情况下发生什么？**
 
-*   Cloudinary performs the following optimizations by default:
-*   [Encodes JPEGs using MozJPEG](https://twitter.com/etportis/status/891529495336722432) (opted against Guetzli as a default)
-*   Strips all associated metadata from the transformed image file (the original image is left untouched). To override this behavior and deliver a transformed image with its metadata intact, add the keep_iptc flag.
-*   Can generate WebP, GIF, JPEG, and JPEG-XR formats with automatic quality. To override the default adjustments, set the quality parameter in your transformation.
-*   Runs [optimization](http://cloudinary.com/documentation/image_optimization#default_optimizations) algorithms to minimize the file size with minimal impact to visual quality when generating images in the PNG, JPEG or GIF format.
+Cloudinary在默认情况下会执行以下优化：
 
-Imgix has no default optimizations such as Cloudinary has. It does have a settable default image quality. For imgix, auto parameters help you automate your baseline optimization level across your image catalog.
+*   [使用MozJPEG编码JPEG](https://twitter.com/etportis/status/891529495336722432) (默认会使用Guetzli工具)
+*   从转换后图像文件中清除所有相关的元数据（原始图像保持不变）。不想执行此行为并要生成元数据完整的转换后图像，请添加keep_iptc标识。
+*   生成默认质量级别的WebP、GIF、JPEG和JPEG-XR格式。要调整默认的质量级别，请在转换时设置质量参数。
+*   运行[优化](http://cloudinary.com/documentation/image_optimization#default_optimizations)算法，最小化文件体积并对PNG、JPEG或GIF格式图像的视觉质量影响最小。
 
-Currently, it has [four different methods](https://docs.imgix.com/apis/url/auto):
+Imgix并没有如Cloudinary那样的默认优化。但是，它具有可设置的默认图像质量。对于imgix的使用者来说，自动参数可帮助您在图像目录中自动执行基础的优化处理。
 
-*   Compression
-*   Visual enhancement
-*   File format conversion
-*   Redeye removal
+目前，它有[四种不同的方法](https://docs.imgix.com/apis/url/auto)：
 
-Imgix supports the following image formats: JPEG, JPEG2000, PNG, GIF, Animated GIF, TIFF, BMP, ICNS, ICO, PDF, PCT, PSD, AI
+*   压缩
+*   视觉增强
+*   文件格式转换
+*   红眼删除
 
-Cloudinary supports the following image formats: JPEG, JPEG 2000, JPEG XR, PNG, GIF, Animated GIF, WebP, Animated WebP,BMPs, TIFF, ICOs, PDF, EPS, PSD, SVG, AI, DjVu, FLIF, TARGA.
+Imgix支持以下图像格式：JPEG，JPEG2000，PNG，GIF，动画GIF，TIFF，BMP，ICNS，ICO，PDF，PCT，PSD，AI。
 
-**What About Performance?**
+Cloudinary支持以下图像格式：JPEG，JPEG 2000，JPEG XR，PNG，GIF，动画GIF，WebP，动画WebP，BMP，TIFF，ICO，PDF，EPS，PSD，SVG，AI，DjVu，FLIF，TARGA。
 
-CDN delivery performance is mostly about [latency](https://docs.google.com/a/chromium.org/viewer?a=v&pid=sites&srcid=Y2hyb21pdW0ub3JnfGRldnxneDoxMzcyOWI1N2I4YzI3NzE2) and speed.
+**它们的性能如何?**
 
-Latency always increases somewhat for completely uncached images. But once an image is cached and distributed among the network servers, the fact that a global CDN can find the shortest hop to the user, added to the byte savings of a properly-processed image, almost always mitigates latency issues when compared to poorly processed images or solitary servers trying to reach across the planet.
+CDN传输性能主要与[网络延迟](https://docs.google.com/a/chromium.org/viewer?a=v&pid=sites&srcid=Y2hyb21pdW0ub3JnfGRldnxneDoxMzcyOWI1N2I4YzI3NzE2)和网络速度相关。
 
-Both services use fast and wide CDN. This configuration reduces latency and increases download speed. Download speed affects page load time, and this is one of the most important metrics for both user experience and conversion.
+对于完全未缓存的图像，延迟总会是有所增加的。但是，一旦一个图像已经被缓存并分布到网络服务器上，事实上全球的CDN可以很快找到对用户响应最快的节点，加上正确处理图像的所带来的字节节省，对比那些处理图像不佳或需要跨越地球的单个服务器来说，CDN的延迟问题大大减小。
 
-**So How Do They Compare?**
+这两个都是访问快速和使用广泛的CDN服务。配置它们可以减少延迟并提高下载速度。下载速度影响页面加载时间，而页面加载时间是提高用户体验和用户转换率的最重要指标之一。
 
-Cloudinary has [160K customers](http://cloudinary.com/customers) including Netflix, eBay and Dropbox. Imgix doesn't report how many customers it has, but it is smaller than Cloudinary. Even so, imgix's base includes heavyweight image users such as Kickstarter, Exposure, unsplash, and Eventbrite.  
+**那么它们比较起来如何呢？**
 
-There are so many uncontrolled variables in image manipulation that a head-to-head performance comparison between the two services is difficult. So much depends on how much you need to process the image — which takes a variable amount of time — and what size and resolution are required for the final output, which affects speed and download time. Cost may ultimately be the most important factor for you.
+Cloudinary拥有[160K客户](http://cloudinary.com/customers)，其中包括了Netflix、eBay和Dropbox。Imgix没有报告有多少客户，但它比Cloudinary要少一些。即使如此，imgix依然包括了一些重量级的图像用户，已知的如Kickstarter、Exposure、unsplash和Eventbrite。
 
-CDNs cost money. An image heavy site with a lot of traffic could cost hundreds of US dollars a month in CDN fees. There is a certain level of prerequisite knowledge and programming skill required to get the most out of these services. If you are not doing anything too fancy, you're probably not going to have any trouble.
+实际上，在图像处理中存在如此多的不受控制的变量，对这两个服务巨头之间进行点对点的性能比较是很困难的。这很大程度上取决于处理图像需要多少时间（这是一个可变的时间量），以及影响速度和下载时间的最终输出需求的大小和分辨率。花费成本也可能最终是你最重要的因素。
 
-But if you're not comfortable working with image processing tools or APIs, then you are looking at a bit of a learning curve. In order to accommodate the CDN server locations, you will need to change some URLs in your local links. Do the right due diligence :)
+CDN服务需要花费金钱。一些流量大的图像业务网站每月可能要花费数百美元的CDN费用。另外，需要一定程度的知识储备和编程技能才能充分利用这些服务。如果你不是要做什么太过分的事情，你是不会有任何麻烦的。
 
-**Conclusion**
+但是，如果您不太喜欢使用图像处理工具或API，那么你需要经历一个学习曲线。为了适应CDN服务器链接定位，你需要更改本地链接中的一些URL。你需要勤快的检查每个地址的正确性:)
 
-If you are currently serving your own images or planning to, perhaps you should give a CDN some consideration.
+**结论**
+
+如果您正在进行或计划制作自己的图像处理服务，也许您应该考虑一下是否可以使用CDN。
 
 ## <a id="caching-image-assets" href="#caching-image-assets">Caching image assets</a>
 
