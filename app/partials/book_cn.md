@@ -2040,9 +2040,9 @@ Twitter（推特）在构建它们新的[移动网络体验](https://medium.com/
 
 <aside class="key-point"><b>注意:</b> 对于如何让颜色在广色域下工作于Web环境的方式，Sarah Drasner提供了个更好的指南，请参阅[网页颜色的傻瓜式手册](https://css-tricks.com/nerds-guide-color-web/).</aside>
 
-## <a id="image-sprites" href="#image-sprites">Image spriting</a>
+## <a id="image-sprites" href="#image-sprites">图像拼合技术</a>
 
-[Image sprites](https://developers.google.com/web/fundamentals/design-and-ui/responsive/images#use_image_sprites) (or CSS sprites) have a long history on the web, are supported by all browsers and have been a popular way to reduce the number of images a page loads by combining them into a single larger image that is sliced.
+[图像拼合技术](https://developers.google.com/web/fundamentals/design-and-ui/responsive/images#use_image_sprites) （或者说CSS图像拼合技术）在Web开发上其实有着悠久的历史，它受到所有浏览器的支持，这个技术是通过加载单个更大的合并图像来减少页面加载图像数量的一种流行方式。
 
 <figure>
 <picture>
@@ -2065,12 +2065,12 @@ Twitter（推特）在构建它们新的[移动网络体验](https://medium.com/
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1503693437/essential-image-optimization/i2_2ec824b0_1.jpg"/>
 </noscript>
 </picture>
-<figcaption>Image sprites are still widely used in large, production sites, including the Google homepage.</figcaption>
+<figcaption>图像拼合仍然广泛应用于很多大型网站的生产环境中，包括Google主页。</figcaption>
 </figure>
 
-Under HTTP/1.x, some developers used spriting to reduce HTTP requests. This came with a number of benefits, however care was needed as you quickly ran into challenges with cache-invalidation - changes to any small part of an image sprite would invalidate the entire image in a user's cache.
+在HTTP/1.x下，一些开发人员通过合并来减少加载图像的HTTP请求数量。这带来了一些好处，但是它很快遇到了“缓存无效”的挑战，需要小心的是 - 对于图像的任何的一小部分的更改，都将使得用户的缓存中的整个图像无效。
 
-Spriting may now however be an [HTTP/2](https://hpbn.co/http2/) anti-pattern. With HTTP/2, it may be best to [load individual images](https://deliciousbrains.com/performance-best-practices-http2/) since multiple requests within a single connection are now possible. Measure to evaluate whether this is the case for your own network setup.
+现在，拼合技术在[HTTP/2](https://hpbn.co/http2/)可能是不合适的。使用HTTP/2的话，最好是[加载单个图像](https://deliciousbrains.com/performance-best-practices-http2/)，因为现在单个链接中的多个请求是可能的。因此，使用之前请评估一下，图像拼合技术是否适用于你的网络设置。
 
 ## <a id="lazy-load-non-critical-images" href="#lazy-load-non-critical-images">Lazy-load non-critical images</a>
 
