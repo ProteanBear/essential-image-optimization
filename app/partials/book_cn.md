@@ -1904,7 +1904,7 @@ Twitter（推特）在构建它们新的[移动网络体验](https://medium.com/
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/responsive-art-direction.jpg"/>
 </noscript>
 </picture>
-<figcaption>艺术化响应：Eric Portis放置了一个精彩的[样品](https://ericportis.com/etc/cloudinary/)来展示如何从美术设计方面响应图片。这个例子中通过焦点变换突出展示了英雄主题，并充分利用了有限空间。.</figcaption>
+<figcaption>艺术化响应：Eric Portis放置了一个精彩的[样品](https://ericportis.com/etc/cloudinary/)来展示如何从美术设计方面响应图片。这个例子中通过焦点变换突出展示了焦点图片的主题内容，并充分利用了有限空间。.</figcaption>
 </figure>
 
 ## <a id="color-management" href="#color-management">颜色管理</a>
@@ -2072,9 +2072,9 @@ Twitter（推特）在构建它们新的[移动网络体验](https://medium.com/
 
 现在，拼合技术在[HTTP/2](https://hpbn.co/http2/)可能是不合适的。使用HTTP/2的话，最好是[加载单个图像](https://deliciousbrains.com/performance-best-practices-http2/)，因为现在单个链接中的多个请求是可能的。因此，使用之前请评估一下，图像拼合技术是否适用于你的网络设置。
 
-## <a id="lazy-load-non-critical-images" href="#lazy-load-non-critical-images">Lazy-load non-critical images</a>
+## <a id="lazy-load-non-critical-images" href="#lazy-load-non-critical-images">[延迟加载非关键图像](https://images.guide/#lazy-load-non-critical-images)</a>
 
-Lazy loading is a web performance pattern that delays the loading of images in the browser until the user needs to see it. One example is, as you scroll, images load asynchronously on demand. This can further compliment the byte-savings you see from having an image compression strategy.
+延迟加载是一种优化Web性能的模式，它会延迟浏览器中图像的加载，直到用户需要看到它的时候。一个例子是，当您滚动页面时，可视区域的图像会按需异步加载。这可以进一步帮助你节省从图片压缩策略省出来的带宽空间。
 
 
 <figure>
@@ -2100,27 +2100,27 @@ Lazy loading is a web performance pattern that delays the loading of images in t
 </picture>
 </figure>
 
-Images that must appear "above the fold," or when the web page first appears are loaded straight away. The images which follow "below the fold," however, are not yet visible to the user. They do not have to be immediately loaded into the browser. They can be loaded later — or lazy loaded — only if and when the user scrolls down and it becomes necessary to show them.
+出现在“折叠线之上”或网页中首次出现的图像必须立即加载。然而，在“折叠线下方”的图像对于用户来说尚不可见，它们不必被立即加载到浏览器中。只有当用户向下滚动并且需要显示它们时，再稍后加载或者延迟加载即可。
 
-Lazy loading is not yet natively supported in the browser itself (although there have been [discussions](https://discourse.wicg.io/t/a-standard-way-to-lazy-load-images/1153/10) about it in the past). Instead, we use JavaScript to add this capability.
+其实，浏览器本身并没有支持延迟加载（尽管过去曾经[讨论](https://discourse.wicg.io/t/a-standard-way-to-lazy-load-images/1153/10)过）。因此，我们会使用JavaScript来添加此功能。
 
-**Why is Lazy Loading Useful?**
+**为什么延迟加载是有效的？**
 
-This "lazy" way of loading images only if and when necessary has many benefits:
+这种所谓“延迟”，即只有在必要时加载图像的方式，有很多好处：
 
-* **Reduced data consumption**: As you aren’t assuming the user will need every image fetched ahead of time, you’re only loading the minimal number of resources. This is always a good thing, especially on mobile with more restrictive data plans.
-* **Reduced battery consumption**: Less workload for the user’s browser which can save on battery life.
-* **Improved download speed**: Decreasing your overall page load time on an image heavy website from several seconds to almost nothing is a tremendous boost to user experience. In fact, it could be the difference between a user staying around to enjoy your site and just another bounce statistic.
+* **降低数据消耗**：由于你假设用户不需要提前提取每个图像，因此您只需加载最少的资源。这永远是一件好事，特别是在具有更严格的流量控制的移动设备上。
+* **降低电池消耗**：减少了用户浏览器的工作量，也可以节省电池的使用寿命。
+* **提高下载速度**：将图像占比较大的网站的整体页面加载时间，从几秒缩短到几乎没有，这是对用户体验的巨大提升。事实上，这可能是决定你的用户在你的网站长期驻留还是昙花一现的关键点。
 
-**But like all tools, with great power comes great responsibility.**
+**但是，就像所有的工具一样，强大的力量意味着巨大的责任**。**
 
-**Avoid lazy-loading images above the fold.** Use it for long-lists of images (e.g. products) or lists of user avatars. Don’t use it for the main page hero image. Lazy-loading images above the fold can make loading visibly slower, both technically and for human perception. It can kill the browser’s preloader, progressive loading and the JavaScript can create extra work for the browser.
+**避免在折叠线之上放置图像。**延迟加载可以用于长列表的图像（例如产品）或用户头像列表中。但不要用于主页的焦点图像。延迟加载折叠线以上的图像将会使整个页面的加载显得很慢，无论是从技术上还是人类的感知上讲。我们可以使用JavaScript屏蔽浏览器的预加载、增加逐步加载，为浏览器创建额外的工作。
 
-**Be very careful lazy-loading images when scrolling.**  If you wait until the user is scrolling they are likely to see placeholders and may eventually get images, if they haven’t already scrolled past them. One recommendation would be to start lazy-loading after the above-the-fold images have loaded, loading all of the images independent of user interaction.
+**在滚动时延迟加载图像，要非常谨慎。**如果你等待用户滚动之后再加载图像，他们可能就会看到图像占位符，并且很有可能在它们已经滚动过去后图像才加载完成。一个建议就是在加载折叠线之上的图像后就开始延迟加载，加载所有图像，而不依赖于用户的操作。
 
-**Who Uses Lazy Loading?**
+**谁在使用延迟加载技术？**
 
-For examples of lazy loading, look at most any major site that hosts a lot of images. Some notable sites are [Medium](https://medium.com/) and [Pinterest](https://www.pinterest.com/).
+有关延迟加载的示例，请查看以托管大量图像为主营业务的所有站点。比较著名的网站是[Medium](https://medium.com/)和[Pinterest](https://www.pinterest.com/)。
 
 <figure>
 <picture>
@@ -2143,35 +2143,35 @@ For examples of lazy loading, look at most any major site that hosts a lot of im
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/Modern-Image35.jpg"/>
 </noscript>
 </picture>
-<figcaption>An example of Gaussian-blurred inline previews for images on Medium.com</figcaption>
+<figcaption>在Medium.com上，一个使用高斯模糊在线预览的例子。</figcaption>
 </figure>
 
-A number of sites (such as Medium) display a small, Gaussian-blurred inline preview (a few 100 bytes) that transitions (lazy-loads) to a full-quality image once it has been fetched.
+一些网站（例如“Medium”）会先显示一个小的高斯模糊的在线预览图像（几百个字节），一旦获取完成，它将转换（延迟加载）到全质量的图像。
 
-José M. Pérez has written about how to implement the Medium effect using [CSS filters](https://jmperezperez.com/medium-image-progressive-loading-placeholder/) and experimented with [different image formats](https://jmperezperez.com/webp-placeholder-images/) to support such placeholders. Facebook also did a write-up on their famous 200-byte approach for such placeholders for their [cover photos](https://code.facebook.com/posts/991252547593574/the-technology-behind-preview-photos/) that is worth a read. If you’re a Webpack user, [LQIP loader](https://lqip-loader.firebaseapp.com/) can help automate some of this work away.
+JoséM.Pérez曾经写过关于如何使用[CSS过滤器](https://jmperezperez.com/medium-image-progressive-loading-placeholder/)实现Medium网站的类似效果，并尝试了[不同的图像格式](https://jmperezperez.com/webp-placeholder-images/)来支持这样的占位符。Facebook也曾为其著名的200字节方式占位符，撰写了一份值得一读的文章“[封面照片](https://code.facebook.com/posts/991252547593574/the-technology-behind-preview-photos/)”。如果你是Webpack的使用者，[LQIP加载程序](https://lqip-loader.firebaseapp.com/)可以帮助你自动完成类似的工作。
 
-In fact, you can search for your favorite source of high-res photos and then scroll down the page. In almost all cases you'll experience how the website loads only a few full-resolution images at a time, with the rest being placeholder colors or images. As you continue to scroll, the placeholder images are replaced with full-resolution images. This is lazy loading in action.
+事实上，您可以搜索你最喜欢的高清照片来源，然后向下滚动页面。几乎所有情况下，你都将体验到网站一次只能加载几个全分辨率的图像，其余的则是占位符颜色或图像。当你继续滚动时，占位符图像将被替换为全分辨率图像。这就是典型的延迟加载效果。
 
-**How Can I Apply Lazy Loading to My Pages?**
+**如何在我的页面使用延迟加载？**
 
-There are a number of techniques and plugins available for lazy loading. I recommend [lazysizes](https://github.com/aFarkas/lazysizes) by Alexander Farkas because of its decent performance, features, its optional integration with [Intersection Observer](https://developers.google.com/web/updates/2016/04/intersectionobserver), and support for plugins.
+有一些技术和插件可支持延迟加载。我推荐Alexander Farkas编写的[lazysizes](https://github.com/aFarkas/lazysizes)，因为它的性能良好、功能齐全、并可选择通过浏览器的[“交叉观察者”API（IntersectionObserver API）](https://developers.google.com/web/updates/2016/04/intersectionobserver)集成，还支持插件扩展。
 
-**What Can I Do with Lazysizes?**
+**我可以怎样使用Lazysizes？**
 
-Lazysizes is a JavaScript library. It requires no configuration. Download the minified js file and include it in your webpage.
+Lazysizes是一个JavaScript的库。它不需要配置，只需下载压缩后的js文件并将其包含在您的网页中即可使用。
 
 
-Here is some example code taken from the README file:
+这是从Lazysizes的README文件中获取的一些示例代码：
 
-Add the class "lazyload" to your images/iframes in conjunction with a data-src and/or data-srcset attribute.
+将CSS类“lazyload”添加到你的包含data-src或data-srcset属性的`<img>`或`<iframe>`标签上。
 
-Optionally you can also add a src attribute with a low quality image:
+或者，您也可以添加指向低质量图像的src属性：
 
 ```html
-<!-- non-responsive: -->
+<!-- 非响应式示例: -->
 <img data-src="image.jpg" class="lazyload" />
 
-<!-- responsive example with automatic sizes calculation: -->
+<!-- 响应式示例，包括data-sizes为auto: -->
 <img
     data-sizes="auto"
     data-src="image2.jpg"
@@ -2179,7 +2179,7 @@ Optionally you can also add a src attribute with a low quality image:
     image2.jpg 600w,
     image3.jpg 900w" class="lazyload" />
 
-<!-- iframe example -->
+<!-- iframe示例 -->
 
 <iframe frameborder="0"
     class="lazyload"
@@ -2188,10 +2188,7 @@ Optionally you can also add a src attribute with a low quality image:
 </iframe>
 ```
 
-For the web version of this book, I paired Lazysizes (although you can use any alternative)
-with Cloudinary for on-demand responsive images. This allowed me the freedom to experiment
-with different values for scale, quality, format and whether or not to progressively load
-with minimal effort:
+实际上，在这本书的网络版本中，我将Lazysizes（尽管可以使用任何替代方案）与Cloudinary配合响应式地返回需求的图像。这允许我自由地尝试不同的尺度、质量、格式的值，而无需在响应式处理上付出很大的精力：
 
 <figure>
 <picture>
@@ -2216,32 +2213,31 @@ with minimal effort:
 </picture>
 </figure>
 
-**Lazysizes features include:**
+**Lazysizes的功能包括：**
 
-* Automatically detects visibility changes on current and future lazyload elements
-* Includes standard responsive image support (picture and srcset)
-* Adds automatic sizes calculation and alias names for media queries feature
-* Can be used with hundreds of images/iframes on CSS and JS-heavy pages or web apps
-* Extendable: Supports plugins
-* Lightweight but mature solution
-* SEO improved: Does not hide images/assets from crawlers
+* 自动检测当前和未来的“lazyload”元素的可见性变化。
+* 包括标准的响应图像支持（包括picture和srcset）。
+* 添加多媒体列表功能的自动尺寸计算和别名。
+* 可被用在CSS和JS使用比重较大的网页或网络应用程序上，处理数以百计的images或 iframe标签。
+* 可扩展：支持插件
+* 轻量级但成熟的延迟加载解决方案
+* SEO已改进：不能在爬虫抓取时隐藏图像或资源。
 
-**More Lazy Loading Options**
+**其他延迟加载的可选项**
 
-Lazysizes is not your only option. Here are more lazy loading libraries:
+Lazysizes并不是你唯一的选择。这里还有其他的延迟加载库：
 
 *   [Lazy Load XT](http://ressio.github.io/lazy-load-xt/)
-*   [BLazy.js](https://github.com/dinbror/blazy) (or [Be]Lazy)
+*   [BLazy.js](https://github.com/dinbror/blazy) (或[Be]Lazy)
 *   [Unveil](http://luis-almeida.github.io/unveil/)
-*   [yall.js (Yet Another Lazy Loader)](https://github.com/malchata/yall.js) which is ~1KB and uses Intersection Observer where supported.
+*   [yall.js (另一个延迟加载器)](https://github.com/malchata/yall.js) 它只有1KB，并且同样支持浏览器“交叉观察者”API。
 
-**What's the catch with Lazy Loading?**
+**延迟加载有什么问题么？**
 
-*   Screen readers, some search bots and any users with JavaScript disabled will not be able to view images lazy loaded with JavaScript. This is however something that we can work around with a `<noscript>` fallback.
-*   Scroll listeners, such as used for determining when to load a lazy-loaded image, can have an adverse impact on browser scrolling performance. They can cause the browser to redraw many times, slowing the process to a crawl - however, smart lazy loading libraries will use throttling to mitigate this. One possible solution is Intersection Observer, which is supported by lazysizes.
+*   一些阅读器、搜索机器人和任何禁用JavaScript的用户将无法看延迟加载的图像。但是，我们可以通过一个`<noscript>`标签来提示解决！
+*   对页面滚动进行侦听，例如确定何时加载延迟加载的图像，可能会对浏览器的滚动性能产生不利影响。可能会导致浏览器重绘多次，从而减缓网络爬取的进程 - 但是，智能的延迟加载库将会使用节流阀（throttling）来缓解这种情况。一个可能的解决方案是浏览器的“交叉观察者”API，lazysizes是支持这种模式的。
 
-Lazy loading images is a widespread pattern for reducing bandwidth, decreasing costs, and improving user experience. Evaluate whether it makes sense for your experience. For further
-reading see [lazy loading images](https://jmperezperez.com/lazy-loading-images/) and [implementing Medium's progressive loading](https://jmperezperez.com/medium-image-progressive-loading-placeholder/).
+延迟加载图像是减少带宽占用、降低加载消耗和改善用户体验的一个广泛使用的方式。你可以评估它，对你网站的用户体验是否有意义。需要进一步了解，可以参阅[延迟加载图像](https://jmperezperez.com/lazy-loading-images/)和[实现Medium的渐进式加载](https://jmperezperez.com/medium-image-progressive-loading-placeholder/)。
 
 
 ## <a id="display-none-trap" href="#display-none-trap">Avoiding the display:none trap</a>
