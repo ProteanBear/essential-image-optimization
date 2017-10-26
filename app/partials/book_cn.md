@@ -2427,23 +2427,23 @@ CDN服务需要花费金钱。一些流量大的图像业务网站每月可能�
 
 <aside class="note"><b>注意:</b>如果你是使用PHP提供图像，可能会因为使用默认的[session_cache_limiter](http://php.net/manual/en/function.session-cache-limiter.php)设置而破坏缓存规则。这可能是图像缓存的灾难，也许你会想通过设置session_cache_limiter（'public'）（即设置为public,max-age =）来[解决](https://stackoverflow.com/a/3905468)此问题。另外，禁用和设置自定义缓存控制头也可以。 </aside>
 
-## <a id="preload-critical-image-assets" href="#preload-critical-image-assets">Preloading critical image assets</a>
+## <a id="preload-critical-image-assets" href="#preload-critical-image-assets">[预加载关键图像资源](https://images.guide/#preload-critical-image-assets)</a>
 
-Critical image assets can be preloaded using [`<link rel=preload>`](https://www.w3.org/TR/preload/). 
+对于关键图像资源的预加载，可以使用 [`<link rel=preload>`](https://www.w3.org/TR/preload/). 
 
-`<link rel=preload>` is a declarative fetch, allowing you to force the browser to make a request for a resource without blocking the document’s `onload` event. It enables increasing the priority of requests for resources that might otherwise not be discovered until later in the document parsing process. 
+`<link rel=preload>` 是一个声明式的提取，允许你强制浏览器对资源进行请求，而不会阻止页面文档的`onload`事件。它可以增加资源请求的优先级，防止在文档解析的后期可能无法找到资源。 
 
-Images can be preloaded by specifying an `as` value of `image`:
+可以通过指定 `as` 的值 `image`来预加载图像文件：
 
 ```html
 <link rel="preload" as="image" href="logo.jpg"/>
 ```
 
-Image resources for `<img>`, `<picture>`, `srcset` and SVGs can all take advantage of this optimization.
+`<img>`，`<picture>`，`srcset`和SVGs中使用的图像资源，都可以采用这种方式优化加载。
 
-<aside class="note"><b>Note:</b> `<link rel="preload">` is [supported](http://caniuse.com/#search=preload) in Chrome and Blink-based browsers like Opera, [Safari Tech Preview](https://developer.apple.com/safari/technology-preview/release-notes/) and has been [implemented](https://bugzilla.mozilla.org/show_bug.cgi?id=1222633) in Firefox.</aside>
+<aside class="note"><b>注意:</b> [支持](http://caniuse.com/#search=preload)`<link rel="preload">`浏览器包括Chrome和其他基于Blink的浏览器如Opera、[Safari的技术预览版](https://developer.apple.com/safari/technology-preview/release-notes/)，[Firefox也已经增加了支持](https://bugzilla.mozilla.org/show_bug.cgi?id=1222633)。</aside>
 
-Sites like [Philips](https://www.usa.philips.com/), [FlipKart](https://www.flipkart.com/) and [Xerox](https://www.xerox.com/) use `<link rel=preload>` to preload their main logo assets (often used early in the document). [Kayak](https://kayak.com/) also uses preload to ensure the hero image for their header is loaded as soon as possible.
+像[飞利浦](https://www.usa.philips.com/)、[FlipKart](https://www.flipkart.com/)和[施乐](https://www.xerox.com/)等网站都是使用`<link rel=preload>`来预加载其主要的徽标资源（通常在页面载入的早期）。[Kayak](https://kayak.com/)也使用了预加载，以确保其页面顶部的焦点图像尽快加载出来。
 
 <figure>
 <picture>
@@ -2468,17 +2468,17 @@ Sites like [Philips](https://www.usa.philips.com/), [FlipKart](https://www.flipk
 </picture>
 </figure>
 
-**What is the Link preload header?** 
+**HTTP头的预加载是什么？** 
 
-A preload link can be specified using either an HTML tag or an [HTTP Link header](https://www.w3.org/wiki/LinkHeader). In either case, a preload link directs the browser to begin loading a resource into the memory cache, indicating that the page expects with high confidence to use the resource and doesn’t want to wait for the preload scanner or the parser to discover it.
+可以使用HTML标签或者[页面`<header>`的Link中](https://www.w3.org/wiki/LinkHeader)指定预加载链接。在任一种情况下，预加载链接都会指示浏览器开始将资源加载到内存高速缓存中，指明该页面需要高效率的使用此资源，并且不希望等待页面加载或解析器发现它时再获取。
 
-A Link preload header for images would look similar to this:
+一个`<header>`中的预加载连接设置，就像下面这样：
 
 ```
 Link: <https://example.com/logo-hires.jpg>; rel=preload; as=image
 ```
 
-When the Financial Times introduced a Link preload header to their site, they shaved [1 second off](https://twitter.com/wheresrhys/status/843252599902167040) the time it took to display their masthead image:
+当“金融时报”在他们的网站网页的头部设置了一个链接预加载之后，显示他们头条图像所花费的时间被减少了[1秒钟](https://twitter.com/wheresrhys/status/843252599902167040)：
 
 <figure>
 <picture>
@@ -2501,28 +2501,28 @@ When the Financial Times introduced a Link preload header to their site, they sh
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1504055773/essential-image-optimization/preload-financial-times.jpg"/>
 </noscript>
 </picture>
-<figcaption>Bottom: with `<link rel=preload>`, Top: without. Comparison for a Moto G4 over 3G on WebPageTest both [before](https://www.webpagetest.org/result/170319_Z2_GFR/) and [after](https://www.webpagetest.org/result/170319_R8_G4Q/).</figcaption>
+<figcaption>底部：使用了`<link rel=preload>`，顶部：没有使用。WebPageTest使用Moto G4在3G环境下对“金融时报”首页[之前](https://www.webpagetest.org/result/170319_Z2_GFR/)和[之后](https://www.webpagetest.org/result/170319_R8_G4Q/)的载入时间比较。</figcaption>
 </figure>
 
-Similarly, Wikipedia improved time-to-logo performance with the Link preload header as covered in their [case study](https://phabricator.wikimedia.org/phame/post/view/19/improving_time-to-logo_performance_with_preload_links/).
+同样地，维基百科也通过使用预加载链接技术改善了他们徽标的载入时间表现，可以通过他们的[此案例研究](https://phabricator.wikimedia.org/phame/post/view/19/improving_time-to-logo_performance_with_preload_links/)中的介绍看到。
 
-**What caveats should be considered when using this optimization?**
+**使用预加载时有哪些注意事项？**
 
-Be very certain that it's worth preloading image assets as, if they aren't critical to your user experience, there may be other content on the page worth focusing your efforts on loading earlier instead. By prioritizing image requests, you may end up pushing other resources further down the queue.
+首先，你要非常确定指定的图像资源是非常值得被预先加载的；如果它们对你的用户体验不是至关重要的，那么页面上可能会有其他内容需要重点关注要预先加载。通过优先处理图像请求，您可能最终会将其他资源进一步放置到队列中。
 
-It's important to avoid using `rel=preload` to preload image formats without broad browser support (e.g. WebP). It's also good to avoid using it for responsive images defined in `srcset` where the retrieved source may vary based on device conditions. 
+一个非常需要注意的是，要避免使用`rel=preload`预加载那些不被浏览器广泛支持的图像格式（例如WebP）。最好还要避免将其用于使用`srcset`设置的根据设备条件而变化图像链接位置的响应式图像。
 
-To learn more about preloading, see [Preload, Prefetch and Priorities in Chrome](https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf) and [Preload: What Is It Good For?](https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/).
+想要了解更多的预加载相关的信息，请查阅一下文章：[Chrome中的预加载、预提取和优先级](https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf) and [预加载：究竟好在哪里？](https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/).
 
-## <a id="performance-budgets" href="#performance-budgets">Web Performance Budgets For Images</a>
+## <a id="performance-budgets" href="#performance-budgets">图像的网络性能预算</a>
 
-A performance budget is a "budget" for web page performance that a team attempts to not exceed. For example, "images will not exceed 200KB on any page" or "the user experience must be usable in under 3 seconds". When a budget isn't being met, explore why this is and how you get back on target.
+性能预算是站点团队尝试不超过的网页显示效果的“预先估算”。例如，“任何页面上的图像不会超过200KB”或“3秒以内的用户必须可以使用”。当一个预算没有得到满足，探索原因和如何解决以达到目标。
 
-Budgets provide a useful framework for discussing performance with stakeholders. When a design or business decision may impact site performance, consult the budget. They're a reference for pushing back or rethinking the change when it can harm a site's user experience.
+预算为与利益相关者讨论性能表现时提供了一个有用的框架。当一个设计或者业务决策可能会影响网站的效果时，请遵循此预算。它们是一个参考，可以在对网站的用户体验造成伤害时，提示你推迟或重新思考这一变化。
 
-I've found teams have the best success with performance budgets when monitoring them is automated. Rather than manually inspecting network waterfalls for budget regressions, automation can flag when the budget is crossed. Two such services that are useful for performance budget tracking are [Calibre](https://calibreapp.com/docs/metrics/budgets) and [SpeedCurve](https://speedcurve.com/blog/tag/performance-budgets/).
+我发现，当页面性能监控自动化的时候，团队会在性能预算方面取得了最大的成功。因为这时候，团队无需手动检查网络瀑布的预算回归，而且标记预算何时交叉也会自动进行。两个比较有用的性能预算跟踪服务是[Calibre](https://calibreapp.com/docs/metrics/budgets)和[SpeedCurve](https://speedcurve.com/blog/tag/performance-budgets/)。
 
-Once a performance budget for image sizes is defined, SpeedCurve starts monitoring and alerts you if the budget is exceeded:
+一旦定义了图像尺寸的性能预算，SpeedCurve将会自动开始监控它，并在超出预算时提醒您：
 
 <figure>
 <picture>
@@ -2547,7 +2547,7 @@ Once a performance budget for image sizes is defined, SpeedCurve starts monitori
 </picture>
 </figure>
 
-Calibre offers a similar feature with support for setting budgets for each device-class you’re targeting. This is useful as your budget for image sizes on desktop over WiFi may vary heavily to your budgets on mobile.
+Calibre也提供了类似的功能，支持为你的每个目标设备类型设置预算。这是很有用的，因为你通过WiFi在桌面上的图像尺寸的预算可能会与你在手机上的预算有很大的不同。
 
 <figure>
 <picture>
