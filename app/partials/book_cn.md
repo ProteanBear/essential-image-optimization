@@ -2572,38 +2572,40 @@ Calibre也提供了类似的功能，支持为你的每个目标设备类型设�
 </picture>
 </figure>
 
-## <a id="closing-recommendations" href="#closing-recommendations">Closing recommendations</a>
+## <a id="closing-recommendations" href="#closing-recommendations">[最后的建议](https://images.guide/#closing-recommendations)</a>
 
-Ultimately, choosing an image optimization strategy will come down to the types of images you're serving down to your users and what you decide is a reasonable set of evaluation criteria. It might be using SSIM or Butteraugli or, if it's a small enough set of images, going off of human perception for what makes the most sense.
+最终，选择一个图像优化策略将取决于你为你的用户提供什么图像类型，和你决定设定一套怎样的合理的评估标准。你可能会使用SSIM或Butteraugli的评分，或者要求图像它要足够小，总之放飞你的想象去体会什么才有最有意义的。
 
-**Here are my closing recommendations:**
+**以下是我的最终的建议：**
 
-If you **can't** invest in conditionally serving formats based on browser support:
+如果您**无法**基于浏览器支持情况，响应符合条件的图像格式，请记得：
 
 
-* Guetzli + MozJPEG's jpegtran is a good format for JPEG quality > 90.
-    * For the web `q=90` is wastefully high. You can get away with `q=80`, and on 2x displays even with `q=50`. Since Guetzli doesn't go that low, for the web you can MozJPEG.
-    * Kornel Lesi&#x144;ski recently improved mozjpeg's cjpeg command to add tiny sRGB profile to help Chrome display natural color on wide-gamut displays
-* PNG pngquant + advpng has a pretty good speed/compression ratio
-* If you **can** conditionally serve (using `<picture>`, the [Accept header](https://www.igvita.com/2013/05/01/deploying-webp-via-accept-content-negotiation/) or [Picturefill](https://scottjehl.github.io/picturefill/)):
-    * Serve WebP down to browsers that support it
-        * Create WebP images from original 100% quality images. Otherwise you'll be giving browsers that do support it worse-looking images with JPEG distortions *and* WebP distortions! If you compress uncompressed source images using WebP it'll have the less visible WebP distortions and can compress better too.
-        * The default settings the WebP team use of `-m 4 -q 75` are usually good for most cases where they optimize for speed/ratio.
-        * WebP also has a special mode for lossless (`-m 6 -q 100`) which can reduce a file to its smallest size by exploring all parameter combinations. It's an order of magnitude slower but is worth it for static assets.
-    * As a fallback, serve Guetzli/MozJPEG compressed sources to other browsers
+* 对于质量级别高于90的JPEG图像，Guetzli + MozJPEG的jpegtran是一个好格式。
+    * 对于网络使用，`q=90`会有些浪费。你可以降低到`q=80`，甚至在2x显示器上可以设置为`q=50`。由于Guetzli不会将图像压缩到那么低，对于Web上图像你可以使用MozJPEG。
+    * KornelLesiński最近改进了MozJPEG的cjpeg命令，用添加小的sRGB配置文件，以帮助Chrome在宽色域显示器上显示更加自然的颜色。
+* 对于PNG，pngquant + advpng有非常好的速度/压缩比。
 
-Happy compressing!
+如果你**可以**有条件的响应图像格式 （请使用`<picture>`标签、[支持请求header响应](https://www.igvita.com/2013/05/01/deploying-webp-via-accept-content-negotiation/)或者使用[Picturefill](https://scottjehl.github.io/picturefill/)）：
 
-<aside class="note"><b>Note:</b> For more practical guidance on how to optimize images, I heavily recommend [Web Performance in Action](https://www.manning.com/books/web-performance-in-action) by Jeremy Wagner. [High Performance Images](http://shop.oreilly.com/product/0636920039730.do) is also filled with excellent, nuanced advice on this topic.</aside>
+* 为支持WebP的浏览器提供它
+    * 从原始的100％质量的图像创建WebP图像。否则，您将会给支持WebP的浏览器一张带有JPEG扭曲和 WebP扭曲的看上去糟透了的图像！但是，如果你使用WebP压缩未压缩的源图像，它将几乎没有WebP扭曲，并且可以更好地压缩。
+    * WebP团队使用的默认设置`-m 4 -q 75`，通常适用于大多数针对速度/比率进行优化的情况。
+    * WebP还具有无损（`-m 6 -q 100`）的特殊模式，可以通过探索所有参数组合将文件减小到最小的尺寸。这是一个较慢的过程，但对于静态资源这是值得的。
+* 退而求其次，可以将Guetzli或MozJPEG压缩过的原图提供给其他浏览器。
 
-## <a id="trivia" href="#trivia">Trivia</a>
+最后，祝你压缩快乐！
 
-* [JPEG XT](https://jpeg.org/jpegxt/) defines extensions to the 1992 JPEG specification. For extensions to have pixel-perfect rendering on-top of old JPEG, the specification had to clarify the old 1992 spec and [libjpeg-turbo](https://libjpeg-turbo.org/) was chosen as its reference implementation (based on popularity). 
-* [PIK](https://github.com/google/pik) is a new image codec worth keeping an eye on. It's compatible with JPEG, has a more efficient color-space and utilizes similar benefits found in Guetzli. It decodes at 2/3 the speed of JPEG and offers 54% more file savings than libjpeg does. It is both faster to decode and compress than Guetzli-ified JPEGs. A [study](https://encode.ru/threads/2814-Psychovisual-analysis-on-modern-lossy-image-codecs) on psychovisual similarity of modern image codes showed PIK was less than half the size of alternatives. Unfortunately, it's still early days for the codec and encoding is unusably slow at this time (August, 2017).
-* [ImageMagick](https://www.imagemagick.org/script/index.php) is often recommended for image optimization. This write-up considers it a fine tool, but its output generally requires more optimization and other tools can offer better output. We recommend trying [libvps](https://github.com/jcupitt/libvips) instead, however it is lower-level and requires more technical skill to use. ImageMagick has also historically had [noted](https://imagetragick.com/#moreinfo) security vulnerabilities you may want to be aware of.
-* Blink (the rendering engine used by Chrome) decodes images off the main thread. Moving the decode work to the compositor thread frees-up the main thread to work on other tasks. We call this deferred decoding. With deferred decoding, the decode work remains on the critical path for presenting a frame to the display, so it can still cause animation jank. The [`img.decode()`](https://html.spec.whatwg.org/multipage/embedded-content.html#dom-img-decode) API should help with the jank problem.
+<aside class="note"><b>注意:</b> 关于如何优化图像的更实际的指导，我强烈推荐Jeremy Wagner的[Web性能实战](https://www.manning.com/books/web-performance-in-action)。另外，[高性能的图像](http://shop.oreilly.com/product/0636920039730.do)也有关于这个主题的优秀而细微的建议。</aside>
 
-<p class="license">The content of this book is licensed under the  Creative Commons [Attribution-NonCommercial-NoDerivs 2.0 Generic (CC BY-NC-ND 2.0)](https://creativecommons.org/licenses/by-nc-nd/2.0/) license, and code samples are licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0). Copyright Google, 2017.</p>
+## <a id="trivia" href="#trivia">备注</a>
+
+* [JPEG XT](https://jpeg.org/jpegxt/)定义了关于1992年JPEG规范的扩展。作为对于古老的JPEG上进行像素完美渲染的扩展，这个规范简化了旧的1992规范，并且选择[libjpeg-turbo](https://libjpeg-turbo.org/)作为其参考实现（基于受欢迎程度）。
+* [PIK](https://github.com/google/pik)是一个值得关注的新型图像编解码器。它与JPEG兼容，并且具有更高效的颜色空间，类似于Guetzli的优势。它可以以JPEG的2/3的速度进行图像解码，并且比libjpeg提供的文件体积小54％。与Guetzli-ified JPEG相比，解码和压缩都更快。一项关于现代图像编码心理视觉相似性的[研究](https://encode.ru/threads/2814-Psychovisual-analysis-on-modern-lossy-image-codecs)表明，PIK仅为其他替代品的一半大小。不幸的是，目前来看，这个编解码器还有很长的路要走，它的编码时间现在（2017年8月）还是慢的基本无法使用。
+* 通常推荐使用[ImageMagick](https://www.imagemagick.org/script/index.php)进行图像优化。这篇文章也认为它是一个很好的工具，但是它的输出通常需要更多的优化，而其他工具可以提供更好的输出。我们推荐可以尝试使用[libvps](https://github.com/jcupitt/libvips)，但它是比较低级别的工具，需要更多的技术能力才能使用。ImageMagick曾经[注意到](https://imagetragick.com/#moreinfo)您可能想知道的安全漏洞。
+* Blink（Chrome使用的渲染引擎）会在主线程中解码图像。将解码工作转移到合成器线程，释放主线程以处理其他任务，我们称之为延迟解码。在延迟解码时，解码工作会保留关键路径以便在显示器上呈现出框架，因此仍可能导致动画抖动。通过API[`img.decode()`](https://html.spec.whatwg.org/multipage/embedded-content.html#dom-img-decode)应该可以帮助你解决抖动的问题。
+
+<p class="license">本书内容基于[Attribution-NonCommercial-NoDerivs 2.0 Generic (CC BY-NC-ND 2.0)](https://creativecommons.org/licenses/by-nc-nd/2.0/)授权许可，同时代码示例是基于[Apache 2.0许可证授权](http://www.apache.org/licenses/LICENSE-2.0).。版权所有Google, 2017。</p>
 
 </body>
 </html>
