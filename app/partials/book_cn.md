@@ -1907,17 +1907,17 @@ Twitter（推特）在构建它们新的[移动网络体验](https://medium.com/
 <figcaption>艺术化响应：Eric Portis放置了一个精彩的[样品](https://ericportis.com/etc/cloudinary/)来展示如何从美术设计方面响应图片。这个例子中通过焦点变换突出展示了英雄主题，并充分利用了有限空间。.</figcaption>
 </figure>
 
-## <a id="color-management" href="#color-management">Color management</a>
+## <a id="color-management" href="#color-management">颜色管理</a>
 
-There are at least three different perspectives of color: biology, physics and print. In biology, color is a [perceptual phenomenon](http://hubel.med.harvard.edu/book/ch8.pdf). Objects reflect light in different combinations of wavelengths. Light receptors in our eyes translate these wavelengths into the sensation we know as color. In physics, it’s light that matters - light frequencies and brightness. Print is more about color wheels, inks and artistic models.
+世界上，至少有三种不同的颜色理论，来自不同的学科：生物学、物理学和印刷学。在生物学中，颜色是一种[感知现象](http://hubel.med.harvard.edu/book/ch8.pdf)。物体以不同的波长组合反射光，光传播到我们的眼中，眼中的光受体将这些波长转化成我们所知道的颜色。而在物理学中，重要的是光线 - 亮度和频率。在印刷学中，更多是关于色轮、油墨以及艺术模型。
 
-Ideally, every screen and web browser in the world would display color exactly the same. Unfortunately, due to a number of inherent inconsistencies, they don’t. Color management allows us to reach a compromise on displaying color through color models, spaces and profiles.
+在理想情况下，世界各地的屏幕和网页浏览器都应该显示出完全相同的颜色。可不幸的是，由于一些内在技术的不一致，他们并没有显示的完全相同。因此，我们需要颜色管理，它能够使我们通过颜色模型、空间和配置文件等手段来达到颜色的折中统一。
 
-#### Color models
+#### 颜色模型
 
-[Color models](https://en.wikipedia.org/wiki/Gamma_correction) are a system for generating a complete range of colors from a smaller set of primary colors. There are different types of color spaces which use different parameters to control colors. Some color spaces have fewer control parameters than others - e.g. grayscale only has a single parameter for controlling brightness between black and white colors. 
+[颜色模型](https://en.wikipedia.org/wiki/Gamma_correction)是用于从较小的原色组中派生出完整范围颜色的系统。其中有不同类型的颜色空间，它们使用不同的参数来控制颜色。有一些颜色空间的控制参数比其他颜色空间要更少 - 例如灰度只有一个参数，用于控制黑白颜色之间的亮度。 
 
-Two common color models are additive and subtractive. Additive color models (like RGB, used for digital displays) use light to show color while subtractive color models (like CMYK, used in printing) work by taking light away.
+两种常见的颜色模型是加色模型和减色模型。加色模型（如用于数字显示的RGB）使用亮色调来显示颜色（由黑至白），而减色模式（如打印中使用的CMYK）则是通过削弱白色来工作（由白至黑）。
 
 <figure>
 <picture>
@@ -1939,16 +1939,16 @@ Two common color models are additive and subtractive. Additive color models (lik
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1504564914/colors_ept6f2.jpg"/>
 </noscript>
 </picture>
-<figcaption>In RGB red, green and blue light are added in different combinations to produce a broad spectrum of colors. CYMK (cyan, magenta, yellow and black) works through different colors of ink subtracting brightness from white paper.  </figcaption>
+<figcaption>在RGB中，红色、绿色和蓝色以不同的组合方式产生更多的颜色。而CYMK则是通过不同颜色（青色、品红色、黄色和黑色）的墨水组合在白纸上，使之减去亮度。 </figcaption>
 </figure>
 
-[Understanding Color Models and Spot Color Systems](https://www.designersinsights.com/designer-resources/understanding-color-models/) has a good description of other color models and modes, such as HSL, HSV and LAB.
+这篇文章《[了解颜色模型和专色系统](https://www.designersinsights.com/designer-resources/understanding-color-models/)》，可以帮助你了解其他颜色模型和模式（如HSL，HSV和LAB）。
 
-#### Color spaces
+#### 颜色空间
 
-[Color spaces](http://www.dpbestflow.org/color/color-space-and-color-profiles#space) are a specific range of colors that can be represented for a given image. For example, if an image contains up to 16.7 million colors, different color spaces allow the use of narrower or wider ranges of these colors. Some developers refer to color models and color spaces as the same thing.
+[颜色空间](http://www.dpbestflow.org/color/color-space-and-color-profiles#space)是一组特定的颜色范围，它限定了表示图像的颜色范围。例如，如果图像包含多达1670万种颜色，则不同的颜色空间允许使用这些颜色的范围会有所不同，可能更宽或更窄。一些开发者会认为颜色模型和颜色空间是相同的东西。
 
-[sRGB](https://en.wikipedia.org/wiki/SRGB) was designed to be a [standard](https://www.w3.org/Graphics/Color/sRGB.html) color space for the web and is based on RGB. It’s a small color space that is typically considered the lowest common denominator and is the safest option for color management cross-browser. Other color spaces (such as [Adobe RGB](https://en.wikipedia.org/wiki/Adobe_RGB_color_space) or [ProPhoto RGB](https://en.wikipedia.org/wiki/ProPhoto_RGB_color_space) - used in Photoshop and Lightroom) can represent more vibrant colors than sRGB but as the latter is more ubiquitous across most web browsers, games and monitors, it’s what is generally focused on.
+[sRGB](https://en.wikipedia.org/wiki/SRGB)被设计为网络的[标准](https://www.w3.org/Graphics/Color/sRGB.html)颜色空间。它是基于RGB的，是一个比较小的颜色空间。sRGB通常被认为是通用颜色的最小区域，是颜色管理中支持跨浏览器里最安全的选择。其他的颜色空间（如[Adobe RGB](https://en.wikipedia.org/wiki/Adobe_RGB_color_space)或[ProPhoto RGB](https://en.wikipedia.org/wiki/ProPhoto_RGB_color_space) - 在Photoshop和Lightroom中使用）其实可以表现出比sRGB更鲜艳的色彩，但后者（sRGB）在大多数网络浏览器、游戏和显示器上都是普遍存在的，因此受到普遍的关注。
 
 <figure>
 <picture>
@@ -1970,10 +1970,10 @@ Two common color models are additive and subtractive. Additive color models (lik
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1504565044/color-wheel_hazsbk.jpg"/>
 </noscript>
 </picture>
-<figcaption>Above we can see a visualization of gamut - the range of colors a color space can define.</figcaption>
+<figcaption>上图我们可以看到色域的可视化范围 - 即颜色空间定义的颜色范围。</figcaption>
 </figure>
 
-Color spaces have three channels (red, green and blue). There are 255 colors possible in each channel under 8-bit mode, bringing us to a total of 16.7 million colors. 16-bit images can show trillions of colors. 
+颜色空间有三个通道（红色、绿色和蓝色）。在8位模式下，每个通道有255种颜色可供使用，共有1670万种颜色。而16位模式下，图像可以显示数万亿种颜色。
 
 <figure>
 <picture>
@@ -1995,50 +1995,50 @@ Color spaces have three channels (red, green and blue). There are 255 colors pos
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/c_scale,w_500/v1504564915/srgb-rgb_ntuhi4.jpg"/>
 </noscript>
 </picture>
-<figcaption>A comparison of sRGB, Adobe RGB and ProPhoto RGB using an image from [Yardstick](https://yardstick.pictures/tags/img%3Adci-p3). It's incredibly hard to show this concept in sRGB, when you can't show colors that can't be seen. A regular photo in sRGB vs wide gamut should have everything identical, except most saturated "juicy" colors.</figcaption>
+<figcaption>来自[Yardstick](https://yardstick.pictures/tags/img%3Adci-p3)的sRGB、Adobe RGB和ProPhoto RGB颜色空间下的图片对比。如果无法向你展示出那些你无法看到的颜色，那么想在sRGB空间下解释它们的不同是非常困难的（，因为你的浏览器应该也是使用的sRGB颜色空间）。（所以，在这种情况下，）宽色域和sRGB下的常规照片应该是完全一样的，除了那些最饱和的“刺激性的”颜色。</figcaption>
 </figure>
 
-The differences in color spaces (like sRGB, Adobe RGB and ProPhoto RGB) are their gamut (the range of colors they can reproduce with shades), illuminant and [gamma](http://blog.johnnovak.net/2016/09/21/what-every-coder-should-know-about-gamma/) curves. sRGB is ~20% smaller than Adobe RGB and ProPhoto RGB is ~[50% larger](http://www.petrvodnakphotography.com/Articles/ColorSpace.htm) than Adobe RGB. The above image sources are from [Clipping Path](http://clippingpathzone.com/blog/essential-photoshop-color-settings-for-photographers).
+颜色空间（如sRGB，Adobe RGB和ProPhoto RGB）之间的差异来自于它们的色域（可用色调再现的颜色范围）、光源以及[伽玛](http://blog.johnnovak.net/2016/09/21/what-every-coder-should-know-about-gamma/)曲线的不同。sRGB的颜色范围比Adobe RGB小约20％，而ProPhoto RGB要比Adobe RGB 大约[50％](http://www.petrvodnakphotography.com/Articles/ColorSpace.htm)。上面的图像来源于[Clipping Path](http://clippingpathzone.com/blog/essential-photoshop-color-settings-for-photographers)。
 
-[Wide-gamut](http://www.astramael.com/) is a term describing color spaces with a gamut larger than sRGB. These types of displays are becoming more common. That said, many digital displays are still simply unable to display color profiles that are significantly better than sRGB. When saving for the web in Photoshop, consider using the 'Convert to sRGB’ option unless targeting users with higher-end wide-gamut screens. 
+[宽色域](http://www.astramael.com/)是一个用于描述颜色空间的术语，其色域范围大于sRGB。目前，这种类型的显示器正在变得越来越普遍。同时也表明，仍然有许多的数字显示器无法显示比sRGB明显更好的颜色配置文件。所以，在Photoshop中使用“Saving for Web”时，请还是考虑使用“转换为sRGB”的选项，除非你确定你的图像是定位提供给具有较高端宽色域屏幕的用户。
 
-<aside class="key-point"><b>Note:</b> When working with original photography, avoid using sRGB as your primary color space. It's smaller than the color spaces most cameras support and can cause clipping. Instead, work on a larger color space (like ProPhoto RGB) and output to sRGB when exporting for the web.</aside>
+<aside class="key-point"><b>注意:</b> 当进行最初的摄影时，请避免使用sRGB作为主要的颜色空间。因为它比大多数相机支持的颜色空间要小，所以会导致原始照片被剪辑。取而代之，应该在色域更广的颜色空间（如ProPhoto RGB）上拍摄照片，在导出的Web使用时再输出到sRGB颜色空间。∂</aside>
 
-**Are there any cases where wide gamut makes sense for web content?**
+**有没有什么方法让Web中的图像看起来颜色更饱和？**
 
-Yes. If an image contains very saturated/juicy/vibrant color and you care about it being just as juicy on screens that support it. However, in real photos that rarely happens. Often it's easy to tweak color to make it appear vibrant, without it actually exceeding sRGB gamut 
+有。你的图片可能包含了一些饱和度高、有冲击力或十分艳丽的颜色，所以你会很关心它在屏幕上是否依然一样的鲜艳饱和。然而，这很少会出现在真实的照片上。通常情况下，可以很容易的调整一下颜色让它显示起来更加鲜艳，而不必超出sRGB的色域范围。
 
-That's because human color perception is not absolute, but relative to our surroundings and is easily fooled. If your image contains a fluorescent highlighter color, then you'll have an easier time with wide gamut.
+那是因为，人的色彩感觉并不是绝对的，而是相对于我们的周围环境，所以它很容易被欺骗。如果你的图像中含有类似荧光笔一样的高亮颜色，那么你的图像会感觉拥有了更广的色域。
 
-#### Gamma correction and compression
+#### 伽玛校正和压缩
 
-[Gamma correction](https://en.wikipedia.org/wiki/Gamma_correction) (or just Gamma) controls the overall brightness of an image. Changing the gamma can also alter the ratio of red to green and blue colors. Images without gamma correction can look like their colors are bleached out or too dark. 
+[伽玛校正](https://en.wikipedia.org/wiki/Gamma_correction)（或只是伽玛）被用于控制一个图像的整体亮度。通过改变伽玛，也可以改变红色、绿色与蓝色的比例。一个图像如果没有进行伽马校正，它们的颜色很可能看起来像被漂白了或者会很暗淡。
 
-In video and computer graphics, gamma is used for compression, similar to data compression. This allows you to squeeze useful levels of brightness in fewer bits (8-bit rather than 12 or 16). Human perception of brightness is not linearly proportional to physical amount of light. Representing colors in their true physical form would be wasteful when encoding images for human eyes. Gamma compression is used to encode brightness on a scale that is closer to human perception. 
+在视频和计算机图形学领域中，伽马被用于压缩，类似于数据压缩。它允许你以较少的位数（8位而不是12或16）来压缩显示有用的亮度级别。人类对亮度的感知与光的物理量是不成线性比例。所以，在为人类的眼睛编码图像时，如果以真实物理形式表示颜色将是很浪费的。所说的伽玛压缩，就是在更接近人类感知的尺度上对亮度进行编码。
 
-With gamma compression useful scale of brightness fits in 8 bits of precision (0-255 used by most RGB colors). All of this comes from the fact that if colors used some unit with 1:1 relationship to physics, RGB values would be from 1 to million where values 0-1000 would look distinct, but values between 999000-1000000 would look identical. Imagine being in a dark room where there is just 1 candle. Light a second candle and you notice significant increases in brightness in the room light. Add a third candle and it’ll seem even brighter. Now imagine being in a room with 100 candles. Light the 101st candle, the 102nd. You won’t notice a change in brightness. 
+使用伽玛压缩比较有用的亮度级别，是使用8位精度（大多数RGB颜色使用0-255）。这其中的原理来自于：假设将颜色使用与物理学有1：1关系的一些单位来表示，在RGB值从1到百万的过程中，其中从0到1000将会看起来明显不同，而在999000到1000000之间的值变化将几乎是相同的。可以想象一下，在一个只有一个蜡烛的黑暗的房间里，点亮第二个蜡烛，你会明显注意到室内的光线亮度增加；而添加第三个蜡烛，房间看起来也会更加明亮；但是，想象在一个100蜡烛的房间里，点燃第101支蜡烛、第102只，你几乎完全注意不到亮度的变化。
 
-Even though in both cases, physically, exactly the same amount of light was added. So because eyes are less sensitive when light is bright, gamma compression "compresses" bright values, so in physical terms bright levels are less precise but the scale is adjusted for humans so from the human perspective all values are equally precise. 
+即使在这两种情况下，从物理角度上说，它们都添加了完全相同的光量。因此基于此种眼睛的感知方式，在光线较弱时，伽马压缩会“压缩”这些亮度值，即使在物理学上亮度值会不太精确，但从人眼的角度来看，它的尺度会被眼睛调整，所有的值都是同样精确的。
 
-<aside class="key-point"><b>Note:</b> Gamma compression/correction here is different to the image gamma curves you might configure in Photoshop. When gamma compression works as it should, it doesn't look like anything.</aside>
+<aside class="key-point"><b>注意:</b> 这里的伽玛压缩/修正与你可能在Photoshop中配置的图像的伽玛曲线是有所不同的。当对图片进行伽玛压缩后，你应该感觉不出来它有什么变化。</aside>
 
-#### Color profiles
+#### 颜色配置文件
 
-A color profile is the information describing what that the color space of a device is. It’s used to convert between different color spaces. Profiles attempt to ensure an image looks as similar as possible on these different kinds of screens and mediums. 
+颜色配置文件是当前设备的颜色空间的描述信息。它被用于在不同的颜色空间之间进行转换。配置文件被用于尝试确保图像在这些不同类型的屏幕和介质上，看起来尽可能的相似。
 
-Images can have an embedded color profile as described by the [International Color Consortium](http://www.color.org/icc_specs2.xalter) (ICC) to represent precisely how colors should appear. This is supported by different formats including JPEGs, PNGs, SVGs and [WebP](https://developers.google.com/speed/webp/docs/riff_container) and most major browsers support embedded ICC profiles. When an image is displayed in an app and it knows the monitor's capabilities, these colors can be adjusted based on the color profile. 
+图像可以包含一个由[国际色彩联盟](http://www.color.org/icc_specs2.xalter)（ICC）所描述的嵌入式颜色配置文件，以准确表示颜色应如何显示。这是由不同的格式支持的，包括了JPEG，PNG，SVG和[WebP](https://developers.google.com/speed/webp/docs/riff_container)，大多数主流浏览器都支持嵌入式ICC配置文件。当在应用程序中显示图像并且它获取到显示器的功能时，就可以根据颜色配置文件调整这些颜色。
 
-<aside class="key-point"><b>Note:</b> Some monitors have a color profile similar to sRGB and cannot display much better profiles so depending on your target users displays, there may be limited value in embedding them. Check who your target users are.</aside>
+<aside class="key-point"><b>注意:</b>一些显示器具有类似于sRGB的颜色配置文件，并且根本不支持使用更好的颜色配置文件，因此嵌入配置文件的价值可能很有限。所以，请先检查你的目标显示器是什么样的。</aside>
 
-Embedded color profiles can also heavily increase the size of your images (100KB+ occasionally) so be careful with embedding. Tools like ImageOptim will actually [automatically](https://imageoptim.com/color-profiles.html) remove color profiles if it finds them. In contrast, with the ICC profile removed in the name of size reduction, browsers will be forced to display the image in your monitor's color space which can lead to differences in expected saturation and contrast. Evaluate the trade-offs here make sense for your use case.
+嵌入式的颜色配置文件也会大大增加图像的文件体积（100KB+偶尔），所以还是要小心嵌入。像ImageOptim这样的工具实际上是会[自动](https://imageoptim.com/color-profiles.html)删除嵌入式的颜色配置文件的。事实上，以体积缩小为名删除ICC配置文件的话，浏览器将会被迫在显示器的颜色空间中显示图像，这可能导致无法显示预期的饱和度和对比度。所以，根据你的用例权衡利弊是有必要的。
 
-[Nine Degrees Below](https://ninedegreesbelow.com/photography/articles.html) have an excellent set of resources on ICC profile color management if you are interested in learning more about profiles.
+如果您有兴趣了解ICC配置文件的更多信息，Nine Degrees在[这里](https://ninedegreesbelow.com/photography/articles.html)提供了一系列关于ICC配置文件颜色管理的资源。
 
-#### Color profiles and web browsers
+#### 颜色配置文件和Web浏览器
 
-Earlier versions of Chrome did not have great support for color management, but this is improving in 2017 with [Color Correct Rendering](https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/ptuKdRQwPAo). Displays that are not sRGB (newer MacBook Pros) will convert colors from sRGB to the display profile. This will mean colors should look more similar across different systems and browsers. Safari, Edge and Firefox can now also take ICC profiles into account, so images with a different color profile (e.g. ICC) can now display them correctly whether your screen has wide gamut or not.
+在Chrome的早期版本，对颜色管理并没有很大的支持。但是在2017年，Chrome正在改善对[颜色的正确渲染](https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/ptuKdRQwPAo)。对于不是sRGB（较新的MacBook Pros）的显示器，将会将颜色从sRGB转换为正确的显示配置文件。这意味着不同系统和浏览器上的颜色应该看起来更相似。Safari，Edge和Firefox现在也正在考虑支持ICC配置文件，因此，具有不同颜色配置文件（例如ICC）的图像现在已经可以正确的显示它们了，无论您的屏幕是否具有宽色域。
 
-<aside class="key-point"><b>Note:</b> For a great guide on how color applies to a broader spectrum of ways we work on the web, see the [nerd’s guide to color on the web](https://css-tricks.com/nerds-guide-color-web/) by Sarah Drasner.</aside>
+<aside class="key-point"><b>注意:</b> 对于如何让颜色在广色域下工作于Web环境的方式，Sarah Drasner提供了个更好的指南，请参阅[网页颜色的傻瓜式手册](https://css-tricks.com/nerds-guide-color-web/).</aside>
 
 ## <a id="image-sprites" href="#image-sprites">Image spriting</a>
 
