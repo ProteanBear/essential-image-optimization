@@ -2417,15 +2417,15 @@ CDN服务需要花费金钱。一些流量大的图像业务网站每月可能�
 
 如果您正在进行或计划制作自己的图像处理服务，也许您应该考虑一下是否可以使用CDN。
 
-## <a id="caching-image-assets" href="#caching-image-assets">Caching image assets</a>
+## <a id="caching-image-assets" href="#caching-image-assets">[缓存图像资源](https://images.guide/#caching-image-assets)</a>
 
-Resources can specify a caching policy using [HTTP cache headers](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching#cache-control). Specifically, `Cache-Control` can define who can cache responses and for how long
+对于Web上的资源来说，可以使用[HTTP头部的Cache属性](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching#cache-control)指定缓存策略。具体来说，`Cache-Control`可以定义由谁来缓存响应以及可以保存多长时间。
 
-Most of the images you deliver to users are static assets that will[ not change](http://kean.github.io/post/image-caching) in the future. The best caching strategy for such assets is aggressive caching.
+你向用户提供的大部分图片都是将来[不会修改的](http://kean.github.io/post/image-caching)静态资源。这种资源的最佳缓存策略就是，积极去缓存它。
 
-When setting your HTTP caching headers, set Cache-Control with a max-age of a year (e.g. `Cache-Control:public; max-age=31536000`). This type of aggressive caching works well for most types of images, especially those that are long-lived like avatars and image headers.
+在进行HTTP头的缓存设置时，设置为最长时间为一年的Cache-Control（例如`Cache-Control:public; max-age=31536000`）。这种极为积极的缓存策略对于大多数类型的图像都是很好的，尤其是像头像和图标这些长久使用的图像。
 
-<aside class="note"><b>Note:</b> If you're serving images using PHP, it can destroy caching due to the default [session_cache_limiter](http://php.net/manual/en/function.session-cache-limiter.php) setting. This can be a disaster for image caching and you may want to [work around](https://stackoverflow.com/a/3905468) this by setting session_cache_limiter('public') which will set public, max-age=. Disabling and setting custom cache-control headers is also fine.</aside>
+<aside class="note"><b>注意:</b>如果你是使用PHP提供图像，可能会因为使用默认的[session_cache_limiter](http://php.net/manual/en/function.session-cache-limiter.php)设置而破坏缓存规则。这可能是图像缓存的灾难，也许你会想通过设置session_cache_limiter（'public'）（即设置为public,max-age =）来[解决](https://stackoverflow.com/a/3905468)此问题。另外，禁用和设置自定义缓存控制头也可以。 </aside>
 
 ## <a id="preload-critical-image-assets" href="#preload-critical-image-assets">Preloading critical image assets</a>
 
