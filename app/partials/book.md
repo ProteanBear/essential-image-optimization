@@ -61,21 +61,21 @@
         </li>
         <li><a href="#svg-optimization">SVG优化</a></li>
         <li><a href="#avoid-recompressing-images-lossy-codecs">避免使用有损编解码器重复压缩图像</a></li>
-        <li><a href="#reduce-unnecessary-image-decode-costs">减少不必要的图像解码和图像调整的开销</a>
+        <li><a href="#reduce-unnecessary-image-decode-costs">减少不必要的图像解码和尺寸调整带来的损耗</a>
                 <ul>
-                        <li><a href="#delivering-hidpi-with-srcset">对HiDPI图像使用<code>srcset</code></a></li>
-                        <li><a href="#art-direction">艺术性方向</a></li>
+                        <li><a href="#delivering-hidpi-with-srcset">使用srcset提供HiDPI图像</a></li>
+                        <li><a href="#art-direction">艺术化的响应</a></li>
                 </ul>
         </li>
         <li><a href="#color-management">颜色管理</a></li>
-        <li><a href="#image-sprites">图像合并</a></li>
+        <li><a href="#image-sprites">图像拼合技术</a></li>
         <li><a href="#lazy-load-non-critical-images">延迟加载非关键图像</a></li>
         <li><a href="#display-none-trap">避免<code>display: none;</code>的陷阱</a></li>
-        <li><a href="#image-processing-cdns">图像CDN对你有意义吗？</a></li>
+        <li><a href="#image-processing-cdns">图像CDN服务对你有意义吗？</a></li>
         <li><a href="#caching-image-assets">缓存图像资源</a></li>
-        <li><a href="#preload-critical-image-assets">预加载关键图像</a></li>
-        <li><a href="#performance-budgets">图像性能预估</a></li>
-        <li><a href="#closing-recommendations">最终建议</a></li>
+        <li><a href="#preload-critical-image-assets">预加载关键图像资源</a></li>
+        <li><a href="#performance-budgets">图像的网络性能预算</a></li>
+        <li><a href="#closing-recommendations">最后的建议</a></li>
         <li><a href="#trivia">备注</a></li>
 </ul>
 </p>
@@ -83,7 +83,7 @@
 
 ### <a id="introduction" href="#introduction">介绍</a>
 
-**图片依然是加载缓慢的首要原因
+##### 图片依然是加载缓慢的首要原因
 
 图片经常占用大量的互联网带宽，因为它们通常都非常大。根据[HTTP Archive](http://httparchive.org/)的统计结果显示，网页数据中平均60%的内容都是有JPEG、PNG和GIF组成的图像。截止至2017年7月，平均一个网站的内容数据有3.0MB，而其中1.7MB是图片。
 
