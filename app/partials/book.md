@@ -302,7 +302,7 @@
 </figure>
 
 
-[[Raster Graphics（位图）](https://en.wikipedia.org/wiki/Raster_graphics):通过对图像的矩形网格内的每个像素的值进行编码来表示图像。它们在缩放时会失真。WebP格式或者应用更广泛的格式比如JPEG或PNG都可以处理为位图，这种格式被应用于要求真实感的地方。Guetzli，MozJPEG和我们讨论的其他组件都适用于优化位图。
+[Raster Graphics（位图）](https://en.wikipedia.org/wiki/Raster_graphics):通过对图像的矩形网格内的每个像素的值进行编码来表示图像。它们在缩放时会失真。WebP格式或者应用更广泛的格式比如JPEG或PNG都可以处理为位图，这种格式被应用于要求真实感的地方。Guetzli，MozJPEG和我们讨论的其他组件都适用于优化位图。
 
 [Vector graphics（矢量图）](https://en.wikipedia.org/wiki/Vector_graphics)：使用点、线和多边形来表示图像，并被应用于使用简单几何形状表示的图像（例如徽标）。这种格式可以在高分辨率下显示，并且缩放时不会失真。像SVG就是处理矢量图的好选择。
 
@@ -792,7 +792,7 @@ jpeg-recompress --min 35 --max 70 --strip --method smallfry --loops 16 in.jpg ou
 
 ### <a id="what-is-guetzli" href="#what-is-guetzli">什么是Guetzli？</a>
 
-[[Guetzli](https://github.com/google/guetzli)是一个来自谷歌的、有前景的、有些缓慢的感知型的JPEG编码器，它会试图找到一个人眼在视觉上无法区分差异但却体积最小的JPEG文件。Guetzli会执行一系列感知测试，为最终的JPEG提出方案，并对每个方案进行评估。最终在其中选择最高评分的提案作为最终输出。
+[Guetzli](https://github.com/google/guetzli)是一个来自谷歌的、有前景的、有些缓慢的感知型的JPEG编码器，它会试图找到一个人眼在视觉上无法区分差异但却体积最小的JPEG文件。Guetzli会执行一系列感知测试，为最终的JPEG提出方案，并对每个方案进行评估。最终在其中选择最高评分的提案作为最终输出。
 
 而为了测量图像之间的差异，Guetzli使用[Butteraugli](https://github.com/google/butteraugli)，一种基于人类感知来测量图像差异的模型（下面会介绍）。Guetzli可以考虑到其他JPEG编码器没有的几个视觉属性。例如，人眼所看到的绿光量与蓝色的敏感度之间是存在关系的，因此绿色旁边的蓝色信息的编码就会动态修改的更精准一些。
 
@@ -889,7 +889,7 @@ gulp.task('guetzli', () =>
 
 ### <a id="butteraugli" href="#butteraugli">Butteraugli</a>
 
-[[Butteraugli](https://github.com/google/butteraugli)是一个来自Google的项目，它可以估算一个人可能会注意到两个图像的视觉降级（即心理视觉相似性）的点，并给出几乎没有区别的两个图像的比对分数。Butteraugli不仅给出一个标量的分数，而且还会计算出图像差异水平的空间图。所以当SSIM专注于计算图像中差异的总和时，Butteraugli则更专注于差异最明显的部分。
+[Butteraugli](https://github.com/google/butteraugli)是一个来自Google的项目，它可以估算一个人可能会注意到两个图像的视觉降级（即心理视觉相似性）的点，并给出几乎没有区别的两个图像的比对分数。Butteraugli不仅给出一个标量的分数，而且还会计算出图像差异水平的空间图。所以当SSIM专注于计算图像中差异的总和时，Butteraugli则更专注于差异最明显的部分。
 
 <figure>
 <picture>
@@ -1509,7 +1509,7 @@ image/webp webp;
 *   可以使用像Gifsicle这样的工具，清除元数据和未使用的调色板条目，并最小化帧之间的变化。
 *   考虑使用一个有损的GIF编码器。Gifsicle派生的[Giflossy](https://github.com/pornel/giflossy)支持一个`—lossy`命令标识，可以删除掉60%~65％文件体积。还有一个很好的基于它的工具，称为[Gifify](https://github.com/vvo/gifify)。对于非动画GIF，将其转换为PNG或WebP。
 
-有关更多信息，请查阅Rigor编写的[关于GIF的电子书](https://rigor.com/wp-content/uploads/2017/03/TheBookofGIFPDF.pdf).
+有关更多信息，请查阅Rigor编写的[关于GIF的电子书](https://rigor.com/wp-content/uploads/2017/03/TheBookofGIFPDF.pdf)。
 
 ## <a id="svg-optimization" href="#svg-optimization">SVG的优化</a>
 
