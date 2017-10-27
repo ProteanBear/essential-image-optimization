@@ -76,7 +76,7 @@
         <li><a href="#preload-critical-image-assets">预加载关键图像资源</a></li>
         <li><a href="#performance-budgets">图像的网络性能预算</a></li>
         <li><a href="#closing-recommendations">最后的建议</a></li>
-        <li><a href="#trivia">备注</a></li>
+        <li><a href="#trivia">附注</a></li>
 </ul>
 </p>
 </details>
@@ -1829,7 +1829,7 @@ Twitter（推特）在构建它们新的[移动网络体验](https://medium.com/
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/image-decoding.jpg"/>
 </noscript>
 </picture>
-<figcaption>Chrome开发者工具中的时间轴/性能面板上，对比Twitter优化其图像管道之前和之后显示的图像解码时间（绿色）。/figcaption>
+<figcaption>Chrome开发者工具中的时间轴/性能面板上，对比Twitter优化其图像管道之前和之后显示的图像解码时间（绿色）。</figcaption>
 </figure>
 
 ### <a id="delivering-hidpi-with-srcset" href="#delivering-hidpi-with-srcset">使用`srcset`提供HiDPI图像</a>
@@ -1904,7 +1904,7 @@ Twitter（推特）在构建它们新的[移动网络体验](https://medium.com/
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/responsive-art-direction.jpg"/>
 </noscript>
 </picture>
-<figcaption>艺术化响应：Eric Portis放置了一个精彩的[样品](https://ericportis.com/etc/cloudinary/)来展示如何从美术设计方面响应图片。这个例子中通过焦点变换突出展示了焦点图片的主题内容，并充分利用了有限空间。.</figcaption>
+<figcaption>艺术化响应：Eric Portis放置了一个精彩的[样品](https://ericportis.com/etc/cloudinary/)来展示如何从美术设计方面响应图片。这个例子中通过焦点变换突出展示了焦点图片的主题内容，并充分利用了有限空间。</figcaption>
 </figure>
 
 ## <a id="color-management" href="#color-management">颜色管理</a>
@@ -2512,7 +2512,7 @@ Link: <https://example.com/logo-hires.jpg>; rel=preload; as=image
 
 一个非常需要注意的是，要避免使用`rel=preload`预加载那些不被浏览器广泛支持的图像格式（例如WebP）。最好还要避免将其用于使用`srcset`设置的根据设备条件而变化图像链接位置的响应式图像。
 
-想要了解更多的预加载相关的信息，请查阅一下文章：[Chrome中的预加载、预提取和优先级](https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf) and [预加载：究竟好在哪里？](https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/).
+想要了解更多的预加载相关的信息，请查阅一下文章：[Chrome中的预加载、预提取和优先级](https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf)和[预加载：究竟好在哪里？](https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/).
 
 ## <a id="performance-budgets" href="#performance-budgets">图像的网络性能预算</a>
 
@@ -2598,7 +2598,7 @@ Calibre也提供了类似的功能，支持为你的每个目标设备类型设�
 
 <aside class="note"><b>注意:</b> 关于如何优化图像的更实际的指导，我强烈推荐Jeremy Wagner的[Web性能实战](https://www.manning.com/books/web-performance-in-action)。另外，[高性能的图像](http://shop.oreilly.com/product/0636920039730.do)也有关于这个主题的优秀而细微的建议。</aside>
 
-## <a id="trivia" href="#trivia">备注</a>
+## <a id="trivia" href="#trivia">附注</a>
 
 * [JPEG XT](https://jpeg.org/jpegxt/)定义了关于1992年JPEG规范的扩展。作为对于古老的JPEG上进行像素完美渲染的扩展，这个规范简化了旧的1992规范，并且选择[libjpeg-turbo](https://libjpeg-turbo.org/)作为其参考实现（基于受欢迎程度）。
 * [PIK](https://github.com/google/pik)是一个值得关注的新型图像编解码器。它与JPEG兼容，并且具有更高效的颜色空间，类似于Guetzli的优势。它可以以JPEG的2/3的速度进行图像解码，并且比libjpeg提供的文件体积小54％。与Guetzli-ified JPEG相比，解码和压缩都更快。一项关于现代图像编码心理视觉相似性的[研究](https://encode.ru/threads/2814-Psychovisual-analysis-on-modern-lossy-image-codecs)表明，PIK仅为其他替代品的一半大小。不幸的是，目前来看，这个编解码器还有很长的路要走，它的编码时间现在（2017年8月）还是慢的基本无法使用。
