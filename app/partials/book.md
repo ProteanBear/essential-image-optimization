@@ -76,7 +76,7 @@
         <li><a href="#preload-critical-image-assets">预加载关键图像资源</a></li>
         <li><a href="#performance-budgets">图像的网络性能预算</a></li>
         <li><a href="#closing-recommendations">最后的建议</a></li>
-        <li><a href="#trivia">备注</a></li>
+        <li><a href="#trivia">附注</a></li>
 </ul>
 </p>
 </details>
@@ -302,7 +302,7 @@
 </figure>
 
 
-[[Raster Graphics（位图）](https://en.wikipedia.org/wiki/Raster_graphics):通过对图像的矩形网格内的每个像素的值进行编码来表示图像。它们在缩放时会失真。WebP格式或者应用更广泛的格式比如JPEG或PNG都可以处理为位图，这种格式被应用于要求真实感的地方。Guetzli，MozJPEG和我们讨论的其他组件都适用于优化位图。
+[Raster Graphics（位图）](https://en.wikipedia.org/wiki/Raster_graphics):通过对图像的矩形网格内的每个像素的值进行编码来表示图像。它们在缩放时会失真。WebP格式或者应用更广泛的格式比如JPEG或PNG都可以处理为位图，这种格式被应用于要求真实感的地方。Guetzli，MozJPEG和我们讨论的其他组件都适用于优化位图。
 
 [Vector graphics（矢量图）](https://en.wikipedia.org/wiki/Vector_graphics)：使用点、线和多边形来表示图像，并被应用于使用简单几何形状表示的图像（例如徽标）。这种格式可以在高分辨率下显示，并且缩放时不会失真。像SVG就是处理矢量图的好选择。
 
@@ -792,7 +792,7 @@ jpeg-recompress --min 35 --max 70 --strip --method smallfry --loops 16 in.jpg ou
 
 ### <a id="what-is-guetzli" href="#what-is-guetzli">什么是Guetzli？</a>
 
-[[Guetzli](https://github.com/google/guetzli)是一个来自谷歌的、有前景的、有些缓慢的感知型的JPEG编码器，它会试图找到一个人眼在视觉上无法区分差异但却体积最小的JPEG文件。Guetzli会执行一系列感知测试，为最终的JPEG提出方案，并对每个方案进行评估。最终在其中选择最高评分的提案作为最终输出。
+[Guetzli](https://github.com/google/guetzli)是一个来自谷歌的、有前景的、有些缓慢的感知型的JPEG编码器，它会试图找到一个人眼在视觉上无法区分差异但却体积最小的JPEG文件。Guetzli会执行一系列感知测试，为最终的JPEG提出方案，并对每个方案进行评估。最终在其中选择最高评分的提案作为最终输出。
 
 而为了测量图像之间的差异，Guetzli使用[Butteraugli](https://github.com/google/butteraugli)，一种基于人类感知来测量图像差异的模型（下面会介绍）。Guetzli可以考虑到其他JPEG编码器没有的几个视觉属性。例如，人眼所看到的绿光量与蓝色的敏感度之间是存在关系的，因此绿色旁边的蓝色信息的编码就会动态修改的更精准一些。
 
@@ -889,7 +889,7 @@ gulp.task('guetzli', () =>
 
 ### <a id="butteraugli" href="#butteraugli">Butteraugli</a>
 
-[[Butteraugli](https://github.com/google/butteraugli)是一个来自Google的项目，它可以估算一个人可能会注意到两个图像的视觉降级（即心理视觉相似性）的点，并给出几乎没有区别的两个图像的比对分数。Butteraugli不仅给出一个标量的分数，而且还会计算出图像差异水平的空间图。所以当SSIM专注于计算图像中差异的总和时，Butteraugli则更专注于差异最明显的部分。
+[Butteraugli](https://github.com/google/butteraugli)是一个来自Google的项目，它可以估算一个人可能会注意到两个图像的视觉降级（即心理视觉相似性）的点，并给出几乎没有区别的两个图像的比对分数。Butteraugli不仅给出一个标量的分数，而且还会计算出图像差异水平的空间图。所以当SSIM专注于计算图像中差异的总和时，Butteraugli则更专注于差异最明显的部分。
 
 <figure>
 <picture>
@@ -1509,7 +1509,7 @@ image/webp webp;
 *   可以使用像Gifsicle这样的工具，清除元数据和未使用的调色板条目，并最小化帧之间的变化。
 *   考虑使用一个有损的GIF编码器。Gifsicle派生的[Giflossy](https://github.com/pornel/giflossy)支持一个`—lossy`命令标识，可以删除掉60%~65％文件体积。还有一个很好的基于它的工具，称为[Gifify](https://github.com/vvo/gifify)。对于非动画GIF，将其转换为PNG或WebP。
 
-有关更多信息，请查阅Rigor编写的[关于GIF的电子书](https://rigor.com/wp-content/uploads/2017/03/TheBookofGIFPDF.pdf).
+有关更多信息，请查阅Rigor编写的[关于GIF的电子书](https://rigor.com/wp-content/uploads/2017/03/TheBookofGIFPDF.pdf)。
 
 ## <a id="svg-optimization" href="#svg-optimization">SVG的优化</a>
 
@@ -1829,7 +1829,7 @@ Twitter（推特）在构建它们新的[移动网络体验](https://medium.com/
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/image-decoding.jpg"/>
 </noscript>
 </picture>
-<figcaption>Chrome开发者工具中的时间轴/性能面板上，对比Twitter优化其图像管道之前和之后显示的图像解码时间（绿色）。/figcaption>
+<figcaption>Chrome开发者工具中的时间轴/性能面板上，对比Twitter优化其图像管道之前和之后显示的图像解码时间（绿色）。</figcaption>
 </figure>
 
 ### <a id="delivering-hidpi-with-srcset" href="#delivering-hidpi-with-srcset">使用`srcset`提供HiDPI图像</a>
@@ -1904,7 +1904,7 @@ Twitter（推特）在构建它们新的[移动网络体验](https://medium.com/
   <img src="https://res.cloudinary.com/ddxwdqwkr/image/upload/v1502426282/essential-image-optimization/responsive-art-direction.jpg"/>
 </noscript>
 </picture>
-<figcaption>艺术化响应：Eric Portis放置了一个精彩的[样品](https://ericportis.com/etc/cloudinary/)来展示如何从美术设计方面响应图片。这个例子中通过焦点变换突出展示了焦点图片的主题内容，并充分利用了有限空间。.</figcaption>
+<figcaption>艺术化响应：Eric Portis放置了一个精彩的[样品](https://ericportis.com/etc/cloudinary/)来展示如何从美术设计方面响应图片。这个例子中通过焦点变换突出展示了焦点图片的主题内容，并充分利用了有限空间。</figcaption>
 </figure>
 
 ## <a id="color-management" href="#color-management">颜色管理</a>
@@ -2512,7 +2512,7 @@ Link: <https://example.com/logo-hires.jpg>; rel=preload; as=image
 
 一个非常需要注意的是，要避免使用`rel=preload`预加载那些不被浏览器广泛支持的图像格式（例如WebP）。最好还要避免将其用于使用`srcset`设置的根据设备条件而变化图像链接位置的响应式图像。
 
-想要了解更多的预加载相关的信息，请查阅一下文章：[Chrome中的预加载、预提取和优先级](https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf) and [预加载：究竟好在哪里？](https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/).
+想要了解更多的预加载相关的信息，请查阅一下文章：[Chrome中的预加载、预提取和优先级](https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf)和[预加载：究竟好在哪里？](https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/).
 
 ## <a id="performance-budgets" href="#performance-budgets">图像的网络性能预算</a>
 
@@ -2598,7 +2598,7 @@ Calibre也提供了类似的功能，支持为你的每个目标设备类型设�
 
 <aside class="note"><b>注意:</b> 关于如何优化图像的更实际的指导，我强烈推荐Jeremy Wagner的[Web性能实战](https://www.manning.com/books/web-performance-in-action)。另外，[高性能的图像](http://shop.oreilly.com/product/0636920039730.do)也有关于这个主题的优秀而细微的建议。</aside>
 
-## <a id="trivia" href="#trivia">备注</a>
+## <a id="trivia" href="#trivia">附注</a>
 
 * [JPEG XT](https://jpeg.org/jpegxt/)定义了关于1992年JPEG规范的扩展。作为对于古老的JPEG上进行像素完美渲染的扩展，这个规范简化了旧的1992规范，并且选择[libjpeg-turbo](https://libjpeg-turbo.org/)作为其参考实现（基于受欢迎程度）。
 * [PIK](https://github.com/google/pik)是一个值得关注的新型图像编解码器。它与JPEG兼容，并且具有更高效的颜色空间，类似于Guetzli的优势。它可以以JPEG的2/3的速度进行图像解码，并且比libjpeg提供的文件体积小54％。与Guetzli-ified JPEG相比，解码和压缩都更快。一项关于现代图像编码心理视觉相似性的[研究](https://encode.ru/threads/2814-Psychovisual-analysis-on-modern-lossy-image-codecs)表明，PIK仅为其他替代品的一半大小。不幸的是，目前来看，这个编解码器还有很长的路要走，它的编码时间现在（2017年8月）还是慢的基本无法使用。
