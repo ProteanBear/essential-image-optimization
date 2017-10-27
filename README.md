@@ -16,6 +16,10 @@
   </a>
 </p>
 
+## Other Languages
+
+[简体中文](README_CN.md)
+
 ## Prerequisites
 
 ### [Node.js](https://nodejs.org)

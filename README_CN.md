@@ -16,6 +16,10 @@
   </a>
 </p>
 
+## 其他语言
+
+[英语原文](README.md)
+
 ## 前提
 
 ### [Node.js](https://nodejs.org)
