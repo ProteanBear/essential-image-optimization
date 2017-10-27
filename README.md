@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://images.guide/">
-    <img src='/app/images/logo-banner.jpg' alt="Essential Image Optimization"/>
+    <img src='/app/images/logo-banner.jpg' alt="重要的图像优化"/>
   </a>
 </p>
 
@@ -16,133 +16,118 @@
   </a>
 </p>
 
-## Other Languages
+## 其他语言
 
-[简体中文](README_CN.md)
+[英语原文](README.md)
 
-## Prerequisites
+## 前提
 
 ### [Node.js](https://nodejs.org)
 
-Bring up a terminal and type `node --version`.
-Node should respond with a version at or above 0.10.x.
+打开终端并输入`node --version`。
+Node应该返回0.10.x以上的版本。
 
-If you require Node, go to [nodejs.org](https://nodejs.org) and click on the big green Install button.
+如果你未安装Node，请到[nodejs.org](https://nodejs.org)点击那个大个的绿色安装按钮。
 
 ### [Gulp](http://gulpjs.com)
 
-Bring up a terminal and type `gulp --version`.
-If Gulp is installed it should return a version number at or above 3.9.x.
-If you need to install/upgrade Gulp, open up a terminal and type in the following:
+打开终端并输入`gulp --version`。
+如果Gulp已经安装，应该返回3.9.x以上的版本号。
+如果你需要安装或更新Gulp，打开终端并输入：
 
 ```sh
 $ npm install --global gulp
 ```
 
-*This will install Gulp globally. Depending on your user account, you may need to [configure your system](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md) to install packages globally without administrative privileges.*
+*上面的命令会执行Gulp全局安装。基于你的用户账号，你可能需要在没有管理员权限的情况下全局安装包，请参考如下[系统配置](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md)方法。*
 
 
-### Local dependencies
+### 本地依赖
 
-Next, install the local dependencies the repo requires:
+接着，使用命令安装本地依赖项：
 
 ```sh
 $ npm install
 ```
 
-### Building the book
+### 构建这部书
 
-#### Watch For Changes & Automatically Refresh Across Devices
+#### 查看更新和自动刷新设备
 
 ```sh
 $ gulp serve
 ```
 
-This outputs an IP address you can use to locally test and another that can be used on devices
-connected to your network.
-`serve` does not use [service worker](http://www.html5rocks.com/en/tutorials/service-worker/introduction/)
-caching, so your site will stop being available when the web server stops running.
+这条命令可以输出你用于本地测试的IP地址，以及用于其他网络设备连接使用的IP地址。
+`serve` 命令运行的服务并不使用[服务工作线程](http://www.html5rocks.com/en/tutorials/service-worker/introduction/)缓存，因此你的站点在Web服务器关闭后也会停止服务。
 
-#### Build & Optimize
+#### 构建和优化
 
 ```sh
 $ gulp
 ```
 
-Build and optimize the current project, ready for deployment.
+构建和优化当前项目，并准备部署。
 
-#### Serve the Fully Built & Optimized Site
+#### 提供完全建设和优化的网站服务
 
 ```sh
 $ gulp serve:dist
 ```
 
-#### Difference Between `serve` & `serve:dist`
+####  `serve` 和 `serve:dist`的区别
 
-It is important to note a difference between the `serve` and `serve:dist` tasks.
+请一定**注意** `serve` and `serve:dist` 命令任务的不同：
 
-* `serve` uses a no-op `service-worker.js` and cannot run offline.
-* `serve:dist` uses the `workbox`-generated output and can run offline.
+* `serve` 是使用一个无操作的 `service-worker.js` ，它无法离线运行。
+* `serve:dist` 则是使用 `workbox` 来生出输出，它可以离线运行。
 
-The `serve` task runs on port 3000 and `serve:dist` runs on port 3001.
-The main purpose is to ensure that different service workers will not impact each other's environment. 
-Using the `workbox`-generated output makes it very difficult to quickly test local changes which is not ideal for a development server environment.
+ `serve` 是运行在3000端口上，而 `serve:dist` 是运行在3001端口上。
+如此设计的目的是不同的服务之间不会相互影响。使用 `workbox`生出输出的方式很难快速的进行本地测试，因此不适合用在开发服务环境。
 
-#### Generate a PDF of the book
+#### 生成这本书的PDF版本
 
-This repo supports generating a PDF of the book by doing a local checkout, installing our dependencies and then running:
+这个项目支持在本地生成PDF版本，安装我们的依赖项，并运行命令：
 
 ```sh
 $ gulp generate-pdf
 ```
 
-This generates a PDF using the Chrome team's [Puppeteer](https://github.com/GoogleChrome/puppeteer) project.
+这个PDF生成是使用了Chrome团队开发的[Puppeteer](https://github.com/GoogleChrome/puppeteer)项目。
 
-If doing this involves too many steps and you would like to just use a browser's "Print to PDF" feature, that is also
-supported. First, load up the book on [https://images.guide](https://images.guide), scroll down
-to ensure all images are lazy-loaded in and then safely print to PDF as per any other web page.
+如果你觉得这样有点繁琐，并且你只想使用浏览器的“打印到PDF”功能，那么这也是支持的。首先，在[https://images.guide](https://images.guide/)上访问该书，并向下滚动确保所有图像都已经被（延迟）加载，然后就可以按照任何其他网页的方式打印到PDF。
 
-#### Additional repo details
+#### 附加项目的一些细节
 
-##### Templating
+##### 模板
 
-This repo uses a very simplistic templating setup. `app/partials/book.md` is converted from markdown into HTML and 
-injected into a primary book template in `app/index.html`. I use `gulp-md-template` to achieve this.
+这里使用另一个非常简单的模板设置。我们将 `app/partials/book.md` 的内容从markdown格式转换到HTML并注入到一个书籍模板 `app/index.html`中。 我使用了 `gulp-md-template` 来实现这一点。
 
-##### Images
+##### 图像
 
-The vast majority of images in the book are hosted on my Cloudinary account. If a PR wishes to improve or add any 
-additional graphics, feel free to assume you can use `app/images/` to temporarily add them directly. I will take care 
-of appending commits that host any graphics back to Cloudinary as needed. Alternatively, just ping me on a PR and I can
-usually get back with a Cloudinary-hosted URL for the graphic you want to add.
+书中的大多数图像都是托管在我的Cloudinary账户上。如果你的合并请求（Pull Request）是想要改进或附加任何图像，大可不必担心，你可以在 `app/images/` 中直接添加它们。我会根据需要将图像托管到Cloudinary并再次提交它们。或者，你可以在合并请求时提醒我，通常我会使用托管到Cloudinary的你的图像的URL恢复到文件中。
 
-##### Syntax highlighting
+##### 语法高亮显示
 
-The initial version of this book takes a very barebones approach to syntax highlighting. That said, better highlighting using
-a lightweight library like [Prism](http://prismjs.com/) would be a welcome contribution to the project. We would want to
-load it in a way that doesn't impact the critical-path performance of the page.
+本书的初始版本采用了一个非常准确的方法来进行语法突出显示。也就是说，使用像[Prism](http://prismjs.com/)这样的轻量级扩展库来更好的突出显示，对该项目来说是一个值得欢迎的贡献。因为，我们希望找到一种不影响页面的核心体验的方式。
 
-#### Contributing
+#### 关于贡献
 
-I'd love your help improving this book. If interested in contributing a pull request, please:
+我很欢迎你帮助我们改善这本书。如果你有兴趣提出合并请求，请注意：
 
-1. Make sure your PR has a valid title and description. 
-2. Your PR updates only touch the parts of the repo it needs to. In most cases this will be `app/partials/book.md`.
+1. 确保你的请求有个准确的标题和描述。
+2. 你的请求只更改需要更改的地方。大多数情况下它会是 `app/partials/book.md`.
 
-If updating an opinion or recommendation in the book, please help us by providing data to back the change. This helps equip us with tools to make the best call on such updates.
+如果你更新了本书中的意见或建议，请提供数据以支持所做的更改。这有助于我们对于这些更改做出最好的回应。
 
-##### Translations
+##### 关于翻译
 
-If interested in translating this book, please file an issue and we can chat. Translations may be something we can cater for
-as part of the existing repo or something better handled as a fork. By coordinating with us, we'll have the best chance to
-serve readers in a way that keeps all versions of the book as synchronized as possible.
+如果你有兴趣翻译此书，请提出问题，我们可以交流如何处理。翻译可能会作为这个项目的一部分，或者更好作为一个分支。通过我们之间的协调，我们可以找到一个尽可能让所有版本都同步的方式，以便更好的为读者提供服务。
 
-## Pagination
+## 分页
 
-The content in this book is being ported over to [Web Fundamentals](https://developers.google.com/web/fundamentals/). We'll be turning it into a new 
-chapter on automating image optimization, splitting the content here into different pages. 
-In the mean time, we're going to keep Essential Image Optimization a one-page format.
+这本书中的内容正在被移植到[Web基础支持](https://developers.google.com/web/fundamentals/)中。我们将会将它作为其中的一个新篇章，叫做自动化图像优化，并且会被分割到几个不同的页面。但同时，我们还是会保持这边文章《重要的图片优化》为单页的格式。
 
-## License
+## 开源协议
 
-Except as otherwise noted, the content of this book is licensed under the  Creative Commons [Attribution-NonCommercial-NoDerivs 2.0 Generic (CC BY-NC-ND 2.0)](https://creativecommons.org/licenses/by-nc-nd/2.0/) license, and code samples are licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0). Copyright Google, 2017.
+除非特殊说明，否则本书的内容全部使用[Attribution-NonCommercial-NoDerivs 2.0 Generic (CC BY-NC-ND 2.0)](https://creativecommons.org/licenses/by-nc-nd/2.0/)授权协议，代码示例使用 [Apache 2.0授权协议](http://www.apache.org/licenses/LICENSE-2.0)。版权所有Google, 2017.
