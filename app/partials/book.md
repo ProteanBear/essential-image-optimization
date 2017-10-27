@@ -244,7 +244,7 @@
 </figure>
 
 
-[在Chrome中，[Lighthouse](https://github.com/GoogleChrome/lighthouse)工具可以有效的帮助你的网站达到最佳体验。它包括了图像优化的审核，并且对是否可以进一步压缩图片提出建议，或者指出哪些是屏幕外的图片可以被延迟加载。
+在Chrome中，[Lighthouse](https://github.com/GoogleChrome/lighthouse)工具可以有效的帮助你的网站达到最佳体验。它包括了图像优化的审核，并且对是否可以进一步压缩图片提出建议，或者指出哪些是屏幕外的图片可以被延迟加载。
 
 而对于Chrome60以上的版本，Lighthouse已经默认被嵌入到Chrome DevTools中的Audits面板中。
 
