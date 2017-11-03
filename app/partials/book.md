@@ -64,7 +64,7 @@
         <li><a href="#reduce-unnecessary-image-decode-costs">减少不必要的图像解码和尺寸调整带来的损耗</a>
                 <ul>
                         <li><a href="#delivering-hidpi-with-srcset">使用srcset提供HiDPI图像</a></li>
-                        <li><a href="#art-direction">艺术化的响应</a></li>
+                        <li><a href="#art-direction">艺术指导</a></li>
                 </ul>
         </li>
         <li><a href="#color-management">颜色管理</a></li>
@@ -1879,9 +1879,9 @@ Twitter（推特）在构建它们新的[移动网络体验](https://medium.com/
 
 友好的提醒你，[Client Hints](https://www.smashingmagazine.com/2016/01/leaner-responsive-images-client-hints/)也提供了一个替代的标记方案来指定每个可能的像素密度和图像格式，借此来实现响应图像。不同的是，此信息是被附加到HTTP请求中，而Web服务器就可以通过它来选择最适合当前设备屏幕密度的图像来返回回去。
 
-### <a id="art-direction" href="#art-direction">艺术化的响应</a>
+### <a id="art-direction" href="#art-direction">艺术指导</a>
 
-尽管向用户提供适配分辨率的内容很重要，但是有些网站可能会需要考虑艺术化的响应图像像是。如果用户位于一个较小的屏幕上，则可能需要裁剪或放大图像，以充分利用可用的空间突出图像的主题内容。虽然美术设计方面的内容超出了这个写作的范围，但像[Cloudinary](http://cloudinary.com/blog/automatically_art_directed_responsive_images%20)的服务是提供了这样的API，来尽可能地尝试自动化的处理类似的需求。
+尽管向用户提供适配分辨率的内容很重要，但是有些网站可能会需要考虑艺术化的响应图像。如果用户位于一个较小的屏幕上，则可能需要裁剪或放大图像，以充分利用可用的空间突出图像的主题内容。虽然美术设计方面的内容超出了这个写作的范围，但像[Cloudinary](http://cloudinary.com/blog/automatically_art_directed_responsive_images%20)的服务是提供了这样的API，来尽可能地尝试自动化的处理类似的需求。
 
 <figure>
 <picture>
